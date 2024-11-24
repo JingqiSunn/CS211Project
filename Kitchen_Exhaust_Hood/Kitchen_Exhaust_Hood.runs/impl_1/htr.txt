@@ -7,4 +7,4 @@
 # Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 #
 
-vivado -log standard_clock_generator.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source standard_clock_generator.tcl -notrace
+vivado -log main.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source main.tcl -notrace

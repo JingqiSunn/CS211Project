@@ -37,4 +37,4 @@ EAStep()
      fi
 }
 
-EAStep vivado -log standard_clock_generator.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source standard_clock_generator.tcl
+EAStep vivado -log main.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source main.tcl

@@ -30,7 +30,7 @@ eval( EAInclude(ISEJScriptLib) );
 // pre-commands:
 ISETouchFile( "init_design", "begin" );
 ISEStep( "vivado",
-         "-log standard_clock_generator.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source standard_clock_generator.tcl -notrace" );
+         "-log main.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source main.tcl -notrace" );
 
 
 

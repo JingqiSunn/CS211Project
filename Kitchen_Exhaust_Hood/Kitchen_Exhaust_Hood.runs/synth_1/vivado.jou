@@ -3,22 +3,22 @@
 # SW Build 5076996 on Wed May 22 18:36:09 MDT 2024
 # IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
 # SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
-# Start of session at: Tue Nov 19 15:48:06 2024
-# Process ID: 19584
+# Start of session at: Sun Nov 24 11:39:43 2024
+# Process ID: 117685
 # Current directory: /home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.runs/synth_1
-# Command line: vivado -log standard_clock_generator.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source standard_clock_generator.tcl
-# Log file: /home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.runs/synth_1/standard_clock_generator.vds
+# Command line: vivado -log main.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source main.tcl
+# Log file: /home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.runs/synth_1/main.vds
 # Journal file: /home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.runs/synth_1/vivado.jou
 # Running On        :PC
 # Platform          :Ubuntu
 # Operating System  :Ubuntu 24.04.1 LTS
 # Processor Detail  :13th Gen Intel(R) Core(TM) i9-13900HX
-# CPU Frequency     :800.311 MHz
+# CPU Frequency     :4137.228 MHz
 # CPU Physical cores:24
 # CPU Logical cores :32
 # Host memory       :33443 MB
 # Swap memory       :8589 MB
 # Total Virtual     :42033 MB
-# Available Virtual :36217 MB
+# Available Virtual :34705 MB
 #-----------------------------------------------------------
-source standard_clock_generator.tcl -notrace
+source main.tcl -notrace
