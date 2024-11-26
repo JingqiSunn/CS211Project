@@ -86,6 +86,11 @@ module state_switcher(
     reg [9:0] level_3_accumulator_standard;
     reg [9:0] strong_standby_accumulator_standard;
     reg [3:0] power_off_on_time_standard;
+    reg [9:0] accumulator_self_clean_standard_next;
+    reg [15:0] clean_alarm_standard_next;
+    reg [9:0] level_3_accumulator_standard_next;
+    reg [9:0] strong_standby_accumulator_standard_next;
+    reg [3:0] power_off_on_time_standard_next;
     reg [9:0] accumulator_self_clean;
     reg [15:0] clean_alarm;
     reg [9:0] level_3_accumulator;
@@ -114,11 +119,11 @@ module state_switcher(
              if (~reset) 
                 begin
                     state <= power_off_state;
-                    accumulator_self_clean_standard <= 10'b0000111100;
-                    clean_alarm_standard <= 16'b1000110010100000;
-                    level_3_accumulator_standard <= 10'b0000111100;
-                    strong_standby_accumulator <= 10'b0000111100;
-                    power_off_on_time_standard <= 4'b0101;
+                    accumulator_self_clean_standard = 10'b0000111100;
+                    clean_alarm_standard = 16'b1000110010100000;
+                    level_3_accumulator_standard = 10'b0000111100;
+                    strong_standby_accumulator = 10'b0000111100;
+                    power_off_on_time_standard = 4'b0101;
                     accumulator_self_clean <= 10'b0;
                     clean_alarm <= 16'b0;
                     level_3_accumulator <= 10'b0;
@@ -133,6 +138,11 @@ module state_switcher(
                     level_3_accumulator <= level_3_accumulator_next;
                     strong_standby_accumulator <= strong_standby_accumulator_next;
                     power_off_on_time <= power_off_on_time_next;
+                    accumulator_self_clean_standard <= accumulator_self_clean_standard_next;
+                    clean_alarm_standard <= clean_alarm_standard_next;
+                    level_3_accumulator_standard <= level_3_accumulator_standard_next;
+                    strong_standby_accumulator_standard <= strong_standby_accumulator_standard_next;
+                    power_off_on_time_standard <= power_off_on_time_standard_next;
                 end
         end
      

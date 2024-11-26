@@ -82,10 +82,30 @@ module main_state_switcher(
     );
     
     reg [10:0] state, next_state;
+    reg [9:0] accumulator_self_clean_standard;
+    reg [15:0] clean_alarm_standard;
+    reg [9:0] level_3_accumulator_standard;
+    reg [9:0] strong_standby_accumulator_standard;
+    reg [3:0] power_off_on_time_standard;
+    reg [9:0] accumulator_self_clean_standard_next;
+    reg [15:0] clean_alarm_standard_next;
+    reg [9:0] level_3_accumulator_standard_next;
+    reg [9:0] strong_standby_accumulator_standard_next;
+    reg [3:0] power_off_on_time_standard_next;
+    reg [9:0] accumulator_self_clean;
+    reg [15:0] clean_alarm;
+    reg [9:0] level_3_accumulator;
+    reg [9:0] strong_standby_accumulator;
+    reg [3:0] power_off_on_time;
+    reg [9:0] accumulator_self_clean_next;
+    reg [15:0] clean_alarm_next;
+    reg [9:0] level_3_accumulator_next;
+    reg [9:0] strong_standby_accumulator_next;
+    reg [3:0] power_off_on_time_next;
     parameter 
     power_off_state           = 11'b00000000001,
-    power_off_b_state         = 11'b00000000010,
-    power_off_a_state         = 11'b00000000100,
+    power_off_a_state         = 11'b00000000010,
+    power_off_b_state         = 11'b00000000100,
     standby_state             = 11'b00000001000,
     level_3_state             = 11'b00000010000,
     level_2_state             = 11'b00000100000,
@@ -94,18 +114,39 @@ module main_state_switcher(
     menu_state                = 11'b00100000000,
     edit_state                = 11'b01000000000,
     strong_standby_state      = 11'b10000000000;
-    always @(negedge reset,posedge standard_clock_1)
+
+    always @(posedge standard_clock_1, negedge reset)
         begin
-            if (~reset)
+             if (~reset) 
                 begin
                     state <= power_off_state;
+                    accumulator_self_clean_standard = 10'b0000111100;
+                    clean_alarm_standard = 16'b1000110010100000;
+                    level_3_accumulator_standard = 10'b0000111100;
+                    strong_standby_accumulator = 10'b0000111100;
+                    power_off_on_time_standard = 4'b0101;
+                    accumulator_self_clean <= 10'b0;
+                    clean_alarm <= 16'b0;
+                    level_3_accumulator <= 10'b0;
+                    strong_standby_accumulator <= 10'b0;
+                    power_off_on_time <= 4'b0;
                 end
-             else 
+             else
                 begin
                     state <= next_state;
+                    accumulator_self_clean <= accumulator_self_clean_next;
+                    clean_alarm <= clean_alarm_next;
+                    level_3_accumulator <= level_3_accumulator_next;
+                    strong_standby_accumulator <= strong_standby_accumulator_next;
+                    power_off_on_time <= power_off_on_time_next;
+                    accumulator_self_clean_standard <= accumulator_self_clean_standard_next;
+                    clean_alarm_standard <= clean_alarm_standard_next;
+                    level_3_accumulator_standard <= level_3_accumulator_standard_next;
+                    strong_standby_accumulator_standard <= strong_standby_accumulator_standard_next;
+                    power_off_on_time_standard <= power_off_on_time_standard_next;
                 end
         end
-     always @(power_menu_button_short, power_menu_button_long, state)
+     always @(state, power_menu_button_short, power_menu_button_long, level_1_button, level_2_button, level_3_button, self_clean_button)
         case (state)
             power_off_state: 
                 if (next_state != state) 
@@ -125,13 +166,39 @@ module main_state_switcher(
                     begin
                         next_state <= next_state;
                     end    
-                else if (power_menu_button_short == 0)
+                else if (power_menu_button_long == 1)
                     begin
-                        next_state <= standby_state;
+                        next_state <= power_off_b_state;
                     end
                 else 
                     begin
+                        next_state <= standby_state;
+                    end
+            power_off_b_state:
+                if (next_state != state)
+                    begin
+                        next_state <= state;
+                    end
+                else if (power_menu_button_long == 1)
+                    begin
+                        next_state <= power_off_a_state;
+                    end
+                else 
+                    begin
+                        next_state <= standby_state;
+                    end
+            power_off_a_state:
+                if (next_state != state)
+                    begin
+                        next_state <= state;
+                    end
+                else if (power_menu_button_long == 1)
+                    begin
                         next_state <= power_off_state;
+                    end
+                else 
+                    begin
+                        next_state <= standby_state;
                     end
             default: next_state <= power_off_state;
         endcase

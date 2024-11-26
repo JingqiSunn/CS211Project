@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2024.1 (lin64) Build 5076996 Wed May 22 18:36:09 MDT 2024
-| Date             : Tue Nov 26 16:08:53 2024
+| Date             : Tue Nov 26 17:23:52 2024
 | Host             : PC running 64-bit Ubuntu 24.04.1 LTS
 | Command          : report_power -file main_power_routed.rpt -pb main_power_summary_routed.pb -rpx main_power_routed.rpx
 | Design           : main
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.497        |
+| Total On-Chip Power (W)  | 0.359        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.428        |
+| Dynamic (W)              | 0.290        |
 | Device Static (W)        | 0.069        |
 | Effective TJA (C/W)      | 4.8          |
-| Max Ambient (C)          | 82.6         |
-| Junction Temperature (C) | 27.4         |
+| Max Ambient (C)          | 83.3         |
+| Junction Temperature (C) | 26.7         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -52,16 +52,16 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Slice Logic    |     0.232 |      200 |       --- |             --- |
-|   LUT as Logic |     0.176 |       82 |     20800 |            0.39 |
-|   CARRY4       |     0.027 |       19 |      8150 |            0.23 |
-|   Register     |     0.024 |       80 |     41600 |            0.19 |
+| Slice Logic    |     0.133 |      212 |       --- |             --- |
+|   LUT as Logic |     0.093 |       91 |     20800 |            0.44 |
+|   CARRY4       |     0.018 |       19 |      8150 |            0.23 |
+|   Register     |     0.016 |       85 |     41600 |            0.20 |
 |   BUFG         |     0.006 |        1 |        32 |            3.13 |
 |   Others       |     0.000 |       11 |       --- |             --- |
-| Signals        |     0.188 |      137 |       --- |             --- |
+| Signals        |     0.149 |      146 |       --- |             --- |
 | I/O            |     0.008 |       43 |       210 |           20.48 |
 | Static Power   |     0.069 |          |           |                 |
-| Total          |     0.497 |          |           |                 |
+| Total          |     0.359 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -71,7 +71,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.438 |       0.428 |      0.010 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.300 |       0.290 |      0.010 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.013 |       0.000 |      0.013 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -138,12 +138,11 @@ Table of Contents
 +---------------------------------+-----------+
 | Name                            | Power (W) |
 +---------------------------------+-----------+
-| main                            |     0.428 |
-|   button_touch_length_checker_1 |     0.118 |
-|   debounce_1                    |     0.135 |
-|   main_state_switcher_1         |     0.003 |
-|   standard_clock_generator_60_1 |     0.136 |
-|     nolabel_line31              |     0.136 |
+| main                            |     0.290 |
+|   button_touch_length_checker_1 |     0.003 |
+|   debounce_1                    |     0.056 |
+|   standard_clock_generator_60_1 |     0.190 |
+|     nolabel_line31              |     0.190 |
 +---------------------------------+-----------+
 
 

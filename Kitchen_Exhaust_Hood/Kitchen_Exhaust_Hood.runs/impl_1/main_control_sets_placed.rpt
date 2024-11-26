@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (lin64) Build 5076996 Wed May 22 18:36:09 MDT 2024
-| Date         : Tue Nov 26 16:08:45 2024
+| Date         : Tue Nov 26 17:23:45 2024
 | Host         : PC running 64-bit Ubuntu 24.04.1 LTS
 | Command      : report_control_sets -verbose -file main_control_sets_placed.rpt
 | Design       : main
@@ -27,7 +27,7 @@ Table of Contents
 |    Minimum number of control sets                        |     7 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    40 |
+| Unused register locations in slices containing registers |    35 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -40,8 +40,8 @@ Table of Contents
 |       Fanout       | Count |
 +--------------------+-------+
 | Total control sets |     7 |
-| >= 0 to < 4        |     4 |
-| >= 4 to < 6        |     0 |
+| >= 0 to < 4        |     1 |
+| >= 4 to < 6        |     3 |
 | >= 6 to < 8        |     0 |
 | >= 8 to < 10       |     0 |
 | >= 10 to < 12      |     0 |
@@ -58,8 +58,8 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |               4 |            2 |
-| No           | No                    | Yes                    |               5 |            4 |
+| No           | No                    | No                     |               6 |            2 |
+| No           | No                    | Yes                    |               8 |            5 |
 | No           | Yes                   | No                     |              25 |            7 |
 | Yes          | No                    | No                     |               0 |            0 |
 | Yes          | No                    | Yes                    |              46 |           12 |
@@ -70,16 +70,16 @@ Table of Contents
 4. Detailed Control Set Information
 -----------------------------------
 
-+--------------------------------------------------------------+----------------------------------------+---------------------------------------------------------------+------------------+----------------+--------------+
-|                         Clock Signal                         |              Enable Signal             |                        Set/Reset Signal                       | Slice Load Count | Bel Load Count | Bels / Slice |
-+--------------------------------------------------------------+----------------------------------------+---------------------------------------------------------------+------------------+----------------+--------------+
-|  P17_IBUF_BUFG                                               |                                        |                                                               |                1 |              2 |         2.00 |
-|  standard_clock_generator_60_1/nolabel_line31/standard_clock |                                        | button_touch_length_checker_1/P15                             |                1 |              2 |         2.00 |
-|  main_state_switcher_1/__0/i__n_0                            |                                        |                                                               |                1 |              2 |         2.00 |
-|  P17_IBUF_BUFG                                               |                                        | button_touch_length_checker_1/P15                             |                3 |              3 |         1.00 |
-|  P17_IBUF_BUFG                                               | debounce_1/debounce_counter[0]_i_1_n_0 | button_touch_length_checker_1/P15                             |                5 |             20 |         4.00 |
-|  P17_IBUF_BUFG                                               |                                        | standard_clock_generator_60_1/nolabel_line31/standard_clock_0 |                7 |             25 |         3.57 |
-|  P17_IBUF_BUFG                                               | debounce_1/button_out_reg_0            | button_touch_length_checker_1/P15                             |                7 |             26 |         3.71 |
-+--------------------------------------------------------------+----------------------------------------+---------------------------------------------------------------+------------------+----------------+--------------+
++--------------------------------------------------------------+---------------------------------------------------------+---------------------------------------------------------------+------------------+----------------+--------------+
+|                         Clock Signal                         |                      Enable Signal                      |                        Set/Reset Signal                       | Slice Load Count | Bel Load Count | Bels / Slice |
++--------------------------------------------------------------+---------------------------------------------------------+---------------------------------------------------------------+------------------+----------------+--------------+
+|  P17_IBUF_BUFG                                               |                                                         |                                                               |                1 |              2 |         2.00 |
+|  standard_clock_generator_60_1/nolabel_line31/standard_clock |                                                         | button_touch_length_checker_1/P15                             |                1 |              4 |         4.00 |
+|  main_state_switcher_1/next_state_reg[3]_i_2_n_0             |                                                         |                                                               |                1 |              4 |         4.00 |
+|  P17_IBUF_BUFG                                               |                                                         | button_touch_length_checker_1/P15                             |                4 |              4 |         1.00 |
+|  P17_IBUF_BUFG                                               | debounce_1/debounce_counter[0]_i_1_n_0                  | button_touch_length_checker_1/P15                             |                5 |             20 |         4.00 |
+|  P17_IBUF_BUFG                                               |                                                         | standard_clock_generator_60_1/nolabel_line31/standard_clock_0 |                7 |             25 |         3.57 |
+|  P17_IBUF_BUFG                                               | button_touch_length_checker_1/total_duration[0]_i_1_n_0 | button_touch_length_checker_1/P15                             |                7 |             26 |         3.71 |
++--------------------------------------------------------------+---------------------------------------------------------+---------------------------------------------------------------+------------------+----------------+--------------+
 
 
