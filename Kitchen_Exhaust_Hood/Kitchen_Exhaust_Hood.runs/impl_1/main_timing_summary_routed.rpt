@@ -1,0 +1,772 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.1 (lin64) Build 5076996 Wed May 22 18:36:09 MDT 2024
+| Date         : Tue Nov 26 16:08:52 2024
+| Host         : PC running 64-bit Ubuntu 24.04.1 LTS
+| Command      : report_timing_summary -max_paths 10 -report_unconstrained -file main_timing_summary_routed.rpt -pb main_timing_summary_routed.pb -rpx main_timing_summary_routed.rpx -warn_on_violation
+| Design       : main
+| Device       : 7a35t-csg324
+| Speed File   : -1  PRODUCTION 1.23 2018-06-13
+| Design State : Routed
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Summary Report
+
+------------------------------------------------------------------------------------------------
+| Timer Settings
+| --------------
+------------------------------------------------------------------------------------------------
+
+  Enable Multi Corner Analysis               :  Yes
+  Enable Pessimism Removal                   :  Yes
+  Pessimism Removal Resolution               :  Nearest Common Node
+  Enable Input Delay Default Clock           :  No
+  Enable Preset / Clear Arcs                 :  No
+  Disable Flight Delays                      :  No
+  Ignore I/O Paths                           :  No
+  Timing Early Launch at Borrowing Latches   :  No
+  Borrow Time for Max Delay Exceptions       :  Yes
+  Merge Timing Exceptions                    :  Yes
+  Inter-SLR Compensation                     :  Conservative
+
+  Corner  Analyze    Analyze    
+  Name    Max Paths  Min Paths  
+  ------  ---------  ---------  
+  Slow    Yes        Yes        
+  Fast    Yes        Yes        
+
+
+------------------------------------------------------------------------------------------------
+| Report Methodology
+| ------------------
+------------------------------------------------------------------------------------------------
+
+Rule       Severity          Description                     Violations  
+---------  ----------------  ------------------------------  ----------  
+TIMING-17  Critical Warning  Non-clocked sequential cell     78          
+TIMING-20  Warning           Non-clocked latch               2           
+LATCH-1    Advisory          Existing latches in the design  1           
+
+Note: This report is based on the most recent report_methodology run and may not be up-to-date. Run report_methodology on the current design for the latest report.
+
+
+
+check_timing report
+
+Table of Contents
+-----------------
+1. checking no_clock (82)
+2. checking constant_clock (0)
+3. checking pulse_width_clock (0)
+4. checking unconstrained_internal_endpoints (202)
+5. checking no_input_delay (2)
+6. checking no_output_delay (2)
+7. checking multiple_clock (0)
+8. checking generated_clocks (0)
+9. checking loops (0)
+10. checking partial_input_delay (0)
+11. checking partial_output_delay (0)
+12. checking latch_loops (0)
+
+1. checking no_clock (82)
+-------------------------
+ There are 76 register/latch pins with no clock driven by root clock pin: P17 (HIGH)
+
+ There are 2 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[0]/Q (HIGH)
+
+ There are 2 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[3]/Q (HIGH)
+
+ There are 2 register/latch pins with no clock driven by root clock pin: standard_clock_generator_60_1/nolabel_line31/standard_clock_reg/Q (HIGH)
+
+
+2. checking constant_clock (0)
+------------------------------
+ There are 0 register/latch pins with constant_clock.
+
+
+3. checking pulse_width_clock (0)
+---------------------------------
+ There are 0 register/latch pins which need pulse_width check
+
+
+4. checking unconstrained_internal_endpoints (202)
+--------------------------------------------------
+ There are 202 pins that are not constrained for maximum delay. (HIGH)
+
+ There are 0 pins that are not constrained for maximum delay due to constant clock.
+
+
+5. checking no_input_delay (2)
+------------------------------
+ There are 2 input ports with no input delay specified. (HIGH)
+
+ There are 0 input ports with no input delay but user has a false path constraint.
+
+
+6. checking no_output_delay (2)
+-------------------------------
+ There are 2 ports with no output delay specified. (HIGH)
+
+ There are 0 ports with no output delay but user has a false path constraint
+
+ There are 0 ports with no output delay but with a timing clock defined on it or propagating through it
+
+
+7. checking multiple_clock (0)
+------------------------------
+ There are 0 register/latch pins with multiple clocks.
+
+
+8. checking generated_clocks (0)
+--------------------------------
+ There are 0 generated clocks that are not connected to a clock source.
+
+
+9. checking loops (0)
+---------------------
+ There are 0 combinational loops in the design.
+
+
+10. checking partial_input_delay (0)
+------------------------------------
+ There are 0 input ports with partial input delay specified.
+
+
+11. checking partial_output_delay (0)
+-------------------------------------
+ There are 0 ports with partial output delay specified.
+
+
+12. checking latch_loops (0)
+----------------------------
+ There are 0 combinational latch loops in the design through latch input
+
+
+
+------------------------------------------------------------------------------------------------
+| Design Timing Summary
+| ---------------------
+------------------------------------------------------------------------------------------------
+
+    WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
+    -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
+        inf        0.000                      0                  204          inf        0.000                      0                  204           NA           NA                      NA                    NA  
+
+
+There are no user specified timing constraints.
+
+
+------------------------------------------------------------------------------------------------
+| Clock Summary
+| -------------
+------------------------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------------------------
+| Intra Clock Table
+| -----------------
+------------------------------------------------------------------------------------------------
+
+Clock             WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
+-----             -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
+
+
+------------------------------------------------------------------------------------------------
+| Inter Clock Table
+| -----------------
+------------------------------------------------------------------------------------------------
+
+From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints  
+----------    --------          -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------  
+
+
+------------------------------------------------------------------------------------------------
+| Other Path Groups Table
+| -----------------------
+------------------------------------------------------------------------------------------------
+
+Path Group    From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints  
+----------    ----------    --------          -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------  
+
+
+------------------------------------------------------------------------------------------------
+| User Ignored Path Table
+| -----------------------
+------------------------------------------------------------------------------------------------
+
+Path Group    From Clock    To Clock    
+----------    ----------    --------    
+
+
+------------------------------------------------------------------------------------------------
+| Unconstrained Path Table
+| ------------------------
+------------------------------------------------------------------------------------------------
+
+Path Group    From Clock    To Clock    
+----------    ----------    --------    
+(none)                                    
+
+
+------------------------------------------------------------------------------------------------
+| Timing Details
+| --------------
+------------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------
+Path Group:  (none)
+From Clock:  
+  To Clock:  
+
+Max Delay           204 Endpoints
+Min Delay           204 Endpoints
+--------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack:                    inf
+  Source:                 main_state_switcher_1/state_reg[3]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            K2
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        7.052ns  (logic 4.151ns (58.867%)  route 2.901ns (41.133%))
+  Logic Levels:           2  (FDCE=1 OBUF=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X41Y44         FDCE                         0.000     0.000 r  main_state_switcher_1/state_reg[3]/C
+    SLICE_X41Y44         FDCE (Prop_fdce_C_Q)         0.627     0.627 r  main_state_switcher_1/state_reg[3]/Q
+                         net (fo=4, routed)           2.901     3.528    K2_OBUF
+    K2                   OBUF (Prop_obuf_I_O)         3.524     7.052 r  K2_OBUF_inst/O
+                         net (fo=0)                   0.000     7.052    K2
+    K2                                                                r  K2 (OUT)
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 main_state_switcher_1/state_reg[0]/C
+                            (rising edge-triggered cell FDPE)
+  Destination:            H5
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        6.924ns  (logic 4.152ns (59.972%)  route 2.772ns (40.028%))
+  Logic Levels:           2  (FDPE=1 OBUF=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X41Y44         FDPE                         0.000     0.000 r  main_state_switcher_1/state_reg[0]/C
+    SLICE_X41Y44         FDPE (Prop_fdpe_C_Q)         0.627     0.627 r  main_state_switcher_1/state_reg[0]/Q
+                         net (fo=4, routed)           2.772     3.399    H5_OBUF
+    H5                   OBUF (Prop_obuf_I_O)         3.525     6.924 r  H5_OBUF_inst/O
+                         net (fo=0)                   0.000     6.924    H5
+    H5                                                                r  H5 (OUT)
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 P15
+                            (input port)
+  Destination:            main_state_switcher_1/state_reg[0]/PRE
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        6.426ns  (logic 1.587ns (24.699%)  route 4.839ns (75.301%))
+  Logic Levels:           2  (IBUF=1 LUT1=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    P15                                               0.000     0.000 r  P15 (IN)
+                         net (fo=0)                   0.000     0.000    P15
+    P15                  IBUF (Prop_ibuf_I_O)         1.463     1.463 r  P15_IBUF_inst/O
+                         net (fo=1, routed)           1.744     3.207    button_touch_length_checker_1/P15_IBUF
+    SLICE_X12Y27         LUT1 (Prop_lut1_I0_O)        0.124     3.331 f  button_touch_length_checker_1/button_in_d1_i_1/O
+                         net (fo=51, routed)          3.095     6.426    main_state_switcher_1/state_reg[3]_0
+    SLICE_X41Y44         FDPE                                         f  main_state_switcher_1/state_reg[0]/PRE
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 P15
+                            (input port)
+  Destination:            main_state_switcher_1/state_reg[3]/CLR
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        6.426ns  (logic 1.587ns (24.699%)  route 4.839ns (75.301%))
+  Logic Levels:           2  (IBUF=1 LUT1=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    P15                                               0.000     0.000 r  P15 (IN)
+                         net (fo=0)                   0.000     0.000    P15
+    P15                  IBUF (Prop_ibuf_I_O)         1.463     1.463 r  P15_IBUF_inst/O
+                         net (fo=1, routed)           1.744     3.207    button_touch_length_checker_1/P15_IBUF
+    SLICE_X12Y27         LUT1 (Prop_lut1_I0_O)        0.124     3.331 f  button_touch_length_checker_1/button_in_d1_i_1/O
+                         net (fo=51, routed)          3.095     6.426    main_state_switcher_1/state_reg[3]_0
+    SLICE_X41Y44         FDCE                                         f  main_state_switcher_1/state_reg[3]/CLR
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 button_touch_length_checker_1/total_duration_reg[12]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            button_touch_length_checker_1/total_duration_reg[25]/D
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        6.176ns  (logic 2.665ns (43.151%)  route 3.511ns (56.849%))
+  Logic Levels:           12  (CARRY4=7 FDCE=1 LUT4=2 LUT5=1 LUT6=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X12Y40         FDCE                         0.000     0.000 r  button_touch_length_checker_1/total_duration_reg[12]/C
+    SLICE_X12Y40         FDCE (Prop_fdce_C_Q)         0.518     0.518 r  button_touch_length_checker_1/total_duration_reg[12]/Q
+                         net (fo=5, routed)           1.113     1.631    button_touch_length_checker_1/total_duration_reg[12]
+    SLICE_X13Y42         LUT4 (Prop_lut4_I3_O)        0.124     1.755 r  button_touch_length_checker_1/total_duration[0]_i_19/O
+                         net (fo=1, routed)           0.665     2.420    button_touch_length_checker_1/total_duration[0]_i_19_n_0
+    SLICE_X13Y42         LUT5 (Prop_lut5_I4_O)        0.152     2.572 r  button_touch_length_checker_1/total_duration[0]_i_17/O
+                         net (fo=1, routed)           0.767     3.339    button_touch_length_checker_1/total_duration[0]_i_17_n_0
+    SLICE_X13Y40         LUT6 (Prop_lut6_I5_O)        0.326     3.665 r  button_touch_length_checker_1/total_duration[0]_i_4/O
+                         net (fo=3, routed)           0.966     4.631    button_touch_length_checker_1/whether_long_touch1
+    SLICE_X12Y37         LUT4 (Prop_lut4_I3_O)        0.124     4.755 r  button_touch_length_checker_1/total_duration[0]_i_8/O
+                         net (fo=1, routed)           0.000     4.755    button_touch_length_checker_1/total_duration[0]_i_8_n_0
+    SLICE_X12Y37         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513     5.268 r  button_touch_length_checker_1/total_duration_reg[0]_i_2/CO[3]
+                         net (fo=1, routed)           0.000     5.268    button_touch_length_checker_1/total_duration_reg[0]_i_2_n_0
+    SLICE_X12Y38         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     5.385 r  button_touch_length_checker_1/total_duration_reg[4]_i_1/CO[3]
+                         net (fo=1, routed)           0.000     5.385    debounce_1/CO[0]
+    SLICE_X12Y39         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     5.502 r  debounce_1/total_duration_reg[8]_i_1/CO[3]
+                         net (fo=1, routed)           0.000     5.502    button_touch_length_checker_1/total_duration_reg[15]_0[0]
+    SLICE_X12Y40         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     5.619 r  button_touch_length_checker_1/total_duration_reg[12]_i_1/CO[3]
+                         net (fo=1, routed)           0.000     5.619    button_touch_length_checker_1/total_duration_reg[12]_i_1_n_0
+    SLICE_X12Y41         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     5.736 r  button_touch_length_checker_1/total_duration_reg[16]_i_1/CO[3]
+                         net (fo=1, routed)           0.000     5.736    button_touch_length_checker_1/total_duration_reg[16]_i_1_n_0
+    SLICE_X12Y42         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     5.853 r  button_touch_length_checker_1/total_duration_reg[20]_i_1/CO[3]
+                         net (fo=1, routed)           0.000     5.853    button_touch_length_checker_1/total_duration_reg[20]_i_1_n_0
+    SLICE_X12Y43         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323     6.176 r  button_touch_length_checker_1/total_duration_reg[24]_i_1/O[1]
+                         net (fo=1, routed)           0.000     6.176    button_touch_length_checker_1/total_duration_reg[24]_i_1_n_6
+    SLICE_X12Y43         FDCE                                         r  button_touch_length_checker_1/total_duration_reg[25]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 button_touch_length_checker_1/total_duration_reg[12]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            button_touch_length_checker_1/total_duration_reg[24]/D
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        6.072ns  (logic 2.561ns (42.177%)  route 3.511ns (57.823%))
+  Logic Levels:           12  (CARRY4=7 FDCE=1 LUT4=2 LUT5=1 LUT6=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X12Y40         FDCE                         0.000     0.000 r  button_touch_length_checker_1/total_duration_reg[12]/C
+    SLICE_X12Y40         FDCE (Prop_fdce_C_Q)         0.518     0.518 r  button_touch_length_checker_1/total_duration_reg[12]/Q
+                         net (fo=5, routed)           1.113     1.631    button_touch_length_checker_1/total_duration_reg[12]
+    SLICE_X13Y42         LUT4 (Prop_lut4_I3_O)        0.124     1.755 r  button_touch_length_checker_1/total_duration[0]_i_19/O
+                         net (fo=1, routed)           0.665     2.420    button_touch_length_checker_1/total_duration[0]_i_19_n_0
+    SLICE_X13Y42         LUT5 (Prop_lut5_I4_O)        0.152     2.572 r  button_touch_length_checker_1/total_duration[0]_i_17/O
+                         net (fo=1, routed)           0.767     3.339    button_touch_length_checker_1/total_duration[0]_i_17_n_0
+    SLICE_X13Y40         LUT6 (Prop_lut6_I5_O)        0.326     3.665 r  button_touch_length_checker_1/total_duration[0]_i_4/O
+                         net (fo=3, routed)           0.966     4.631    button_touch_length_checker_1/whether_long_touch1
+    SLICE_X12Y37         LUT4 (Prop_lut4_I3_O)        0.124     4.755 r  button_touch_length_checker_1/total_duration[0]_i_8/O
+                         net (fo=1, routed)           0.000     4.755    button_touch_length_checker_1/total_duration[0]_i_8_n_0
+    SLICE_X12Y37         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513     5.268 r  button_touch_length_checker_1/total_duration_reg[0]_i_2/CO[3]
+                         net (fo=1, routed)           0.000     5.268    button_touch_length_checker_1/total_duration_reg[0]_i_2_n_0
+    SLICE_X12Y38         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     5.385 r  button_touch_length_checker_1/total_duration_reg[4]_i_1/CO[3]
+                         net (fo=1, routed)           0.000     5.385    debounce_1/CO[0]
+    SLICE_X12Y39         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     5.502 r  debounce_1/total_duration_reg[8]_i_1/CO[3]
+                         net (fo=1, routed)           0.000     5.502    button_touch_length_checker_1/total_duration_reg[15]_0[0]
+    SLICE_X12Y40         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     5.619 r  button_touch_length_checker_1/total_duration_reg[12]_i_1/CO[3]
+                         net (fo=1, routed)           0.000     5.619    button_touch_length_checker_1/total_duration_reg[12]_i_1_n_0
+    SLICE_X12Y41         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     5.736 r  button_touch_length_checker_1/total_duration_reg[16]_i_1/CO[3]
+                         net (fo=1, routed)           0.000     5.736    button_touch_length_checker_1/total_duration_reg[16]_i_1_n_0
+    SLICE_X12Y42         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     5.853 r  button_touch_length_checker_1/total_duration_reg[20]_i_1/CO[3]
+                         net (fo=1, routed)           0.000     5.853    button_touch_length_checker_1/total_duration_reg[20]_i_1_n_0
+    SLICE_X12Y43         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.219     6.072 r  button_touch_length_checker_1/total_duration_reg[24]_i_1/O[0]
+                         net (fo=1, routed)           0.000     6.072    button_touch_length_checker_1/total_duration_reg[24]_i_1_n_7
+    SLICE_X12Y43         FDCE                                         r  button_touch_length_checker_1/total_duration_reg[24]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 button_touch_length_checker_1/total_duration_reg[12]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            button_touch_length_checker_1/total_duration_reg[21]/D
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        6.059ns  (logic 2.548ns (42.053%)  route 3.511ns (57.947%))
+  Logic Levels:           11  (CARRY4=6 FDCE=1 LUT4=2 LUT5=1 LUT6=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X12Y40         FDCE                         0.000     0.000 r  button_touch_length_checker_1/total_duration_reg[12]/C
+    SLICE_X12Y40         FDCE (Prop_fdce_C_Q)         0.518     0.518 r  button_touch_length_checker_1/total_duration_reg[12]/Q
+                         net (fo=5, routed)           1.113     1.631    button_touch_length_checker_1/total_duration_reg[12]
+    SLICE_X13Y42         LUT4 (Prop_lut4_I3_O)        0.124     1.755 r  button_touch_length_checker_1/total_duration[0]_i_19/O
+                         net (fo=1, routed)           0.665     2.420    button_touch_length_checker_1/total_duration[0]_i_19_n_0
+    SLICE_X13Y42         LUT5 (Prop_lut5_I4_O)        0.152     2.572 r  button_touch_length_checker_1/total_duration[0]_i_17/O
+                         net (fo=1, routed)           0.767     3.339    button_touch_length_checker_1/total_duration[0]_i_17_n_0
+    SLICE_X13Y40         LUT6 (Prop_lut6_I5_O)        0.326     3.665 r  button_touch_length_checker_1/total_duration[0]_i_4/O
+                         net (fo=3, routed)           0.966     4.631    button_touch_length_checker_1/whether_long_touch1
+    SLICE_X12Y37         LUT4 (Prop_lut4_I3_O)        0.124     4.755 r  button_touch_length_checker_1/total_duration[0]_i_8/O
+                         net (fo=1, routed)           0.000     4.755    button_touch_length_checker_1/total_duration[0]_i_8_n_0
+    SLICE_X12Y37         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513     5.268 r  button_touch_length_checker_1/total_duration_reg[0]_i_2/CO[3]
+                         net (fo=1, routed)           0.000     5.268    button_touch_length_checker_1/total_duration_reg[0]_i_2_n_0
+    SLICE_X12Y38         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     5.385 r  button_touch_length_checker_1/total_duration_reg[4]_i_1/CO[3]
+                         net (fo=1, routed)           0.000     5.385    debounce_1/CO[0]
+    SLICE_X12Y39         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     5.502 r  debounce_1/total_duration_reg[8]_i_1/CO[3]
+                         net (fo=1, routed)           0.000     5.502    button_touch_length_checker_1/total_duration_reg[15]_0[0]
+    SLICE_X12Y40         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     5.619 r  button_touch_length_checker_1/total_duration_reg[12]_i_1/CO[3]
+                         net (fo=1, routed)           0.000     5.619    button_touch_length_checker_1/total_duration_reg[12]_i_1_n_0
+    SLICE_X12Y41         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     5.736 r  button_touch_length_checker_1/total_duration_reg[16]_i_1/CO[3]
+                         net (fo=1, routed)           0.000     5.736    button_touch_length_checker_1/total_duration_reg[16]_i_1_n_0
+    SLICE_X12Y42         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323     6.059 r  button_touch_length_checker_1/total_duration_reg[20]_i_1/O[1]
+                         net (fo=1, routed)           0.000     6.059    button_touch_length_checker_1/total_duration_reg[20]_i_1_n_6
+    SLICE_X12Y42         FDCE                                         r  button_touch_length_checker_1/total_duration_reg[21]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 button_touch_length_checker_1/total_duration_reg[12]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            button_touch_length_checker_1/total_duration_reg[23]/D
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        6.051ns  (logic 2.540ns (41.976%)  route 3.511ns (58.024%))
+  Logic Levels:           11  (CARRY4=6 FDCE=1 LUT4=2 LUT5=1 LUT6=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X12Y40         FDCE                         0.000     0.000 r  button_touch_length_checker_1/total_duration_reg[12]/C
+    SLICE_X12Y40         FDCE (Prop_fdce_C_Q)         0.518     0.518 r  button_touch_length_checker_1/total_duration_reg[12]/Q
+                         net (fo=5, routed)           1.113     1.631    button_touch_length_checker_1/total_duration_reg[12]
+    SLICE_X13Y42         LUT4 (Prop_lut4_I3_O)        0.124     1.755 r  button_touch_length_checker_1/total_duration[0]_i_19/O
+                         net (fo=1, routed)           0.665     2.420    button_touch_length_checker_1/total_duration[0]_i_19_n_0
+    SLICE_X13Y42         LUT5 (Prop_lut5_I4_O)        0.152     2.572 r  button_touch_length_checker_1/total_duration[0]_i_17/O
+                         net (fo=1, routed)           0.767     3.339    button_touch_length_checker_1/total_duration[0]_i_17_n_0
+    SLICE_X13Y40         LUT6 (Prop_lut6_I5_O)        0.326     3.665 r  button_touch_length_checker_1/total_duration[0]_i_4/O
+                         net (fo=3, routed)           0.966     4.631    button_touch_length_checker_1/whether_long_touch1
+    SLICE_X12Y37         LUT4 (Prop_lut4_I3_O)        0.124     4.755 r  button_touch_length_checker_1/total_duration[0]_i_8/O
+                         net (fo=1, routed)           0.000     4.755    button_touch_length_checker_1/total_duration[0]_i_8_n_0
+    SLICE_X12Y37         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513     5.268 r  button_touch_length_checker_1/total_duration_reg[0]_i_2/CO[3]
+                         net (fo=1, routed)           0.000     5.268    button_touch_length_checker_1/total_duration_reg[0]_i_2_n_0
+    SLICE_X12Y38         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     5.385 r  button_touch_length_checker_1/total_duration_reg[4]_i_1/CO[3]
+                         net (fo=1, routed)           0.000     5.385    debounce_1/CO[0]
+    SLICE_X12Y39         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     5.502 r  debounce_1/total_duration_reg[8]_i_1/CO[3]
+                         net (fo=1, routed)           0.000     5.502    button_touch_length_checker_1/total_duration_reg[15]_0[0]
+    SLICE_X12Y40         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     5.619 r  button_touch_length_checker_1/total_duration_reg[12]_i_1/CO[3]
+                         net (fo=1, routed)           0.000     5.619    button_touch_length_checker_1/total_duration_reg[12]_i_1_n_0
+    SLICE_X12Y41         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     5.736 r  button_touch_length_checker_1/total_duration_reg[16]_i_1/CO[3]
+                         net (fo=1, routed)           0.000     5.736    button_touch_length_checker_1/total_duration_reg[16]_i_1_n_0
+    SLICE_X12Y42         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.315     6.051 r  button_touch_length_checker_1/total_duration_reg[20]_i_1/O[3]
+                         net (fo=1, routed)           0.000     6.051    button_touch_length_checker_1/total_duration_reg[20]_i_1_n_4
+    SLICE_X12Y42         FDCE                                         r  button_touch_length_checker_1/total_duration_reg[23]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 button_touch_length_checker_1/total_duration_reg[12]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            button_touch_length_checker_1/total_duration_reg[22]/D
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        5.975ns  (logic 2.464ns (41.238%)  route 3.511ns (58.762%))
+  Logic Levels:           11  (CARRY4=6 FDCE=1 LUT4=2 LUT5=1 LUT6=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X12Y40         FDCE                         0.000     0.000 r  button_touch_length_checker_1/total_duration_reg[12]/C
+    SLICE_X12Y40         FDCE (Prop_fdce_C_Q)         0.518     0.518 r  button_touch_length_checker_1/total_duration_reg[12]/Q
+                         net (fo=5, routed)           1.113     1.631    button_touch_length_checker_1/total_duration_reg[12]
+    SLICE_X13Y42         LUT4 (Prop_lut4_I3_O)        0.124     1.755 r  button_touch_length_checker_1/total_duration[0]_i_19/O
+                         net (fo=1, routed)           0.665     2.420    button_touch_length_checker_1/total_duration[0]_i_19_n_0
+    SLICE_X13Y42         LUT5 (Prop_lut5_I4_O)        0.152     2.572 r  button_touch_length_checker_1/total_duration[0]_i_17/O
+                         net (fo=1, routed)           0.767     3.339    button_touch_length_checker_1/total_duration[0]_i_17_n_0
+    SLICE_X13Y40         LUT6 (Prop_lut6_I5_O)        0.326     3.665 r  button_touch_length_checker_1/total_duration[0]_i_4/O
+                         net (fo=3, routed)           0.966     4.631    button_touch_length_checker_1/whether_long_touch1
+    SLICE_X12Y37         LUT4 (Prop_lut4_I3_O)        0.124     4.755 r  button_touch_length_checker_1/total_duration[0]_i_8/O
+                         net (fo=1, routed)           0.000     4.755    button_touch_length_checker_1/total_duration[0]_i_8_n_0
+    SLICE_X12Y37         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513     5.268 r  button_touch_length_checker_1/total_duration_reg[0]_i_2/CO[3]
+                         net (fo=1, routed)           0.000     5.268    button_touch_length_checker_1/total_duration_reg[0]_i_2_n_0
+    SLICE_X12Y38         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     5.385 r  button_touch_length_checker_1/total_duration_reg[4]_i_1/CO[3]
+                         net (fo=1, routed)           0.000     5.385    debounce_1/CO[0]
+    SLICE_X12Y39         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     5.502 r  debounce_1/total_duration_reg[8]_i_1/CO[3]
+                         net (fo=1, routed)           0.000     5.502    button_touch_length_checker_1/total_duration_reg[15]_0[0]
+    SLICE_X12Y40         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     5.619 r  button_touch_length_checker_1/total_duration_reg[12]_i_1/CO[3]
+                         net (fo=1, routed)           0.000     5.619    button_touch_length_checker_1/total_duration_reg[12]_i_1_n_0
+    SLICE_X12Y41         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     5.736 r  button_touch_length_checker_1/total_duration_reg[16]_i_1/CO[3]
+                         net (fo=1, routed)           0.000     5.736    button_touch_length_checker_1/total_duration_reg[16]_i_1_n_0
+    SLICE_X12Y42         CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239     5.975 r  button_touch_length_checker_1/total_duration_reg[20]_i_1/O[2]
+                         net (fo=1, routed)           0.000     5.975    button_touch_length_checker_1/total_duration_reg[20]_i_1_n_5
+    SLICE_X12Y42         FDCE                                         r  button_touch_length_checker_1/total_duration_reg[22]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 button_touch_length_checker_1/total_duration_reg[12]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            button_touch_length_checker_1/total_duration_reg[20]/D
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        5.955ns  (logic 2.444ns (41.041%)  route 3.511ns (58.959%))
+  Logic Levels:           11  (CARRY4=6 FDCE=1 LUT4=2 LUT5=1 LUT6=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X12Y40         FDCE                         0.000     0.000 r  button_touch_length_checker_1/total_duration_reg[12]/C
+    SLICE_X12Y40         FDCE (Prop_fdce_C_Q)         0.518     0.518 r  button_touch_length_checker_1/total_duration_reg[12]/Q
+                         net (fo=5, routed)           1.113     1.631    button_touch_length_checker_1/total_duration_reg[12]
+    SLICE_X13Y42         LUT4 (Prop_lut4_I3_O)        0.124     1.755 r  button_touch_length_checker_1/total_duration[0]_i_19/O
+                         net (fo=1, routed)           0.665     2.420    button_touch_length_checker_1/total_duration[0]_i_19_n_0
+    SLICE_X13Y42         LUT5 (Prop_lut5_I4_O)        0.152     2.572 r  button_touch_length_checker_1/total_duration[0]_i_17/O
+                         net (fo=1, routed)           0.767     3.339    button_touch_length_checker_1/total_duration[0]_i_17_n_0
+    SLICE_X13Y40         LUT6 (Prop_lut6_I5_O)        0.326     3.665 r  button_touch_length_checker_1/total_duration[0]_i_4/O
+                         net (fo=3, routed)           0.966     4.631    button_touch_length_checker_1/whether_long_touch1
+    SLICE_X12Y37         LUT4 (Prop_lut4_I3_O)        0.124     4.755 r  button_touch_length_checker_1/total_duration[0]_i_8/O
+                         net (fo=1, routed)           0.000     4.755    button_touch_length_checker_1/total_duration[0]_i_8_n_0
+    SLICE_X12Y37         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513     5.268 r  button_touch_length_checker_1/total_duration_reg[0]_i_2/CO[3]
+                         net (fo=1, routed)           0.000     5.268    button_touch_length_checker_1/total_duration_reg[0]_i_2_n_0
+    SLICE_X12Y38         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     5.385 r  button_touch_length_checker_1/total_duration_reg[4]_i_1/CO[3]
+                         net (fo=1, routed)           0.000     5.385    debounce_1/CO[0]
+    SLICE_X12Y39         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     5.502 r  debounce_1/total_duration_reg[8]_i_1/CO[3]
+                         net (fo=1, routed)           0.000     5.502    button_touch_length_checker_1/total_duration_reg[15]_0[0]
+    SLICE_X12Y40         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     5.619 r  button_touch_length_checker_1/total_duration_reg[12]_i_1/CO[3]
+                         net (fo=1, routed)           0.000     5.619    button_touch_length_checker_1/total_duration_reg[12]_i_1_n_0
+    SLICE_X12Y41         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     5.736 r  button_touch_length_checker_1/total_duration_reg[16]_i_1/CO[3]
+                         net (fo=1, routed)           0.000     5.736    button_touch_length_checker_1/total_duration_reg[16]_i_1_n_0
+    SLICE_X12Y42         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.219     5.955 r  button_touch_length_checker_1/total_duration_reg[20]_i_1/O[0]
+                         net (fo=1, routed)           0.000     5.955    button_touch_length_checker_1/total_duration_reg[20]_i_1_n_7
+    SLICE_X12Y42         FDCE                                         r  button_touch_length_checker_1/total_duration_reg[20]/D
+  -------------------------------------------------------------------    -------------------
+
+
+
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack:                    inf
+  Source:                 main_state_switcher_1/next_state_reg[0]/G
+                            (positive level-sensitive latch)
+  Destination:            main_state_switcher_1/state_reg[0]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.341ns  (logic 0.220ns (64.496%)  route 0.121ns (35.504%))
+  Logic Levels:           1  (LDCE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X41Y45         LDCE                         0.000     0.000 r  main_state_switcher_1/next_state_reg[0]/G
+    SLICE_X41Y45         LDCE (EnToQ_ldce_G_Q)        0.220     0.220 r  main_state_switcher_1/next_state_reg[0]/Q
+                         net (fo=2, routed)           0.121     0.341    main_state_switcher_1/next_state[0]
+    SLICE_X41Y44         FDPE                                         r  main_state_switcher_1/state_reg[0]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 main_state_switcher_1/next_state_reg[3]/G
+                            (positive level-sensitive latch)
+  Destination:            main_state_switcher_1/state_reg[3]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.341ns  (logic 0.220ns (64.496%)  route 0.121ns (35.504%))
+  Logic Levels:           1  (LDCE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X41Y45         LDCE                         0.000     0.000 r  main_state_switcher_1/next_state_reg[3]/G
+    SLICE_X41Y45         LDCE (EnToQ_ldce_G_Q)        0.220     0.220 r  main_state_switcher_1/next_state_reg[3]/Q
+                         net (fo=2, routed)           0.121     0.341    main_state_switcher_1/next_state[3]
+    SLICE_X41Y44         FDCE                                         r  main_state_switcher_1/state_reg[3]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 debounce_1/button_out_reg/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            debounce_1/button_out_reg/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.351ns  (logic 0.183ns (52.092%)  route 0.168ns (47.908%))
+  Logic Levels:           2  (FDCE=1 LUT3=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X15Y36         FDCE                         0.000     0.000 r  debounce_1/button_out_reg/C
+    SLICE_X15Y36         FDCE (Prop_fdce_C_Q)         0.141     0.141 r  debounce_1/button_out_reg/Q
+                         net (fo=30, routed)          0.168     0.309    debounce_1/power_menu_button
+    SLICE_X15Y36         LUT3 (Prop_lut3_I2_O)        0.042     0.351 r  debounce_1/button_out_i_1/O
+                         net (fo=1, routed)           0.000     0.351    debounce_1/button_out_i_1_n_0
+    SLICE_X15Y36         FDCE                                         r  debounce_1/button_out_reg/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 standard_clock_generator_60_1/nolabel_line31/accumulator_reg[15]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            standard_clock_generator_60_1/nolabel_line31/accumulator_reg[15]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.385ns  (logic 0.252ns (65.529%)  route 0.133ns (34.471%))
+  Logic Levels:           2  (CARRY4=1 FDRE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X40Y46         FDRE                         0.000     0.000 r  standard_clock_generator_60_1/nolabel_line31/accumulator_reg[15]/C
+    SLICE_X40Y46         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  standard_clock_generator_60_1/nolabel_line31/accumulator_reg[15]/Q
+                         net (fo=2, routed)           0.133     0.274    standard_clock_generator_60_1/nolabel_line31/accumulator[15]
+    SLICE_X40Y46         CARRY4 (Prop_carry4_S[2]_O[2])
+                                                      0.111     0.385 r  standard_clock_generator_60_1/nolabel_line31/accumulator0_carry__2/O[2]
+                         net (fo=1, routed)           0.000     0.385    standard_clock_generator_60_1/nolabel_line31/data0[15]
+    SLICE_X40Y46         FDRE                                         r  standard_clock_generator_60_1/nolabel_line31/accumulator_reg[15]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 standard_clock_generator_60_1/nolabel_line31/accumulator_reg[23]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            standard_clock_generator_60_1/nolabel_line31/accumulator_reg[23]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.385ns  (logic 0.252ns (65.529%)  route 0.133ns (34.471%))
+  Logic Levels:           2  (CARRY4=1 FDRE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X40Y48         FDRE                         0.000     0.000 r  standard_clock_generator_60_1/nolabel_line31/accumulator_reg[23]/C
+    SLICE_X40Y48         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  standard_clock_generator_60_1/nolabel_line31/accumulator_reg[23]/Q
+                         net (fo=2, routed)           0.133     0.274    standard_clock_generator_60_1/nolabel_line31/accumulator[23]
+    SLICE_X40Y48         CARRY4 (Prop_carry4_S[2]_O[2])
+                                                      0.111     0.385 r  standard_clock_generator_60_1/nolabel_line31/accumulator0_carry__4/O[2]
+                         net (fo=1, routed)           0.000     0.385    standard_clock_generator_60_1/nolabel_line31/data0[23]
+    SLICE_X40Y48         FDRE                                         r  standard_clock_generator_60_1/nolabel_line31/accumulator_reg[23]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 standard_clock_generator_60_1/nolabel_line31/accumulator_reg[3]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            standard_clock_generator_60_1/nolabel_line31/accumulator_reg[3]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.385ns  (logic 0.252ns (65.529%)  route 0.133ns (34.471%))
+  Logic Levels:           2  (CARRY4=1 FDRE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X40Y43         FDRE                         0.000     0.000 r  standard_clock_generator_60_1/nolabel_line31/accumulator_reg[3]/C
+    SLICE_X40Y43         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  standard_clock_generator_60_1/nolabel_line31/accumulator_reg[3]/Q
+                         net (fo=2, routed)           0.133     0.274    standard_clock_generator_60_1/nolabel_line31/accumulator[3]
+    SLICE_X40Y43         CARRY4 (Prop_carry4_S[2]_O[2])
+                                                      0.111     0.385 r  standard_clock_generator_60_1/nolabel_line31/accumulator0_carry/O[2]
+                         net (fo=1, routed)           0.000     0.385    standard_clock_generator_60_1/nolabel_line31/data0[3]
+    SLICE_X40Y43         FDRE                                         r  standard_clock_generator_60_1/nolabel_line31/accumulator_reg[3]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 standard_clock_generator_60_1/nolabel_line31/accumulator_reg[7]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            standard_clock_generator_60_1/nolabel_line31/accumulator_reg[7]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.385ns  (logic 0.252ns (65.529%)  route 0.133ns (34.471%))
+  Logic Levels:           2  (CARRY4=1 FDRE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X40Y44         FDRE                         0.000     0.000 r  standard_clock_generator_60_1/nolabel_line31/accumulator_reg[7]/C
+    SLICE_X40Y44         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  standard_clock_generator_60_1/nolabel_line31/accumulator_reg[7]/Q
+                         net (fo=2, routed)           0.133     0.274    standard_clock_generator_60_1/nolabel_line31/accumulator[7]
+    SLICE_X40Y44         CARRY4 (Prop_carry4_S[2]_O[2])
+                                                      0.111     0.385 r  standard_clock_generator_60_1/nolabel_line31/accumulator0_carry__0/O[2]
+                         net (fo=1, routed)           0.000     0.385    standard_clock_generator_60_1/nolabel_line31/data0[7]
+    SLICE_X40Y44         FDRE                                         r  standard_clock_generator_60_1/nolabel_line31/accumulator_reg[7]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 standard_clock_generator_60_1/nolabel_line31/accumulator_reg[0]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            standard_clock_generator_60_1/nolabel_line31/standard_clock_reg/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.394ns  (logic 0.207ns (52.488%)  route 0.187ns (47.512%))
+  Logic Levels:           2  (FDRE=1 LUT3=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X42Y45         FDRE                         0.000     0.000 r  standard_clock_generator_60_1/nolabel_line31/accumulator_reg[0]/C
+    SLICE_X42Y45         FDRE (Prop_fdre_C_Q)         0.164     0.164 r  standard_clock_generator_60_1/nolabel_line31/accumulator_reg[0]/Q
+                         net (fo=4, routed)           0.187     0.351    standard_clock_generator_60_1/nolabel_line31/accumulator[0]
+    SLICE_X42Y45         LUT3 (Prop_lut3_I1_O)        0.043     0.394 r  standard_clock_generator_60_1/nolabel_line31/standard_clock_i_1/O
+                         net (fo=1, routed)           0.000     0.394    standard_clock_generator_60_1/nolabel_line31/standard_clock_i_1_n_0
+    SLICE_X42Y45         FDRE                                         r  standard_clock_generator_60_1/nolabel_line31/standard_clock_reg/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 standard_clock_generator_60_1/nolabel_line31/accumulator_reg[0]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            standard_clock_generator_60_1/nolabel_line31/accumulator_reg[0]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.396ns  (logic 0.209ns (52.728%)  route 0.187ns (47.272%))
+  Logic Levels:           2  (FDRE=1 LUT2=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X42Y45         FDRE                         0.000     0.000 r  standard_clock_generator_60_1/nolabel_line31/accumulator_reg[0]/C
+    SLICE_X42Y45         FDRE (Prop_fdre_C_Q)         0.164     0.164 f  standard_clock_generator_60_1/nolabel_line31/accumulator_reg[0]/Q
+                         net (fo=4, routed)           0.187     0.351    standard_clock_generator_60_1/nolabel_line31/accumulator[0]
+    SLICE_X42Y45         LUT2 (Prop_lut2_I1_O)        0.045     0.396 r  standard_clock_generator_60_1/nolabel_line31/accumulator[0]_i_1/O
+                         net (fo=1, routed)           0.000     0.396    standard_clock_generator_60_1/nolabel_line31/accumulator_1[0]
+    SLICE_X42Y45         FDRE                                         r  standard_clock_generator_60_1/nolabel_line31/accumulator_reg[0]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 main_state_switcher_1/state_reg[0]/C
+                            (rising edge-triggered cell FDPE)
+  Destination:            main_state_switcher_1/next_state_reg[0]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.400ns  (logic 0.239ns (59.788%)  route 0.161ns (40.212%))
+  Logic Levels:           2  (FDPE=1 LUT3=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X41Y44         FDPE                         0.000     0.000 r  main_state_switcher_1/state_reg[0]/C
+    SLICE_X41Y44         FDPE (Prop_fdpe_C_Q)         0.194     0.194 r  main_state_switcher_1/state_reg[0]/Q
+                         net (fo=4, routed)           0.161     0.355    main_state_switcher_1/Q[0]
+    SLICE_X41Y45         LUT3 (Prop_lut3_I2_O)        0.045     0.400 r  main_state_switcher_1/next_state_reg[0]_i_1/O
+                         net (fo=1, routed)           0.000     0.400    main_state_switcher_1/next_state_reg[0]_i_1_n_0
+    SLICE_X41Y45         LDCE                                         r  main_state_switcher_1/next_state_reg[0]/D
+  -------------------------------------------------------------------    -------------------
+
+
+
+
+

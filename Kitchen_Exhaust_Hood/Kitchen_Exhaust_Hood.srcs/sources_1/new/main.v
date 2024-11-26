@@ -77,6 +77,12 @@ module main(
     output E1,
     output G6
     );
+    wire level_1_button, level_2_button, level_3_button, self_clean_button, power_menu_button;
+    debounce debounce_1(.clk(P17), .reset(P15), .button_in(R17), .button_out(power_menu_button));
+    debounce debounce_2(.clk(P17), .reset(P15), .button_in(V1), .button_out(level_1_button));
+    debounce debounce_3(.clk(P17), .reset(P15), .button_in(R15), .button_out(level_2_button));
+    debounce debounce_4(.clk(P17), .reset(P15), .button_in(R11), .button_out(level_3_button));
+    debounce debounce_5(.clk(P17), .reset(P15), .button_in(U4), .button_out(self_clean_button));
     wire standard_clock_1;
     wire standard_clock_60;
     standard_clock_generator_60 standard_clock_generator_60_1(
@@ -85,8 +91,17 @@ module main(
     .standard_clock_1(standard_clock_1),
     .standard_clock_60(standard_clock_60)
     );
-    state_switcher state_switcher_1(
-    .P5(P5),
+    wire power_menu_button_long;
+    wire power_menu_button_short;
+    button_touch_length_checker button_touch_length_checker_1(
+    .target_button(power_menu_button),
+    .clk(P17),
+    .reset(P15),
+    .whether_long_touch(power_menu_button_long),
+    .whether_short_touch(power_menu_button_short)
+    );
+    main_state_switcher main_state_switcher_1(
+    .edit_state_button(P5),
     .P4(P4),
     .P3(P3),
     .P2(P2),
@@ -94,14 +109,16 @@ module main(
     .M4(M4),
     .N4(N4),
     .R1(R1),
+    .clk(P17),
     .standard_clock_1(standard_clock_1),
     .standard_clock_60(standard_clock_60),
-    .P15(P15),
-    .V1(V1),
-    .R15(R15),
-    .R11(R11),
-    .U4(U4),
-    .R17(R17),
+    .reset(P15),
+    .level_1_button(level_1_button),
+    .level_2_button(level_2_button),
+    .level_3_button(level_3_button),
+    .self_clean_button(self_clean_button),
+    .power_menu_button_long(power_menu_button_long),
+    .power_menu_button_short(power_menu_button_short),
     .F6(F6),
     .G4(G4),
     .G3(G3),
@@ -143,4 +160,10 @@ module main(
     .E1(E1),
     .G6(G6)
     );
+    /*state_changer state_changer_1(
+    .x_in(power_menu_button_long),
+    .reset(P15),
+    .clk(P17),
+    .y_out({J3,J2,K2})
+    );*/
 endmodule
