@@ -160,10 +160,4 @@ module main(
     .E1(E1),
     .G6(G6)
     );
-    /*state_changer state_changer_1(
-    .x_in(power_menu_button_long),
-    .reset(P15),
-    .clk(P17),
-    .y_out({J3,J2,K2})
-    );*/
 endmodule
