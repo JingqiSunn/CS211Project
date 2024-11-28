@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (lin64) Build 5076996 Wed May 22 18:36:09 MDT 2024
-| Date         : Wed Nov 27 22:25:20 2024
+| Date         : Thu Nov 28 16:15:05 2024
 | Host         : PC running 64-bit Ubuntu 24.04.1 LTS
 | Command      : report_timing_summary -max_paths 10 -report_unconstrained -file main_timing_summary_routed.rpt -pb main_timing_summary_routed.pb -rpx main_timing_summary_routed.rpx -warn_on_violation
 | Design       : main
@@ -43,8 +43,8 @@ Timing Summary Report
 
 Rule       Severity          Description                     Violations  
 ---------  ----------------  ------------------------------  ----------  
-TIMING-17  Critical Warning  Non-clocked sequential cell     203         
-TIMING-20  Warning           Non-clocked latch               10          
+TIMING-17  Critical Warning  Non-clocked sequential cell     237         
+TIMING-20  Warning           Non-clocked latch               69          
 LATCH-1    Advisory          Existing latches in the design  1           
 
 Note: This report is based on the most recent report_methodology run and may not be up-to-date. Run report_methodology on the current design for the latest report.
@@ -55,12 +55,12 @@ check_timing report
 
 Table of Contents
 -----------------
-1. checking no_clock (303)
+1. checking no_clock (996)
 2. checking constant_clock (0)
 3. checking pulse_width_clock (0)
-4. checking unconstrained_internal_endpoints (540)
+4. checking unconstrained_internal_endpoints (667)
 5. checking no_input_delay (7)
-6. checking no_output_delay (14)
+6. checking no_output_delay (15)
 7. checking multiple_clock (0)
 8. checking generated_clocks (0)
 9. checking loops (0)
@@ -68,31 +68,33 @@ Table of Contents
 11. checking partial_output_delay (0)
 12. checking latch_loops (0)
 
-1. checking no_clock (303)
+1. checking no_clock (996)
 --------------------------
  There are 165 register/latch pins with no clock driven by root clock pin: P17 (HIGH)
 
- There are 10 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[0]/Q (HIGH)
+ There are 69 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[0]/Q (HIGH)
 
- There are 10 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[1]/Q (HIGH)
+ There are 69 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[10]/Q (HIGH)
 
- There are 10 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[2]/Q (HIGH)
+ There are 69 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[1]/Q (HIGH)
 
- There are 10 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[3]/Q (HIGH)
+ There are 69 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[2]/Q (HIGH)
 
- There are 10 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[4]/Q (HIGH)
+ There are 69 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[3]/Q (HIGH)
 
- There are 10 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[5]/Q (HIGH)
+ There are 69 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[4]/Q (HIGH)
 
- There are 10 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[6]/Q (HIGH)
+ There are 69 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[5]/Q (HIGH)
 
- There are 10 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[7]/Q (HIGH)
+ There are 69 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[6]/Q (HIGH)
 
- There are 10 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[8]/Q (HIGH)
+ There are 69 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[7]/Q (HIGH)
 
- There are 10 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[9]/Q (HIGH)
+ There are 69 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[8]/Q (HIGH)
 
- There are 38 register/latch pins with no clock driven by root clock pin: standard_clock_generator_60_1/nolabel_line31/standard_clock_reg/Q (HIGH)
+ There are 69 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[9]/Q (HIGH)
+
+ There are 72 register/latch pins with no clock driven by root clock pin: standard_clock_generator_60_1/nolabel_line31/standard_clock_reg/Q (HIGH)
 
 
 2. checking constant_clock (0)
@@ -105,9 +107,9 @@ Table of Contents
  There are 0 register/latch pins which need pulse_width check
 
 
-4. checking unconstrained_internal_endpoints (540)
+4. checking unconstrained_internal_endpoints (667)
 --------------------------------------------------
- There are 540 pins that are not constrained for maximum delay. (HIGH)
+ There are 667 pins that are not constrained for maximum delay. (HIGH)
 
  There are 0 pins that are not constrained for maximum delay due to constant clock.
 
@@ -119,9 +121,9 @@ Table of Contents
  There are 0 input ports with no input delay but user has a false path constraint.
 
 
-6. checking no_output_delay (14)
+6. checking no_output_delay (15)
 --------------------------------
- There are 14 ports with no output delay specified. (HIGH)
+ There are 15 ports with no output delay specified. (HIGH)
 
  There are 0 ports with no output delay but user has a false path constraint
 
@@ -166,7 +168,7 @@ Table of Contents
 
     WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
     -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-        inf        0.000                      0                  554          inf        0.000                      0                  554           NA           NA                      NA                    NA  
+        inf        0.000                      0                  682          inf        0.000                      0                  682           NA           NA                      NA                    NA  
 
 
 There are no user specified timing constraints.
@@ -235,8 +237,8 @@ Path Group:  (none)
 From Clock:  
   To Clock:  
 
-Max Delay           554 Endpoints
-Min Delay           554 Endpoints
+Max Delay           682 Endpoints
+Min Delay           682 Endpoints
 --------------------------------------------------------------------------------------
 
 
@@ -245,10 +247,10 @@ Max Delay Paths
 Slack:                    inf
   Source:                 P15
                             (input port)
-  Destination:            main_state_switcher_1/state_reg[6]/CLR
+  Destination:            main_state_switcher_1/state_reg[10]/CLR
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        8.565ns  (logic 1.587ns (18.529%)  route 6.978ns (81.471%))
+  Data Path Delay:        8.092ns  (logic 1.587ns (19.613%)  route 6.504ns (80.387%))
   Logic Levels:           2  (IBUF=1 LUT1=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -258,17 +260,17 @@ Slack:                    inf
     P15                  IBUF (Prop_ibuf_I_O)         1.463     1.463 r  P15_IBUF_inst/O
                          net (fo=1, routed)           2.802     4.265    main_state_switcher_1/P15_IBUF
     SLICE_X54Y25         LUT1 (Prop_lut1_I0_O)        0.124     4.389 f  main_state_switcher_1/button_in_d1_i_1/O
-                         net (fo=176, routed)         4.176     8.565    main_state_switcher_1/P15
-    SLICE_X65Y52         FDCE                                         f  main_state_switcher_1/state_reg[6]/CLR
+                         net (fo=210, routed)         3.702     8.092    main_state_switcher_1/P15
+    SLICE_X63Y54         FDCE                                         f  main_state_switcher_1/state_reg[10]/CLR
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
   Source:                 P15
                             (input port)
-  Destination:            main_state_switcher_1/state_reg[7]/CLR
+  Destination:            main_state_switcher_1/self_clean_timer_reg[26]/CLR
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        8.565ns  (logic 1.587ns (18.529%)  route 6.978ns (81.471%))
+  Data Path Delay:        7.985ns  (logic 1.587ns (19.876%)  route 6.398ns (80.124%))
   Logic Levels:           2  (IBUF=1 LUT1=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -278,17 +280,17 @@ Slack:                    inf
     P15                  IBUF (Prop_ibuf_I_O)         1.463     1.463 r  P15_IBUF_inst/O
                          net (fo=1, routed)           2.802     4.265    main_state_switcher_1/P15_IBUF
     SLICE_X54Y25         LUT1 (Prop_lut1_I0_O)        0.124     4.389 f  main_state_switcher_1/button_in_d1_i_1/O
-                         net (fo=176, routed)         4.176     8.565    main_state_switcher_1/P15
-    SLICE_X65Y52         FDCE                                         f  main_state_switcher_1/state_reg[7]/CLR
+                         net (fo=210, routed)         3.595     7.985    main_state_switcher_1/P15
+    SLICE_X57Y53         FDCE                                         f  main_state_switcher_1/self_clean_timer_reg[26]/CLR
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
   Source:                 P15
                             (input port)
-  Destination:            main_state_switcher_1/state_reg[8]/CLR
+  Destination:            main_state_switcher_1/self_clean_timer_reg[27]/CLR
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        8.565ns  (logic 1.587ns (18.529%)  route 6.978ns (81.471%))
+  Data Path Delay:        7.808ns  (logic 1.587ns (20.326%)  route 6.221ns (79.674%))
   Logic Levels:           2  (IBUF=1 LUT1=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -298,17 +300,17 @@ Slack:                    inf
     P15                  IBUF (Prop_ibuf_I_O)         1.463     1.463 r  P15_IBUF_inst/O
                          net (fo=1, routed)           2.802     4.265    main_state_switcher_1/P15_IBUF
     SLICE_X54Y25         LUT1 (Prop_lut1_I0_O)        0.124     4.389 f  main_state_switcher_1/button_in_d1_i_1/O
-                         net (fo=176, routed)         4.176     8.565    main_state_switcher_1/P15
-    SLICE_X65Y52         FDCE                                         f  main_state_switcher_1/state_reg[8]/CLR
+                         net (fo=210, routed)         3.418     7.808    main_state_switcher_1/P15
+    SLICE_X56Y54         FDCE                                         f  main_state_switcher_1/self_clean_timer_reg[27]/CLR
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
   Source:                 P15
                             (input port)
-  Destination:            main_state_switcher_1/state_reg[9]/CLR
+  Destination:            main_state_switcher_1/level_3_timer_reg[21]/CLR
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        8.565ns  (logic 1.587ns (18.529%)  route 6.978ns (81.471%))
+  Data Path Delay:        7.778ns  (logic 1.587ns (20.403%)  route 6.191ns (79.597%))
   Logic Levels:           2  (IBUF=1 LUT1=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -318,17 +320,17 @@ Slack:                    inf
     P15                  IBUF (Prop_ibuf_I_O)         1.463     1.463 r  P15_IBUF_inst/O
                          net (fo=1, routed)           2.802     4.265    main_state_switcher_1/P15_IBUF
     SLICE_X54Y25         LUT1 (Prop_lut1_I0_O)        0.124     4.389 f  main_state_switcher_1/button_in_d1_i_1/O
-                         net (fo=176, routed)         4.176     8.565    main_state_switcher_1/P15
-    SLICE_X65Y52         FDCE                                         f  main_state_switcher_1/state_reg[9]/CLR
+                         net (fo=210, routed)         3.389     7.778    main_state_switcher_1/P15
+    SLICE_X60Y55         FDCE                                         f  main_state_switcher_1/level_3_timer_reg[21]/CLR
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
   Source:                 P15
                             (input port)
-  Destination:            main_state_switcher_1/state_reg[0]/PRE
+  Destination:            main_state_switcher_1/level_3_timer_reg[22]/CLR
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        8.418ns  (logic 1.587ns (18.853%)  route 6.831ns (81.147%))
+  Data Path Delay:        7.778ns  (logic 1.587ns (20.403%)  route 6.191ns (79.597%))
   Logic Levels:           2  (IBUF=1 LUT1=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -338,17 +340,17 @@ Slack:                    inf
     P15                  IBUF (Prop_ibuf_I_O)         1.463     1.463 r  P15_IBUF_inst/O
                          net (fo=1, routed)           2.802     4.265    main_state_switcher_1/P15_IBUF
     SLICE_X54Y25         LUT1 (Prop_lut1_I0_O)        0.124     4.389 f  main_state_switcher_1/button_in_d1_i_1/O
-                         net (fo=176, routed)         4.028     8.418    main_state_switcher_1/P15
-    SLICE_X64Y53         FDPE                                         f  main_state_switcher_1/state_reg[0]/PRE
+                         net (fo=210, routed)         3.389     7.778    main_state_switcher_1/P15
+    SLICE_X60Y55         FDCE                                         f  main_state_switcher_1/level_3_timer_reg[22]/CLR
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
   Source:                 P15
                             (input port)
-  Destination:            main_state_switcher_1/state_reg[1]/CLR
+  Destination:            main_state_switcher_1/self_clean_timer_reg[25]/CLR
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        8.418ns  (logic 1.587ns (18.853%)  route 6.831ns (81.147%))
+  Data Path Delay:        7.778ns  (logic 1.587ns (20.403%)  route 6.191ns (79.597%))
   Logic Levels:           2  (IBUF=1 LUT1=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -358,28 +360,8 @@ Slack:                    inf
     P15                  IBUF (Prop_ibuf_I_O)         1.463     1.463 r  P15_IBUF_inst/O
                          net (fo=1, routed)           2.802     4.265    main_state_switcher_1/P15_IBUF
     SLICE_X54Y25         LUT1 (Prop_lut1_I0_O)        0.124     4.389 f  main_state_switcher_1/button_in_d1_i_1/O
-                         net (fo=176, routed)         4.028     8.418    main_state_switcher_1/P15
-    SLICE_X65Y53         FDCE                                         f  main_state_switcher_1/state_reg[1]/CLR
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 P15
-                            (input port)
-  Destination:            main_state_switcher_1/state_reg[2]/CLR
-  Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
-  Data Path Delay:        8.418ns  (logic 1.587ns (18.853%)  route 6.831ns (81.147%))
-  Logic Levels:           2  (IBUF=1 LUT1=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    P15                                               0.000     0.000 r  P15 (IN)
-                         net (fo=0)                   0.000     0.000    P15
-    P15                  IBUF (Prop_ibuf_I_O)         1.463     1.463 r  P15_IBUF_inst/O
-                         net (fo=1, routed)           2.802     4.265    main_state_switcher_1/P15_IBUF
-    SLICE_X54Y25         LUT1 (Prop_lut1_I0_O)        0.124     4.389 f  main_state_switcher_1/button_in_d1_i_1/O
-                         net (fo=176, routed)         4.028     8.418    main_state_switcher_1/P15
-    SLICE_X65Y53         FDCE                                         f  main_state_switcher_1/state_reg[2]/CLR
+                         net (fo=210, routed)         3.389     7.778    main_state_switcher_1/P15
+    SLICE_X60Y55         FDCE                                         f  main_state_switcher_1/self_clean_timer_reg[25]/CLR
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
@@ -388,7 +370,7 @@ Slack:                    inf
   Destination:            main_state_switcher_1/state_reg[3]/CLR
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        8.418ns  (logic 1.587ns (18.853%)  route 6.831ns (81.147%))
+  Data Path Delay:        7.763ns  (logic 1.587ns (20.443%)  route 6.176ns (79.557%))
   Logic Levels:           2  (IBUF=1 LUT1=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -398,17 +380,17 @@ Slack:                    inf
     P15                  IBUF (Prop_ibuf_I_O)         1.463     1.463 r  P15_IBUF_inst/O
                          net (fo=1, routed)           2.802     4.265    main_state_switcher_1/P15_IBUF
     SLICE_X54Y25         LUT1 (Prop_lut1_I0_O)        0.124     4.389 f  main_state_switcher_1/button_in_d1_i_1/O
-                         net (fo=176, routed)         4.028     8.418    main_state_switcher_1/P15
-    SLICE_X65Y53         FDCE                                         f  main_state_switcher_1/state_reg[3]/CLR
+                         net (fo=210, routed)         3.374     7.763    main_state_switcher_1/P15
+    SLICE_X65Y54         FDCE                                         f  main_state_switcher_1/state_reg[3]/CLR
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
   Source:                 P15
                             (input port)
-  Destination:            main_state_switcher_1/self_clean_timer_reg[22]/CLR
+  Destination:            main_state_switcher_1/state_reg[5]/CLR
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        8.101ns  (logic 1.587ns (19.591%)  route 6.514ns (80.409%))
+  Data Path Delay:        7.763ns  (logic 1.587ns (20.443%)  route 6.176ns (79.557%))
   Logic Levels:           2  (IBUF=1 LUT1=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -418,17 +400,17 @@ Slack:                    inf
     P15                  IBUF (Prop_ibuf_I_O)         1.463     1.463 r  P15_IBUF_inst/O
                          net (fo=1, routed)           2.802     4.265    main_state_switcher_1/P15_IBUF
     SLICE_X54Y25         LUT1 (Prop_lut1_I0_O)        0.124     4.389 f  main_state_switcher_1/button_in_d1_i_1/O
-                         net (fo=176, routed)         3.712     8.101    main_state_switcher_1/P15
-    SLICE_X60Y53         FDCE                                         f  main_state_switcher_1/self_clean_timer_reg[22]/CLR
+                         net (fo=210, routed)         3.374     7.763    main_state_switcher_1/P15
+    SLICE_X65Y54         FDCE                                         f  main_state_switcher_1/state_reg[5]/CLR
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
   Source:                 P15
                             (input port)
-  Destination:            main_state_switcher_1/self_clean_timer_reg[23]/CLR
+  Destination:            main_state_switcher_1/state_reg[6]/CLR
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        8.101ns  (logic 1.587ns (19.591%)  route 6.514ns (80.409%))
+  Data Path Delay:        7.763ns  (logic 1.587ns (20.443%)  route 6.176ns (79.557%))
   Logic Levels:           2  (IBUF=1 LUT1=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -438,8 +420,28 @@ Slack:                    inf
     P15                  IBUF (Prop_ibuf_I_O)         1.463     1.463 r  P15_IBUF_inst/O
                          net (fo=1, routed)           2.802     4.265    main_state_switcher_1/P15_IBUF
     SLICE_X54Y25         LUT1 (Prop_lut1_I0_O)        0.124     4.389 f  main_state_switcher_1/button_in_d1_i_1/O
-                         net (fo=176, routed)         3.712     8.101    main_state_switcher_1/P15
-    SLICE_X60Y53         FDCE                                         f  main_state_switcher_1/self_clean_timer_reg[23]/CLR
+                         net (fo=210, routed)         3.374     7.763    main_state_switcher_1/P15
+    SLICE_X65Y54         FDCE                                         f  main_state_switcher_1/state_reg[6]/CLR
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 P15
+                            (input port)
+  Destination:            main_state_switcher_1/state_reg[8]/CLR
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        7.763ns  (logic 1.587ns (20.443%)  route 6.176ns (79.557%))
+  Logic Levels:           2  (IBUF=1 LUT1=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    P15                                               0.000     0.000 r  P15 (IN)
+                         net (fo=0)                   0.000     0.000    P15
+    P15                  IBUF (Prop_ibuf_I_O)         1.463     1.463 r  P15_IBUF_inst/O
+                         net (fo=1, routed)           2.802     4.265    main_state_switcher_1/P15_IBUF
+    SLICE_X54Y25         LUT1 (Prop_lut1_I0_O)        0.124     4.389 f  main_state_switcher_1/button_in_d1_i_1/O
+                         net (fo=210, routed)         3.374     7.763    main_state_switcher_1/P15
+    SLICE_X65Y54         FDCE                                         f  main_state_switcher_1/state_reg[8]/CLR
   -------------------------------------------------------------------    -------------------
 
 
@@ -449,181 +451,173 @@ Slack:                    inf
 Min Delay Paths
 --------------------------------------------------------------------------------------
 Slack:                    inf
-  Source:                 main_state_switcher_1/next_state_reg[5]/G
-                            (positive level-sensitive latch)
-  Destination:            main_state_switcher_1/state_reg[5]/D
+  Source:                 main_state_switcher_1/self_clean_timer_standard_reg[2]/C
+                            (rising edge-triggered cell FDPE)
+  Destination:            main_state_switcher_1/self_clean_timer_standard_next_reg[2]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.290ns  (logic 0.158ns (54.431%)  route 0.132ns (45.569%))
+  Data Path Delay:        0.232ns  (logic 0.141ns (60.721%)  route 0.091ns (39.279%))
+  Logic Levels:           1  (FDPE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X57Y50         FDPE                         0.000     0.000 r  main_state_switcher_1/self_clean_timer_standard_reg[2]/C
+    SLICE_X57Y50         FDPE (Prop_fdpe_C_Q)         0.141     0.141 r  main_state_switcher_1/self_clean_timer_standard_reg[2]/Q
+                         net (fo=2, routed)           0.091     0.232    main_state_switcher_1/self_clean_timer_standard[2]
+    SLICE_X56Y50         LDCE                                         r  main_state_switcher_1/self_clean_timer_standard_next_reg[2]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 main_state_switcher_1/self_clean_timer_next_reg[13]/G
+                            (positive level-sensitive latch)
+  Destination:            main_state_switcher_1/self_clean_timer_reg[13]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.260ns  (logic 0.178ns (68.434%)  route 0.082ns (31.566%))
   Logic Levels:           1  (LDCE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X63Y51         LDCE                         0.000     0.000 r  main_state_switcher_1/next_state_reg[5]/G
-    SLICE_X63Y51         LDCE (EnToQ_ldce_G_Q)        0.158     0.158 r  main_state_switcher_1/next_state_reg[5]/Q
-                         net (fo=4, routed)           0.132     0.290    main_state_switcher_1/next_state[5]
-    SLICE_X65Y51         FDCE                                         r  main_state_switcher_1/state_reg[5]/D
+    SLICE_X56Y50         LDCE                         0.000     0.000 r  main_state_switcher_1/self_clean_timer_next_reg[13]/G
+    SLICE_X56Y50         LDCE (EnToQ_ldce_G_Q)        0.178     0.178 r  main_state_switcher_1/self_clean_timer_next_reg[13]/Q
+                         net (fo=1, routed)           0.082     0.260    main_state_switcher_1/self_clean_timer_next[13]
+    SLICE_X57Y50         FDCE                                         r  main_state_switcher_1/self_clean_timer_reg[13]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 main_state_switcher_1/next_state_reg[1]/G
+  Source:                 main_state_switcher_1/self_clean_timer_standard_next_reg[2]/G
                             (positive level-sensitive latch)
-  Destination:            main_state_switcher_1/state_reg[1]/D
+  Destination:            main_state_switcher_1/self_clean_timer_standard_reg[2]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.306ns  (logic 0.178ns (58.155%)  route 0.128ns (41.845%))
+  Data Path Delay:        0.260ns  (logic 0.178ns (68.434%)  route 0.082ns (31.566%))
   Logic Levels:           1  (LDCE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X64Y52         LDCE                         0.000     0.000 r  main_state_switcher_1/next_state_reg[1]/G
-    SLICE_X64Y52         LDCE (EnToQ_ldce_G_Q)        0.178     0.178 r  main_state_switcher_1/next_state_reg[1]/Q
-                         net (fo=4, routed)           0.128     0.306    main_state_switcher_1/next_state[1]
-    SLICE_X65Y53         FDCE                                         r  main_state_switcher_1/state_reg[1]/D
+    SLICE_X56Y50         LDCE                         0.000     0.000 r  main_state_switcher_1/self_clean_timer_standard_next_reg[2]/G
+    SLICE_X56Y50         LDCE (EnToQ_ldce_G_Q)        0.178     0.178 r  main_state_switcher_1/self_clean_timer_standard_next_reg[2]/Q
+                         net (fo=1, routed)           0.082     0.260    main_state_switcher_1/self_clean_timer_standard_next[2]
+    SLICE_X57Y50         FDPE                                         r  main_state_switcher_1/self_clean_timer_standard_reg[2]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 main_state_switcher_1/next_state_reg[3]/G
+  Source:                 main_state_switcher_1/self_clean_timer_next_reg[14]/G
                             (positive level-sensitive latch)
-  Destination:            main_state_switcher_1/state_reg[3]/D
+  Destination:            main_state_switcher_1/self_clean_timer_reg[14]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.313ns  (logic 0.178ns (56.813%)  route 0.135ns (43.187%))
+  Data Path Delay:        0.261ns  (logic 0.178ns (68.172%)  route 0.083ns (31.828%))
   Logic Levels:           1  (LDCE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X64Y52         LDCE                         0.000     0.000 r  main_state_switcher_1/next_state_reg[3]/G
-    SLICE_X64Y52         LDCE (EnToQ_ldce_G_Q)        0.178     0.178 r  main_state_switcher_1/next_state_reg[3]/Q
-                         net (fo=4, routed)           0.135     0.313    main_state_switcher_1/next_state[3]
-    SLICE_X65Y53         FDCE                                         r  main_state_switcher_1/state_reg[3]/D
+    SLICE_X56Y49         LDCE                         0.000     0.000 r  main_state_switcher_1/self_clean_timer_next_reg[14]/G
+    SLICE_X56Y49         LDCE (EnToQ_ldce_G_Q)        0.178     0.178 r  main_state_switcher_1/self_clean_timer_next_reg[14]/Q
+                         net (fo=1, routed)           0.083     0.261    main_state_switcher_1/self_clean_timer_next[14]
+    SLICE_X57Y49         FDCE                                         r  main_state_switcher_1/self_clean_timer_reg[14]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 debounce_3/button_in_d1_reg/C
-                            (rising edge-triggered cell FDCE)
-  Destination:            debounce_3/button_out_reg/D
-  Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.326ns  (logic 0.227ns (69.637%)  route 0.099ns (30.363%))
-  Logic Levels:           2  (FDCE=1 LUT4=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X55Y45         FDCE                         0.000     0.000 r  debounce_3/button_in_d1_reg/C
-    SLICE_X55Y45         FDCE (Prop_fdce_C_Q)         0.128     0.128 r  debounce_3/button_in_d1_reg/Q
-                         net (fo=23, routed)          0.099     0.227    debounce_3/button_in_d1_reg_n_0
-    SLICE_X55Y45         LUT4 (Prop_lut4_I1_O)        0.099     0.326 r  debounce_3/button_out_i_1__2/O
-                         net (fo=1, routed)           0.000     0.326    debounce_3/button_out_i_1__2_n_0
-    SLICE_X55Y45         FDCE                                         r  debounce_3/button_out_reg/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 main_state_switcher_1/next_state_reg[6]/G
+  Source:                 main_state_switcher_1/self_clean_timer_next_reg[16]/G
                             (positive level-sensitive latch)
-  Destination:            main_state_switcher_1/state_reg[6]/D
+  Destination:            main_state_switcher_1/self_clean_timer_reg[16]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.329ns  (logic 0.178ns (54.051%)  route 0.151ns (45.949%))
+  Data Path Delay:        0.261ns  (logic 0.178ns (68.172%)  route 0.083ns (31.828%))
   Logic Levels:           1  (LDCE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X64Y51         LDCE                         0.000     0.000 r  main_state_switcher_1/next_state_reg[6]/G
-    SLICE_X64Y51         LDCE (EnToQ_ldce_G_Q)        0.178     0.178 r  main_state_switcher_1/next_state_reg[6]/Q
-                         net (fo=6, routed)           0.151     0.329    main_state_switcher_1/next_state[6]
-    SLICE_X65Y52         FDCE                                         r  main_state_switcher_1/state_reg[6]/D
+    SLICE_X56Y51         LDCE                         0.000     0.000 r  main_state_switcher_1/self_clean_timer_next_reg[16]/G
+    SLICE_X56Y51         LDCE (EnToQ_ldce_G_Q)        0.178     0.178 r  main_state_switcher_1/self_clean_timer_next_reg[16]/Q
+                         net (fo=1, routed)           0.083     0.261    main_state_switcher_1/self_clean_timer_next[16]
+    SLICE_X57Y51         FDCE                                         r  main_state_switcher_1/self_clean_timer_reg[16]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 main_state_switcher_1/next_state_reg[8]/G
+  Source:                 main_state_switcher_1/level_3_timer_next_reg[0]/G
                             (positive level-sensitive latch)
-  Destination:            main_state_switcher_1/state_reg[8]/D
+  Destination:            main_state_switcher_1/level_3_timer_reg[0]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.333ns  (logic 0.178ns (53.392%)  route 0.155ns (46.608%))
+  Data Path Delay:        0.267ns  (logic 0.158ns (59.232%)  route 0.109ns (40.768%))
   Logic Levels:           1  (LDCE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X64Y51         LDCE                         0.000     0.000 r  main_state_switcher_1/next_state_reg[8]/G
-    SLICE_X64Y51         LDCE (EnToQ_ldce_G_Q)        0.178     0.178 r  main_state_switcher_1/next_state_reg[8]/Q
-                         net (fo=6, routed)           0.155     0.333    main_state_switcher_1/next_state[8]
-    SLICE_X65Y52         FDCE                                         r  main_state_switcher_1/state_reg[8]/D
+    SLICE_X62Y49         LDCE                         0.000     0.000 r  main_state_switcher_1/level_3_timer_next_reg[0]/G
+    SLICE_X62Y49         LDCE (EnToQ_ldce_G_Q)        0.158     0.158 r  main_state_switcher_1/level_3_timer_next_reg[0]/Q
+                         net (fo=1, routed)           0.109     0.267    main_state_switcher_1/level_3_timer_next[0]
+    SLICE_X63Y49         FDCE                                         r  main_state_switcher_1/level_3_timer_reg[0]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 main_state_switcher_1/next_state_reg[9]/G
+  Source:                 main_state_switcher_1/level_3_timer_next_reg[8]/G
                             (positive level-sensitive latch)
-  Destination:            main_state_switcher_1/state_reg[9]/D
+  Destination:            main_state_switcher_1/level_3_timer_reg[8]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.333ns  (logic 0.178ns (53.382%)  route 0.155ns (46.618%))
+  Data Path Delay:        0.272ns  (logic 0.158ns (58.125%)  route 0.114ns (41.875%))
   Logic Levels:           1  (LDCE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X64Y51         LDCE                         0.000     0.000 r  main_state_switcher_1/next_state_reg[9]/G
-    SLICE_X64Y51         LDCE (EnToQ_ldce_G_Q)        0.178     0.178 r  main_state_switcher_1/next_state_reg[9]/Q
-                         net (fo=6, routed)           0.155     0.333    main_state_switcher_1/next_state[9]
-    SLICE_X65Y52         FDCE                                         r  main_state_switcher_1/state_reg[9]/D
+    SLICE_X62Y50         LDCE                         0.000     0.000 r  main_state_switcher_1/level_3_timer_next_reg[8]/G
+    SLICE_X62Y50         LDCE (EnToQ_ldce_G_Q)        0.158     0.158 r  main_state_switcher_1/level_3_timer_next_reg[8]/Q
+                         net (fo=1, routed)           0.114     0.272    main_state_switcher_1/level_3_timer_next[8]
+    SLICE_X62Y51         FDCE                                         r  main_state_switcher_1/level_3_timer_reg[8]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 button_touch_length_checker_1/whether_long_touch_reg/C
-                            (rising edge-triggered cell FDCE)
-  Destination:            button_touch_length_checker_1/whether_long_touch_reg/D
+  Source:                 main_state_switcher_1/level_3_timer_next_reg[9]/G
+                            (positive level-sensitive latch)
+  Destination:            main_state_switcher_1/level_3_timer_reg[9]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.354ns  (logic 0.186ns (52.507%)  route 0.168ns (47.493%))
-  Logic Levels:           2  (FDCE=1 LUT4=1)
+  Data Path Delay:        0.273ns  (logic 0.158ns (57.906%)  route 0.115ns (42.094%))
+  Logic Levels:           1  (LDCE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X63Y50         FDCE                         0.000     0.000 r  button_touch_length_checker_1/whether_long_touch_reg/C
-    SLICE_X63Y50         FDCE (Prop_fdce_C_Q)         0.141     0.141 r  button_touch_length_checker_1/whether_long_touch_reg/Q
-                         net (fo=7, routed)           0.168     0.309    button_touch_length_checker_1/power_menu_button_long
-    SLICE_X63Y50         LUT4 (Prop_lut4_I3_O)        0.045     0.354 r  button_touch_length_checker_1/whether_long_touch_i_1/O
-                         net (fo=1, routed)           0.000     0.354    button_touch_length_checker_1/whether_long_touch_i_1_n_0
-    SLICE_X63Y50         FDCE                                         r  button_touch_length_checker_1/whether_long_touch_reg/D
+    SLICE_X62Y50         LDCE                         0.000     0.000 r  main_state_switcher_1/level_3_timer_next_reg[9]/G
+    SLICE_X62Y50         LDCE (EnToQ_ldce_G_Q)        0.158     0.158 r  main_state_switcher_1/level_3_timer_next_reg[9]/Q
+                         net (fo=1, routed)           0.115     0.273    main_state_switcher_1/level_3_timer_next[9]
+    SLICE_X62Y51         FDCE                                         r  main_state_switcher_1/level_3_timer_reg[9]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 debounce_4/button_out_reg/C
-                            (rising edge-triggered cell FDCE)
-  Destination:            debounce_4/button_out_reg/D
+  Source:                 main_state_switcher_1/self_clean_timer_next_reg[22]/G
+                            (positive level-sensitive latch)
+  Destination:            main_state_switcher_1/self_clean_timer_reg[22]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.354ns  (logic 0.186ns (52.498%)  route 0.168ns (47.502%))
-  Logic Levels:           2  (FDCE=1 LUT4=1)
+  Data Path Delay:        0.274ns  (logic 0.158ns (57.695%)  route 0.116ns (42.305%))
+  Logic Levels:           1  (LDCE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X55Y49         FDCE                         0.000     0.000 r  debounce_4/button_out_reg/C
-    SLICE_X55Y49         FDCE (Prop_fdce_C_Q)         0.141     0.141 r  debounce_4/button_out_reg/Q
-                         net (fo=4, routed)           0.168     0.309    debounce_4/M1_OBUF
-    SLICE_X55Y49         LUT4 (Prop_lut4_I3_O)        0.045     0.354 r  debounce_4/button_out_i_1__1/O
-                         net (fo=1, routed)           0.000     0.354    debounce_4/button_out_i_1__1_n_0
-    SLICE_X55Y49         FDCE                                         r  debounce_4/button_out_reg/D
+    SLICE_X58Y51         LDCE                         0.000     0.000 r  main_state_switcher_1/self_clean_timer_next_reg[22]/G
+    SLICE_X58Y51         LDCE (EnToQ_ldce_G_Q)        0.158     0.158 r  main_state_switcher_1/self_clean_timer_next_reg[22]/Q
+                         net (fo=1, routed)           0.116     0.274    main_state_switcher_1/self_clean_timer_next[22]
+    SLICE_X59Y51         FDCE                                         r  main_state_switcher_1/self_clean_timer_reg[22]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 debounce_2/button_out_reg/C
-                            (rising edge-triggered cell FDCE)
-  Destination:            debounce_2/button_out_reg/D
+  Source:                 main_state_switcher_1/self_clean_timer_next_reg[23]/G
+                            (positive level-sensitive latch)
+  Destination:            main_state_switcher_1/self_clean_timer_reg[23]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.356ns  (logic 0.186ns (52.178%)  route 0.170ns (47.822%))
-  Logic Levels:           2  (FDCE=1 LUT4=1)
+  Data Path Delay:        0.276ns  (logic 0.158ns (57.248%)  route 0.118ns (42.752%))
+  Logic Levels:           1  (LDCE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X65Y44         FDCE                         0.000     0.000 r  debounce_2/button_out_reg/C
-    SLICE_X65Y44         FDCE (Prop_fdce_C_Q)         0.141     0.141 r  debounce_2/button_out_reg/Q
-                         net (fo=7, routed)           0.170     0.311    debounce_2/K6_OBUF
-    SLICE_X65Y44         LUT4 (Prop_lut4_I3_O)        0.045     0.356 r  debounce_2/button_out_i_1__3/O
-                         net (fo=1, routed)           0.000     0.356    debounce_2/button_out_i_1__3_n_0
-    SLICE_X65Y44         FDCE                                         r  debounce_2/button_out_reg/D
+    SLICE_X58Y52         LDCE                         0.000     0.000 r  main_state_switcher_1/self_clean_timer_next_reg[23]/G
+    SLICE_X58Y52         LDCE (EnToQ_ldce_G_Q)        0.158     0.158 r  main_state_switcher_1/self_clean_timer_next_reg[23]/Q
+                         net (fo=1, routed)           0.118     0.276    main_state_switcher_1/self_clean_timer_next[23]
+    SLICE_X59Y52         FDCE                                         r  main_state_switcher_1/self_clean_timer_reg[23]/D
   -------------------------------------------------------------------    -------------------
 
 

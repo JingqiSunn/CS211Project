@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (lin64) Build 5076996 Wed May 22 18:36:09 MDT 2024
-| Date         : Wed Nov 27 22:25:12 2024
+| Date         : Thu Nov 28 16:14:58 2024
 | Host         : PC running 64-bit Ubuntu 24.04.1 LTS
 | Command      : report_control_sets -verbose -file main_control_sets_placed.rpt
 | Design       : main
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |    11 |
-|    Minimum number of control sets                        |    11 |
+| Total control sets                                       |    12 |
+|    Minimum number of control sets                        |    12 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    51 |
+| Unused register locations in slices containing registers |    54 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,7 +39,7 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |    11 |
+| Total control sets |    12 |
 | >= 0 to < 4        |     1 |
 | >= 4 to < 6        |     0 |
 | >= 6 to < 8        |     0 |
@@ -47,7 +47,7 @@ Table of Contents
 | >= 10 to < 12      |     1 |
 | >= 12 to < 14      |     1 |
 | >= 14 to < 16      |     0 |
-| >= 16              |     8 |
+| >= 16              |     9 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
 
@@ -58,8 +58,8 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              12 |            4 |
-| No           | No                    | Yes                    |              50 |           21 |
+| No           | No                    | No                     |              71 |           30 |
+| No           | No                    | Yes                    |              84 |           39 |
 | No           | Yes                   | No                     |              25 |            7 |
 | Yes          | No                    | No                     |               0 |            0 |
 | Yes          | No                    | Yes                    |             126 |           32 |
@@ -70,20 +70,21 @@ Table of Contents
 4. Detailed Control Set Information
 -----------------------------------
 
-+--------------------------------------+---------------------------------------------------------+---------------------------------------------------------------+------------------+----------------+--------------+
-|             Clock Signal             |                      Enable Signal                      |                        Set/Reset Signal                       | Slice Load Count | Bel Load Count | Bels / Slice |
-+--------------------------------------+---------------------------------------------------------+---------------------------------------------------------------+------------------+----------------+--------------+
-|  P17_IBUF_BUFG                       |                                                         |                                                               |                1 |              2 |         2.00 |
-|  main_state_switcher_1/next_state__0 |                                                         |                                                               |                3 |             10 |         3.33 |
-|  P17_IBUF_BUFG                       |                                                         | main_state_switcher_1/P15                                     |               11 |             12 |         1.09 |
-|  P17_IBUF_BUFG                       | debounce_5/debounce_counter[0]_i_1__3_n_0               | main_state_switcher_1/P15                                     |                5 |             20 |         4.00 |
-|  P17_IBUF_BUFG                       | debounce_1/debounce_counter[0]_i_1_n_0                  | main_state_switcher_1/P15                                     |                5 |             20 |         4.00 |
-|  P17_IBUF_BUFG                       | debounce_3/debounce_counter[0]_i_1__1_n_0               | main_state_switcher_1/P15                                     |                5 |             20 |         4.00 |
-|  P17_IBUF_BUFG                       | debounce_4/debounce_counter[0]_i_1__2_n_0               | main_state_switcher_1/P15                                     |                5 |             20 |         4.00 |
-|  P17_IBUF_BUFG                       | debounce_2/debounce_counter[0]_i_1__0_n_0               | main_state_switcher_1/P15                                     |                5 |             20 |         4.00 |
-|  P17_IBUF_BUFG                       |                                                         | standard_clock_generator_60_1/nolabel_line31/standard_clock_0 |                7 |             25 |         3.57 |
-|  P17_IBUF_BUFG                       | button_touch_length_checker_1/total_duration[0]_i_1_n_0 | main_state_switcher_1/P15                                     |                7 |             26 |         3.71 |
-|  standard_clock_BUFG                 |                                                         | main_state_switcher_1/P15                                     |               10 |             38 |         3.80 |
-+--------------------------------------+---------------------------------------------------------+---------------------------------------------------------------+------------------+----------------+--------------+
++--------------------------------------+---------------------------------------------------------+-------------------------------------------------------------+------------------+----------------+--------------+
+|             Clock Signal             |                      Enable Signal                      |                       Set/Reset Signal                      | Slice Load Count | Bel Load Count | Bels / Slice |
++--------------------------------------+---------------------------------------------------------+-------------------------------------------------------------+------------------+----------------+--------------+
+|  P17_IBUF_BUFG                       |                                                         |                                                             |                1 |              2 |         2.00 |
+|  main_state_switcher_1/next_state__0 |                                                         |                                                             |                5 |             11 |         2.20 |
+|  P17_IBUF_BUFG                       |                                                         | main_state_switcher_1/P15                                   |               11 |             12 |         1.09 |
+|  P17_IBUF_BUFG                       | debounce_1/debounce_counter[0]_i_1_n_1                  | main_state_switcher_1/P15                                   |                5 |             20 |         4.00 |
+|  P17_IBUF_BUFG                       | debounce_5/debounce_counter[0]_i_1__3_n_1               | main_state_switcher_1/P15                                   |                5 |             20 |         4.00 |
+|  P17_IBUF_BUFG                       | debounce_2/debounce_counter[0]_i_1__0_n_1               | main_state_switcher_1/P15                                   |                5 |             20 |         4.00 |
+|  P17_IBUF_BUFG                       | debounce_3/debounce_counter[0]_i_1__1_n_1               | main_state_switcher_1/P15                                   |                5 |             20 |         4.00 |
+|  P17_IBUF_BUFG                       | debounce_4/debounce_counter[0]_i_1__2_n_1               | main_state_switcher_1/P15                                   |                5 |             20 |         4.00 |
+|  P17_IBUF_BUFG                       |                                                         | standard_clock_generator_60_1/nolabel_line31/standard_clock |                7 |             25 |         3.57 |
+|  P17_IBUF_BUFG                       | button_touch_length_checker_1/total_duration[0]_i_1_n_1 | main_state_switcher_1/P15                                   |                7 |             26 |         3.71 |
+|  n_0_101_BUFG                        |                                                         |                                                             |               24 |             58 |         2.42 |
+|  standard_clock_1_BUFG               |                                                         | main_state_switcher_1/P15                                   |               28 |             72 |         2.57 |
++--------------------------------------+---------------------------------------------------------+-------------------------------------------------------------+------------------+----------------+--------------+
 
 

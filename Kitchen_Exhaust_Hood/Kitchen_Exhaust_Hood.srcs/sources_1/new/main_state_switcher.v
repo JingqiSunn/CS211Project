@@ -88,6 +88,14 @@ module main_state_switcher(
     reg [27:0] self_clean_timer_standard;
     reg [27:0] self_clean_timer_standard_next;
     
+    reg [27:0] level_3_timer;
+    reg [27:0] level_3_timer_next;
+    reg [27:0] level_3_timer_standard;
+    reg [27:0] level_3_timer_standard_next;
+    reg [27:0] strong_standby_timer_standard;
+    reg [27:0] strong_standby_timer_standard_next;
+    
+    
     parameter 
     power_off_state           = 11'b00000000001,
     power_off_a_state         = 11'b00000000010,
@@ -102,7 +110,6 @@ module main_state_switcher(
     strong_standby_state      = 11'b10000000000;
     
     
-    
     assign K6 = level_1_button;
     assign L1 = level_2_button;
     assign M1 = level_3_button;
@@ -114,20 +121,29 @@ module main_state_switcher(
                     state <= power_off_state;
                     self_clean_timer <= 28'b0;
                     self_clean_timer_standard <= 28'b0000000000000000000000000100;
+                    level_3_timer <= 28'b0;
+                    level_3_timer_standard <= 28'b0000000000000000000000001000;
+                    strong_standby_timer_standard <= 28'b0000000000000000000000001000;
                 end
              else
                 begin
                     state <= next_state;
                     self_clean_timer <= self_clean_timer_next;
                     self_clean_timer_standard <= self_clean_timer_standard_next;
+                    level_3_timer <= level_3_timer_next;
+                    level_3_timer_standard <= level_3_timer_standard_next;
+                    strong_standby_timer_standard <= strong_standby_timer_standard_next;
                 end
         end
-     always @(state, power_menu_button_short, power_menu_button_long, level_1_button, level_2_button, level_3_button, self_clean_button,edit_state_button)
+     always @(state, power_menu_button_short, power_menu_button_long, level_1_button, level_2_button, level_3_button, self_clean_button, edit_state_button, level_3_timer)
         case (state)
             power_off_state: 
                 begin
                     self_clean_timer_next <= 28'b0;
                     self_clean_timer_standard_next <= self_clean_timer_standard;
+                    level_3_timer_next <= 28'b0;
+                    level_3_timer_standard_next <= level_3_timer_standard;
+                    strong_standby_timer_standard_next <= strong_standby_timer_standard;
                     if (next_state != state) 
                         begin
                             next_state <= next_state; 
@@ -145,6 +161,9 @@ module main_state_switcher(
                 begin
                     self_clean_timer_next <= 28'b0;
                     self_clean_timer_standard_next <= self_clean_timer_standard;
+                    level_3_timer_next <= 28'b0;
+                    level_3_timer_standard_next <= level_3_timer_standard;
+                    strong_standby_timer_standard_next <= strong_standby_timer_standard;
                     if (next_state != state)
                         begin
                             next_state <= next_state;
@@ -170,6 +189,9 @@ module main_state_switcher(
                 begin
                     self_clean_timer_next <= 28'b0;
                     self_clean_timer_standard_next <= self_clean_timer_standard;
+                    level_3_timer_next <= 28'b0;
+                    level_3_timer_standard_next <= level_3_timer_standard;
+                    strong_standby_timer_standard_next <= strong_standby_timer_standard;
                     if (next_state != state)
                         begin
                             next_state <= next_state;
@@ -187,6 +209,9 @@ module main_state_switcher(
                 begin
                     self_clean_timer_next <= 28'b0;
                     self_clean_timer_standard_next <= self_clean_timer_standard;
+                    level_3_timer_next <= 28'b0;
+                    level_3_timer_standard_next <= level_3_timer_standard;
+                    strong_standby_timer_standard_next <= strong_standby_timer_standard;
                     if (next_state != state)
                         begin
                             next_state <= next_state;
@@ -204,6 +229,9 @@ module main_state_switcher(
                 begin   
                     self_clean_timer_next <= 28'b0;
                     self_clean_timer_standard_next <= self_clean_timer_standard;
+                    level_3_timer_next <= 28'b0;
+                    level_3_timer_standard_next <= level_3_timer_standard;
+                    strong_standby_timer_standard_next <= strong_standby_timer_standard;
                     if (next_state != state)
                         begin
                             next_state <= next_state;
@@ -233,6 +261,9 @@ module main_state_switcher(
                 begin
                     self_clean_timer_next <= 28'b0;
                     self_clean_timer_standard_next <= self_clean_timer_standard;
+                    level_3_timer_next <= 28'b0;
+                    level_3_timer_standard_next <= level_3_timer_standard;
+                    strong_standby_timer_standard_next <= strong_standby_timer_standard;
                     if (next_state != state)
                         begin
                             next_state <= next_state;
@@ -250,6 +281,9 @@ module main_state_switcher(
                 begin
                     self_clean_timer_next <= 28'b0;
                     self_clean_timer_standard_next <= self_clean_timer_standard;
+                    level_3_timer_next <= 28'b0;
+                    level_3_timer_standard_next <= level_3_timer_standard;
+                    strong_standby_timer_standard_next <= strong_standby_timer_standard;
                     if (next_state != state)
                         begin
                             next_state <= next_state;
@@ -271,6 +305,9 @@ module main_state_switcher(
                 begin
                     self_clean_timer_next <= 28'b0;
                     self_clean_timer_standard_next <= self_clean_timer_standard;
+                    level_3_timer_next <= 28'b0;
+                    level_3_timer_standard_next <= level_3_timer_standard;
+                    strong_standby_timer_standard_next <= strong_standby_timer_standard;
                     if (next_state != state)
                         begin
                             next_state <= next_state;
@@ -292,12 +329,36 @@ module main_state_switcher(
                 begin
                     self_clean_timer_next <= 28'b0;
                     self_clean_timer_standard_next <= self_clean_timer_standard;
+                    strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                    level_3_timer_standard_next <= level_3_timer_standard;
                     begin
-                        next_state <= level_3_state;
+                        if (next_state != state)
+                            begin
+                                next_state <= next_state;
+                                level_3_timer_next <= 28'b0;
+                            end
+                        else if (power_menu_button_short == 1)
+                            begin
+                                next_state <= strong_standby_state;
+                                level_3_timer_next <= 28'b0;
+                            end
+                        else if (level_3_timer != level_3_timer_standard)
+                            begin
+                                next_state <= level_3_state;
+                                level_3_timer_next <= level_3_timer + 1;
+                            end
+                        else 
+                            begin
+                                next_state <= level_2_state;
+                                level_3_timer_next <= 28'b0;
+                            end
                     end
                 end
             self_clean_state:
                 begin
+                    level_3_timer_next <= 28'b0;
+                    level_3_timer_standard_next <= level_3_timer_standard;
+                    strong_standby_timer_standard_next <= strong_standby_timer_standard;
                     if (next_state != state)
                         begin
                             next_state <= next_state;
@@ -317,17 +378,22 @@ module main_state_switcher(
                             self_clean_timer_standard_next <= self_clean_timer_standard;
                         end
                 end
+            strong_standby_state:
+                begin
+                    next_state <= strong_standby_state;
+                end
             default:
                 begin
                     self_clean_timer_next <= 28'b0;
                     self_clean_timer_standard_next <= self_clean_timer_standard;
+                    level_3_timer_next <= 28'b0;
+                    level_3_timer_standard_next <= level_3_timer_standard;
+                    strong_standby_timer_standard_next <= strong_standby_timer_standard;
                     next_state <= power_off_state;
                 end 
-                
-            
         endcase
      always @(state)
         begin
-        {F6,G4,G3,J4,H4,J3,J2,K2,K1,H6,H5} = state;
+            {F6, G4, G3, J4, H4, J3, J2, K2, K1, H6, H5} = state;
         end
 endmodule
