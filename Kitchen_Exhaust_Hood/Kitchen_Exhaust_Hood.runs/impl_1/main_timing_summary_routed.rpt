@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (lin64) Build 5076996 Wed May 22 18:36:09 MDT 2024
-| Date         : Thu Nov 28 16:38:10 2024
+| Date         : Fri Nov 29 12:56:46 2024
 | Host         : PC running 64-bit Ubuntu 24.04.1 LTS
 | Command      : report_timing_summary -max_paths 10 -report_unconstrained -file main_timing_summary_routed.rpt -pb main_timing_summary_routed.pb -rpx main_timing_summary_routed.rpx -warn_on_violation
 | Design       : main
@@ -41,11 +41,9 @@ Timing Summary Report
 | ------------------
 ------------------------------------------------------------------------------------------------
 
-Rule       Severity          Description                     Violations  
----------  ----------------  ------------------------------  ----------  
-TIMING-17  Critical Warning  Non-clocked sequential cell     263         
-TIMING-20  Warning           Non-clocked latch               11          
-LATCH-1    Advisory          Existing latches in the design  1           
+Rule       Severity          Description                  Violations  
+---------  ----------------  ---------------------------  ----------  
+TIMING-17  Critical Warning  Non-clocked sequential cell  36          
 
 Note: This report is based on the most recent report_methodology run and may not be up-to-date. Run report_methodology on the current design for the latest report.
 
@@ -55,12 +53,12 @@ check_timing report
 
 Table of Contents
 -----------------
-1. checking no_clock (384)
+1. checking no_clock (36)
 2. checking constant_clock (0)
 3. checking pulse_width_clock (0)
-4. checking unconstrained_internal_endpoints (661)
-5. checking no_input_delay (7)
-6. checking no_output_delay (15)
+4. checking unconstrained_internal_endpoints (72)
+5. checking no_input_delay (1)
+6. checking no_output_delay (22)
 7. checking multiple_clock (0)
 8. checking generated_clocks (0)
 9. checking loops (0)
@@ -68,33 +66,11 @@ Table of Contents
 11. checking partial_output_delay (0)
 12. checking latch_loops (0)
 
-1. checking no_clock (384)
---------------------------
- There are 165 register/latch pins with no clock driven by root clock pin: P17 (HIGH)
+1. checking no_clock (36)
+-------------------------
+ There are 33 register/latch pins with no clock driven by root clock pin: P17 (HIGH)
 
- There are 11 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[0]/Q (HIGH)
-
- There are 11 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[10]/Q (HIGH)
-
- There are 11 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[1]/Q (HIGH)
-
- There are 11 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[2]/Q (HIGH)
-
- There are 11 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[3]/Q (HIGH)
-
- There are 11 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[4]/Q (HIGH)
-
- There are 11 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[5]/Q (HIGH)
-
- There are 11 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[6]/Q (HIGH)
-
- There are 11 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[7]/Q (HIGH)
-
- There are 11 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[8]/Q (HIGH)
-
- There are 11 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[9]/Q (HIGH)
-
- There are 98 register/latch pins with no clock driven by root clock pin: standard_clock_generator_60_1/nolabel_line31/standard_clock_reg/Q (HIGH)
+ There are 3 register/latch pins with no clock driven by root clock pin: scan_seg_1/clkout_reg/Q (HIGH)
 
 
 2. checking constant_clock (0)
@@ -107,23 +83,23 @@ Table of Contents
  There are 0 register/latch pins which need pulse_width check
 
 
-4. checking unconstrained_internal_endpoints (661)
---------------------------------------------------
- There are 661 pins that are not constrained for maximum delay. (HIGH)
+4. checking unconstrained_internal_endpoints (72)
+-------------------------------------------------
+ There are 72 pins that are not constrained for maximum delay. (HIGH)
 
  There are 0 pins that are not constrained for maximum delay due to constant clock.
 
 
-5. checking no_input_delay (7)
+5. checking no_input_delay (1)
 ------------------------------
- There are 7 input ports with no input delay specified. (HIGH)
+ There is 1 input port with no input delay specified. (HIGH)
 
  There are 0 input ports with no input delay but user has a false path constraint.
 
 
-6. checking no_output_delay (15)
+6. checking no_output_delay (22)
 --------------------------------
- There are 15 ports with no output delay specified. (HIGH)
+ There are 22 ports with no output delay specified. (HIGH)
 
  There are 0 ports with no output delay but user has a false path constraint
 
@@ -168,7 +144,7 @@ Table of Contents
 
     WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
     -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-        inf        0.000                      0                  676          inf        0.000                      0                  676           NA           NA                      NA                    NA  
+        inf        0.000                      0                   94          inf        0.000                      0                   94           NA           NA                      NA                    NA  
 
 
 There are no user specified timing constraints.
@@ -237,40 +213,130 @@ Path Group:  (none)
 From Clock:  
   To Clock:  
 
-Max Delay           676 Endpoints
-Min Delay           676 Endpoints
+Max Delay            94 Endpoints
+Min Delay            94 Endpoints
 --------------------------------------------------------------------------------------
 
 
 Max Delay Paths
 --------------------------------------------------------------------------------------
 Slack:                    inf
-  Source:                 P15
-                            (input port)
-  Destination:            main_state_switcher_1/level_3_timer_reg[21]/CLR
+  Source:                 scan_seg_1/scan_cnt_reg[1]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            B4
+                            (output port)
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        8.586ns  (logic 1.587ns (18.484%)  route 6.999ns (81.516%))
-  Logic Levels:           2  (IBUF=1 LUT1=1)
+  Data Path Delay:        7.921ns  (logic 4.575ns (57.751%)  route 3.347ns (42.249%))
+  Logic Levels:           3  (FDCE=1 LUT3=1 OBUF=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    P15                                               0.000     0.000 r  P15 (IN)
-                         net (fo=0)                   0.000     0.000    P15
-    P15                  IBUF (Prop_ibuf_I_O)         1.463     1.463 r  P15_IBUF_inst/O
-                         net (fo=1, routed)           1.289     2.752    main_state_switcher_1/P15_IBUF
-    SLICE_X2Y25          LUT1 (Prop_lut1_I0_O)        0.124     2.876 f  main_state_switcher_1/button_in_d1_i_1/O
-                         net (fo=236, routed)         5.710     8.586    main_state_switcher_1/P15
-    SLICE_X59Y51         FDCE                                         f  main_state_switcher_1/level_3_timer_reg[21]/CLR
+    SLICE_X64Y66         FDCE                         0.000     0.000 r  scan_seg_1/scan_cnt_reg[1]/C
+    SLICE_X64Y66         FDCE (Prop_fdce_C_Q)         0.478     0.478 f  scan_seg_1/scan_cnt_reg[1]/Q
+                         net (fo=17, routed)          1.087     1.565    scan_seg_1/scan_cnt[1]
+    SLICE_X64Y73         LUT3 (Prop_lut3_I1_O)        0.327     1.892 r  scan_seg_1/g0_b7/O
+                         net (fo=2, routed)           2.259     4.152    D4_OBUF
+    B4                   OBUF (Prop_obuf_I_O)         3.770     7.921 r  B4_OBUF_inst/O
+                         net (fo=0)                   0.000     7.921    B4
+    B4                                                                r  B4 (OUT)
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 scan_seg_1/scan_cnt_reg[0]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            A3
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        7.870ns  (logic 4.461ns (56.678%)  route 3.410ns (43.322%))
+  Logic Levels:           3  (FDCE=1 LUT3=1 OBUF=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X64Y66         FDCE                         0.000     0.000 r  scan_seg_1/scan_cnt_reg[0]/C
+    SLICE_X64Y66         FDCE (Prop_fdce_C_Q)         0.518     0.518 f  scan_seg_1/scan_cnt_reg[0]/Q
+                         net (fo=18, routed)          1.076     1.594    scan_seg_1/scan_cnt[0]
+    SLICE_X64Y73         LUT3 (Prop_lut3_I2_O)        0.152     1.746 r  scan_seg_1/g0_b5/O
+                         net (fo=2, routed)           2.333     4.080    D3_OBUF
+    A3                   OBUF (Prop_obuf_I_O)         3.791     7.870 r  A3_OBUF_inst/O
+                         net (fo=0)                   0.000     7.870    A3
+    A3                                                                r  A3 (OUT)
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 scan_seg_1/scan_cnt_reg[1]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            A4
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        7.768ns  (logic 4.337ns (55.826%)  route 3.432ns (44.174%))
+  Logic Levels:           3  (FDCE=1 LUT3=1 OBUF=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X64Y66         FDCE                         0.000     0.000 r  scan_seg_1/scan_cnt_reg[1]/C
+    SLICE_X64Y66         FDCE (Prop_fdce_C_Q)         0.478     0.478 r  scan_seg_1/scan_cnt_reg[1]/Q
+                         net (fo=17, routed)          1.087     1.565    scan_seg_1/scan_cnt[1]
+    SLICE_X64Y73         LUT3 (Prop_lut3_I1_O)        0.298     1.863 r  scan_seg_1/g0_b6/O
+                         net (fo=2, routed)           2.344     4.208    E3_OBUF
+    A4                   OBUF (Prop_obuf_I_O)         3.561     7.768 r  A4_OBUF_inst/O
+                         net (fo=0)                   0.000     7.768    A4
+    A4                                                                r  A4 (OUT)
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 scan_seg_1/scan_cnt_reg[0]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            A1
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        7.714ns  (logic 4.432ns (57.459%)  route 3.281ns (42.541%))
+  Logic Levels:           3  (FDCE=1 LUT3=1 OBUF=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X64Y66         FDCE                         0.000     0.000 r  scan_seg_1/scan_cnt_reg[0]/C
+    SLICE_X64Y66         FDCE (Prop_fdce_C_Q)         0.518     0.518 r  scan_seg_1/scan_cnt_reg[0]/Q
+                         net (fo=18, routed)          1.086     1.604    scan_seg_1/scan_cnt[0]
+    SLICE_X64Y73         LUT3 (Prop_lut3_I2_O)        0.150     1.754 r  scan_seg_1/g0_b3/O
+                         net (fo=2, routed)           2.195     3.949    F3_OBUF
+    A1                   OBUF (Prop_obuf_I_O)         3.764     7.714 r  A1_OBUF_inst/O
+                         net (fo=0)                   0.000     7.714    A1
+    A1                                                                r  A1 (OUT)
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 scan_seg_1/scan_cnt_reg[1]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            D4
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        7.559ns  (logic 4.558ns (60.300%)  route 3.001ns (39.700%))
+  Logic Levels:           3  (FDCE=1 LUT3=1 OBUF=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X64Y66         FDCE                         0.000     0.000 r  scan_seg_1/scan_cnt_reg[1]/C
+    SLICE_X64Y66         FDCE (Prop_fdce_C_Q)         0.478     0.478 f  scan_seg_1/scan_cnt_reg[1]/Q
+                         net (fo=17, routed)          1.087     1.565    scan_seg_1/scan_cnt[1]
+    SLICE_X64Y73         LUT3 (Prop_lut3_I1_O)        0.327     1.892 r  scan_seg_1/g0_b7/O
+                         net (fo=2, routed)           1.914     3.806    D4_OBUF
+    D4                   OBUF (Prop_obuf_I_O)         3.753     7.559 r  D4_OBUF_inst/O
+                         net (fo=0)                   0.000     7.559    D4
+    D4                                                                r  D4 (OUT)
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
   Source:                 P15
                             (input port)
-  Destination:            main_state_switcher_1/level_3_timer_reg[22]/CLR
+  Destination:            scan_seg_1/clkout_reg/CLR
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        8.586ns  (logic 1.587ns (18.484%)  route 6.999ns (81.516%))
+  Data Path Delay:        7.513ns  (logic 1.587ns (21.123%)  route 5.926ns (78.877%))
   Logic Levels:           2  (IBUF=1 LUT1=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -278,19 +344,19 @@ Slack:                    inf
     P15                                               0.000     0.000 r  P15 (IN)
                          net (fo=0)                   0.000     0.000    P15
     P15                  IBUF (Prop_ibuf_I_O)         1.463     1.463 r  P15_IBUF_inst/O
-                         net (fo=1, routed)           1.289     2.752    main_state_switcher_1/P15_IBUF
-    SLICE_X2Y25          LUT1 (Prop_lut1_I0_O)        0.124     2.876 f  main_state_switcher_1/button_in_d1_i_1/O
-                         net (fo=236, routed)         5.710     8.586    main_state_switcher_1/P15
-    SLICE_X59Y51         FDCE                                         f  main_state_switcher_1/level_3_timer_reg[22]/CLR
+                         net (fo=1, routed)           3.669     5.132    scan_seg_1/P15_IBUF
+    SLICE_X54Y59         LUT1 (Prop_lut1_I0_O)        0.124     5.256 f  scan_seg_1/cnt[31]_i_2/O
+                         net (fo=36, routed)          2.258     7.513    scan_seg_1/cnt[31]_i_2_n_0
+    SLICE_X61Y66         FDCE                                         f  scan_seg_1/clkout_reg/CLR
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
   Source:                 P15
                             (input port)
-  Destination:            main_state_switcher_1/level_3_timer_reg[23]/CLR
+  Destination:            scan_seg_1/cnt_reg[26]/CLR
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        8.586ns  (logic 1.587ns (18.484%)  route 6.999ns (81.516%))
+  Data Path Delay:        7.513ns  (logic 1.587ns (21.123%)  route 5.926ns (78.877%))
   Logic Levels:           2  (IBUF=1 LUT1=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -298,19 +364,19 @@ Slack:                    inf
     P15                                               0.000     0.000 r  P15 (IN)
                          net (fo=0)                   0.000     0.000    P15
     P15                  IBUF (Prop_ibuf_I_O)         1.463     1.463 r  P15_IBUF_inst/O
-                         net (fo=1, routed)           1.289     2.752    main_state_switcher_1/P15_IBUF
-    SLICE_X2Y25          LUT1 (Prop_lut1_I0_O)        0.124     2.876 f  main_state_switcher_1/button_in_d1_i_1/O
-                         net (fo=236, routed)         5.710     8.586    main_state_switcher_1/P15
-    SLICE_X59Y51         FDCE                                         f  main_state_switcher_1/level_3_timer_reg[23]/CLR
+                         net (fo=1, routed)           3.669     5.132    scan_seg_1/P15_IBUF
+    SLICE_X54Y59         LUT1 (Prop_lut1_I0_O)        0.124     5.256 f  scan_seg_1/cnt[31]_i_2/O
+                         net (fo=36, routed)          2.258     7.513    scan_seg_1/cnt[31]_i_2_n_0
+    SLICE_X61Y66         FDCE                                         f  scan_seg_1/cnt_reg[26]/CLR
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
   Source:                 P15
                             (input port)
-  Destination:            main_state_switcher_1/level_3_timer_reg[24]/CLR
+  Destination:            scan_seg_1/cnt_reg[31]/CLR
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        8.586ns  (logic 1.587ns (18.484%)  route 6.999ns (81.516%))
+  Data Path Delay:        7.513ns  (logic 1.587ns (21.123%)  route 5.926ns (78.877%))
   Logic Levels:           2  (IBUF=1 LUT1=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -318,19 +384,19 @@ Slack:                    inf
     P15                                               0.000     0.000 r  P15 (IN)
                          net (fo=0)                   0.000     0.000    P15
     P15                  IBUF (Prop_ibuf_I_O)         1.463     1.463 r  P15_IBUF_inst/O
-                         net (fo=1, routed)           1.289     2.752    main_state_switcher_1/P15_IBUF
-    SLICE_X2Y25          LUT1 (Prop_lut1_I0_O)        0.124     2.876 f  main_state_switcher_1/button_in_d1_i_1/O
-                         net (fo=236, routed)         5.710     8.586    main_state_switcher_1/P15
-    SLICE_X59Y51         FDCE                                         f  main_state_switcher_1/level_3_timer_reg[24]/CLR
+                         net (fo=1, routed)           3.669     5.132    scan_seg_1/P15_IBUF
+    SLICE_X54Y59         LUT1 (Prop_lut1_I0_O)        0.124     5.256 f  scan_seg_1/cnt[31]_i_2/O
+                         net (fo=36, routed)          2.258     7.513    scan_seg_1/cnt[31]_i_2_n_0
+    SLICE_X61Y66         FDCE                                         f  scan_seg_1/cnt_reg[31]/CLR
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
   Source:                 P15
                             (input port)
-  Destination:            main_state_switcher_1/state_reg[0]/PRE
+  Destination:            scan_seg_1/cnt_reg[28]/CLR
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        8.418ns  (logic 1.587ns (18.853%)  route 6.831ns (81.147%))
+  Data Path Delay:        7.366ns  (logic 1.587ns (21.545%)  route 5.779ns (78.455%))
   Logic Levels:           2  (IBUF=1 LUT1=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -338,19 +404,19 @@ Slack:                    inf
     P15                                               0.000     0.000 r  P15 (IN)
                          net (fo=0)                   0.000     0.000    P15
     P15                  IBUF (Prop_ibuf_I_O)         1.463     1.463 r  P15_IBUF_inst/O
-                         net (fo=1, routed)           1.289     2.752    main_state_switcher_1/P15_IBUF
-    SLICE_X2Y25          LUT1 (Prop_lut1_I0_O)        0.124     2.876 f  main_state_switcher_1/button_in_d1_i_1/O
-                         net (fo=236, routed)         5.542     8.418    main_state_switcher_1/P15
-    SLICE_X64Y51         FDPE                                         f  main_state_switcher_1/state_reg[0]/PRE
+                         net (fo=1, routed)           3.669     5.132    scan_seg_1/P15_IBUF
+    SLICE_X54Y59         LUT1 (Prop_lut1_I0_O)        0.124     5.256 f  scan_seg_1/cnt[31]_i_2/O
+                         net (fo=36, routed)          2.110     7.366    scan_seg_1/cnt[31]_i_2_n_0
+    SLICE_X63Y66         FDCE                                         f  scan_seg_1/cnt_reg[28]/CLR
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
   Source:                 P15
                             (input port)
-  Destination:            main_state_switcher_1/state_reg[1]_lopt_replica/CLR
+  Destination:            scan_seg_1/cnt_reg[29]/CLR
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        8.418ns  (logic 1.587ns (18.853%)  route 6.831ns (81.147%))
+  Data Path Delay:        7.366ns  (logic 1.587ns (21.545%)  route 5.779ns (78.455%))
   Logic Levels:           2  (IBUF=1 LUT1=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -358,90 +424,10 @@ Slack:                    inf
     P15                                               0.000     0.000 r  P15 (IN)
                          net (fo=0)                   0.000     0.000    P15
     P15                  IBUF (Prop_ibuf_I_O)         1.463     1.463 r  P15_IBUF_inst/O
-                         net (fo=1, routed)           1.289     2.752    main_state_switcher_1/P15_IBUF
-    SLICE_X2Y25          LUT1 (Prop_lut1_I0_O)        0.124     2.876 f  main_state_switcher_1/button_in_d1_i_1/O
-                         net (fo=236, routed)         5.542     8.418    main_state_switcher_1/P15
-    SLICE_X64Y51         FDCE                                         f  main_state_switcher_1/state_reg[1]_lopt_replica/CLR
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 P15
-                            (input port)
-  Destination:            main_state_switcher_1/state_reg[2]/CLR
-  Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
-  Data Path Delay:        8.418ns  (logic 1.587ns (18.853%)  route 6.831ns (81.147%))
-  Logic Levels:           2  (IBUF=1 LUT1=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    P15                                               0.000     0.000 r  P15 (IN)
-                         net (fo=0)                   0.000     0.000    P15
-    P15                  IBUF (Prop_ibuf_I_O)         1.463     1.463 r  P15_IBUF_inst/O
-                         net (fo=1, routed)           1.289     2.752    main_state_switcher_1/P15_IBUF
-    SLICE_X2Y25          LUT1 (Prop_lut1_I0_O)        0.124     2.876 f  main_state_switcher_1/button_in_d1_i_1/O
-                         net (fo=236, routed)         5.542     8.418    main_state_switcher_1/P15
-    SLICE_X64Y51         FDCE                                         f  main_state_switcher_1/state_reg[2]/CLR
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 P15
-                            (input port)
-  Destination:            main_state_switcher_1/state_reg[3]/CLR
-  Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
-  Data Path Delay:        8.418ns  (logic 1.587ns (18.853%)  route 6.831ns (81.147%))
-  Logic Levels:           2  (IBUF=1 LUT1=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    P15                                               0.000     0.000 r  P15 (IN)
-                         net (fo=0)                   0.000     0.000    P15
-    P15                  IBUF (Prop_ibuf_I_O)         1.463     1.463 r  P15_IBUF_inst/O
-                         net (fo=1, routed)           1.289     2.752    main_state_switcher_1/P15_IBUF
-    SLICE_X2Y25          LUT1 (Prop_lut1_I0_O)        0.124     2.876 f  main_state_switcher_1/button_in_d1_i_1/O
-                         net (fo=236, routed)         5.542     8.418    main_state_switcher_1/P15
-    SLICE_X64Y51         FDCE                                         f  main_state_switcher_1/state_reg[3]/CLR
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 P15
-                            (input port)
-  Destination:            main_state_switcher_1/level_3_timer_reg[18]/CLR
-  Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
-  Data Path Delay:        8.344ns  (logic 1.587ns (19.020%)  route 6.757ns (80.980%))
-  Logic Levels:           2  (IBUF=1 LUT1=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    P15                                               0.000     0.000 r  P15 (IN)
-                         net (fo=0)                   0.000     0.000    P15
-    P15                  IBUF (Prop_ibuf_I_O)         1.463     1.463 r  P15_IBUF_inst/O
-                         net (fo=1, routed)           1.289     2.752    main_state_switcher_1/P15_IBUF
-    SLICE_X2Y25          LUT1 (Prop_lut1_I0_O)        0.124     2.876 f  main_state_switcher_1/button_in_d1_i_1/O
-                         net (fo=236, routed)         5.468     8.344    main_state_switcher_1/P15
-    SLICE_X59Y50         FDCE                                         f  main_state_switcher_1/level_3_timer_reg[18]/CLR
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 P15
-                            (input port)
-  Destination:            main_state_switcher_1/level_3_timer_reg[25]/CLR
-  Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
-  Data Path Delay:        8.344ns  (logic 1.587ns (19.020%)  route 6.757ns (80.980%))
-  Logic Levels:           2  (IBUF=1 LUT1=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    P15                                               0.000     0.000 r  P15 (IN)
-                         net (fo=0)                   0.000     0.000    P15
-    P15                  IBUF (Prop_ibuf_I_O)         1.463     1.463 r  P15_IBUF_inst/O
-                         net (fo=1, routed)           1.289     2.752    main_state_switcher_1/P15_IBUF
-    SLICE_X2Y25          LUT1 (Prop_lut1_I0_O)        0.124     2.876 f  main_state_switcher_1/button_in_d1_i_1/O
-                         net (fo=236, routed)         5.468     8.344    main_state_switcher_1/P15
-    SLICE_X59Y50         FDCE                                         f  main_state_switcher_1/level_3_timer_reg[25]/CLR
+                         net (fo=1, routed)           3.669     5.132    scan_seg_1/P15_IBUF
+    SLICE_X54Y59         LUT1 (Prop_lut1_I0_O)        0.124     5.256 f  scan_seg_1/cnt[31]_i_2/O
+                         net (fo=36, routed)          2.110     7.366    scan_seg_1/cnt[31]_i_2_n_0
+    SLICE_X63Y66         FDCE                                         f  scan_seg_1/cnt_reg[29]/CLR
   -------------------------------------------------------------------    -------------------
 
 
@@ -451,183 +437,205 @@ Slack:                    inf
 Min Delay Paths
 --------------------------------------------------------------------------------------
 Slack:                    inf
-  Source:                 main_state_switcher_1/next_state_reg[1]/G
-                            (positive level-sensitive latch)
-  Destination:            main_state_switcher_1/state_reg[1]/D
-  Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.288ns  (logic 0.158ns (54.825%)  route 0.130ns (45.175%))
-  Logic Levels:           1  (LDCE=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X62Y52         LDCE                         0.000     0.000 r  main_state_switcher_1/next_state_reg[1]/G
-    SLICE_X62Y52         LDCE (EnToQ_ldce_G_Q)        0.158     0.158 r  main_state_switcher_1/next_state_reg[1]/Q
-                         net (fo=6, routed)           0.130     0.288    main_state_switcher_1/next_state[1]
-    SLICE_X63Y52         FDCE                                         r  main_state_switcher_1/state_reg[1]/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 main_state_switcher_1/next_state_reg[1]/G
-                            (positive level-sensitive latch)
-  Destination:            main_state_switcher_1/state_reg[1]_lopt_replica/D
-  Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.298ns  (logic 0.158ns (53.089%)  route 0.140ns (46.911%))
-  Logic Levels:           1  (LDCE=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X62Y52         LDCE                         0.000     0.000 r  main_state_switcher_1/next_state_reg[1]/G
-    SLICE_X62Y52         LDCE (EnToQ_ldce_G_Q)        0.158     0.158 r  main_state_switcher_1/next_state_reg[1]/Q
-                         net (fo=6, routed)           0.140     0.298    main_state_switcher_1/next_state[1]
-    SLICE_X64Y51         FDCE                                         r  main_state_switcher_1/state_reg[1]_lopt_replica/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 main_state_switcher_1/next_state_reg[0]/G
-                            (positive level-sensitive latch)
-  Destination:            main_state_switcher_1/state_reg[0]/D
-  Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.315ns  (logic 0.178ns (56.487%)  route 0.137ns (43.513%))
-  Logic Levels:           1  (LDCE=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X64Y52         LDCE                         0.000     0.000 r  main_state_switcher_1/next_state_reg[0]/G
-    SLICE_X64Y52         LDCE (EnToQ_ldce_G_Q)        0.178     0.178 r  main_state_switcher_1/next_state_reg[0]/Q
-                         net (fo=5, routed)           0.137     0.315    main_state_switcher_1/next_state[0]
-    SLICE_X64Y51         FDPE                                         r  main_state_switcher_1/state_reg[0]/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 main_state_switcher_1/state_reg[10]/C
+  Source:                 scan_seg_1/clkout_reg/C
                             (rising edge-triggered cell FDCE)
-  Destination:            main_state_switcher_1/next_state_reg[10]/D
+  Destination:            scan_seg_1/clkout_reg/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.333ns  (logic 0.189ns (56.682%)  route 0.144ns (43.318%))
+  Data Path Delay:        0.354ns  (logic 0.186ns (52.498%)  route 0.168ns (47.502%))
   Logic Levels:           2  (FDCE=1 LUT5=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X63Y52         FDCE                         0.000     0.000 r  main_state_switcher_1/state_reg[10]/C
-    SLICE_X63Y52         FDCE (Prop_fdce_C_Q)         0.141     0.141 r  main_state_switcher_1/state_reg[10]/Q
-                         net (fo=8, routed)           0.144     0.285    main_state_switcher_1/Q[10]
-    SLICE_X62Y52         LUT5 (Prop_lut5_I4_O)        0.048     0.333 r  main_state_switcher_1/next_state_reg[10]_i_1/O
-                         net (fo=1, routed)           0.000     0.333    main_state_switcher_1/next_state1_out[10]
-    SLICE_X62Y52         LDCE                                         r  main_state_switcher_1/next_state_reg[10]/D
+    SLICE_X61Y66         FDCE                         0.000     0.000 r  scan_seg_1/clkout_reg/C
+    SLICE_X61Y66         FDCE (Prop_fdce_C_Q)         0.141     0.141 r  scan_seg_1/clkout_reg/Q
+                         net (fo=4, routed)           0.168     0.309    scan_seg_1/clkout_reg_n_0
+    SLICE_X61Y66         LUT5 (Prop_lut5_I4_O)        0.045     0.354 r  scan_seg_1/clkout_i_1/O
+                         net (fo=1, routed)           0.000     0.354    scan_seg_1/clkout_i_1_n_0
+    SLICE_X61Y66         FDCE                                         r  scan_seg_1/clkout_reg/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 main_state_switcher_1/next_state_reg[5]/G
-                            (positive level-sensitive latch)
-  Destination:            main_state_switcher_1/state_reg[5]/D
-  Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.335ns  (logic 0.158ns (47.212%)  route 0.177ns (52.788%))
-  Logic Levels:           1  (LDCE=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X62Y52         LDCE                         0.000     0.000 r  main_state_switcher_1/next_state_reg[5]/G
-    SLICE_X62Y52         LDCE (EnToQ_ldce_G_Q)        0.158     0.158 r  main_state_switcher_1/next_state_reg[5]/Q
-                         net (fo=4, routed)           0.177     0.335    main_state_switcher_1/next_state[5]
-    SLICE_X63Y54         FDCE                                         r  main_state_switcher_1/state_reg[5]/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 main_state_switcher_1/next_state_reg[3]/G
-                            (positive level-sensitive latch)
-  Destination:            main_state_switcher_1/state_reg[3]_lopt_replica/D
-  Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.336ns  (logic 0.178ns (52.933%)  route 0.158ns (47.067%))
-  Logic Levels:           1  (LDCE=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X64Y52         LDCE                         0.000     0.000 r  main_state_switcher_1/next_state_reg[3]/G
-    SLICE_X64Y52         LDCE (EnToQ_ldce_G_Q)        0.178     0.178 r  main_state_switcher_1/next_state_reg[3]/Q
-                         net (fo=6, routed)           0.158     0.336    main_state_switcher_1/next_state[3]
-    SLICE_X64Y53         FDCE                                         r  main_state_switcher_1/state_reg[3]_lopt_replica/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 debounce_2/button_out_reg/C
+  Source:                 scan_seg_1/cnt_reg[0]/C
                             (rising edge-triggered cell FDCE)
-  Destination:            debounce_2/button_out_reg/D
+  Destination:            scan_seg_1/cnt_reg[0]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.356ns  (logic 0.186ns (52.178%)  route 0.170ns (47.822%))
-  Logic Levels:           2  (FDCE=1 LUT4=1)
+  Data Path Delay:        0.384ns  (logic 0.209ns (54.393%)  route 0.175ns (45.607%))
+  Logic Levels:           2  (FDCE=1 LUT1=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X63Y43         FDCE                         0.000     0.000 r  debounce_2/button_out_reg/C
-    SLICE_X63Y43         FDCE (Prop_fdce_C_Q)         0.141     0.141 r  debounce_2/button_out_reg/Q
-                         net (fo=8, routed)           0.170     0.311    debounce_2/K6_OBUF
-    SLICE_X63Y43         LUT4 (Prop_lut4_I3_O)        0.045     0.356 r  debounce_2/button_out_i_1__0/O
-                         net (fo=1, routed)           0.000     0.356    debounce_2/button_out_i_1__0_n_0
-    SLICE_X63Y43         FDCE                                         r  debounce_2/button_out_reg/D
+    SLICE_X64Y60         FDCE                         0.000     0.000 r  scan_seg_1/cnt_reg[0]/C
+    SLICE_X64Y60         FDCE (Prop_fdce_C_Q)         0.164     0.164 f  scan_seg_1/cnt_reg[0]/Q
+                         net (fo=3, routed)           0.175     0.339    scan_seg_1/cnt_reg_n_0_[0]
+    SLICE_X64Y60         LUT1 (Prop_lut1_I0_O)        0.045     0.384 r  scan_seg_1/cnt[0]_i_1/O
+                         net (fo=1, routed)           0.000     0.384    scan_seg_1/cnt[0]
+    SLICE_X64Y60         FDCE                                         r  scan_seg_1/cnt_reg[0]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 debounce_5/button_out_reg/C
+  Source:                 scan_seg_1/scan_cnt_reg[0]/C
                             (rising edge-triggered cell FDCE)
-  Destination:            debounce_5/button_out_reg/D
+  Destination:            scan_seg_1/scan_cnt_reg[1]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.356ns  (logic 0.186ns (52.178%)  route 0.170ns (47.822%))
-  Logic Levels:           2  (FDCE=1 LUT4=1)
+  Data Path Delay:        0.395ns  (logic 0.208ns (52.671%)  route 0.187ns (47.329%))
+  Logic Levels:           2  (FDCE=1 LUT2=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X65Y40         FDCE                         0.000     0.000 r  debounce_5/button_out_reg/C
-    SLICE_X65Y40         FDCE (Prop_fdce_C_Q)         0.141     0.141 r  debounce_5/button_out_reg/Q
-                         net (fo=4, routed)           0.170     0.311    debounce_5/K3_OBUF
-    SLICE_X65Y40         LUT4 (Prop_lut4_I3_O)        0.045     0.356 r  debounce_5/button_out_i_1__3/O
-                         net (fo=1, routed)           0.000     0.356    debounce_5/button_out_i_1__3_n_0
-    SLICE_X65Y40         FDCE                                         r  debounce_5/button_out_reg/D
+    SLICE_X64Y66         FDCE                         0.000     0.000 r  scan_seg_1/scan_cnt_reg[0]/C
+    SLICE_X64Y66         FDCE (Prop_fdce_C_Q)         0.164     0.164 r  scan_seg_1/scan_cnt_reg[0]/Q
+                         net (fo=18, routed)          0.187     0.351    scan_seg_1/scan_cnt[0]
+    SLICE_X64Y66         LUT2 (Prop_lut2_I1_O)        0.044     0.395 r  scan_seg_1/scan_cnt[1]_i_1/O
+                         net (fo=1, routed)           0.000     0.395    scan_seg_1/scan_cnt[1]_i_1_n_0
+    SLICE_X64Y66         FDCE                                         r  scan_seg_1/scan_cnt_reg[1]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 button_touch_length_checker_1/whether_short_touch_reg/C
+  Source:                 scan_seg_1/scan_cnt_reg[0]/C
                             (rising edge-triggered cell FDCE)
-  Destination:            button_touch_length_checker_1/whether_short_touch_reg/D
+  Destination:            scan_seg_1/scan_cnt_reg[0]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.360ns  (logic 0.186ns (51.619%)  route 0.174ns (48.381%))
-  Logic Levels:           2  (FDCE=1 LUT6=1)
+  Data Path Delay:        0.396ns  (logic 0.209ns (52.790%)  route 0.187ns (47.210%))
+  Logic Levels:           2  (FDCE=1 LUT1=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X58Y45         FDCE                         0.000     0.000 r  button_touch_length_checker_1/whether_short_touch_reg/C
-    SLICE_X58Y45         FDCE (Prop_fdce_C_Q)         0.141     0.141 r  button_touch_length_checker_1/whether_short_touch_reg/Q
-                         net (fo=11, routed)          0.174     0.315    button_touch_length_checker_1/power_menu_button_short
-    SLICE_X58Y45         LUT6 (Prop_lut6_I5_O)        0.045     0.360 r  button_touch_length_checker_1/whether_short_touch_i_1/O
-                         net (fo=1, routed)           0.000     0.360    button_touch_length_checker_1/whether_short_touch_i_1_n_0
-    SLICE_X58Y45         FDCE                                         r  button_touch_length_checker_1/whether_short_touch_reg/D
+    SLICE_X64Y66         FDCE                         0.000     0.000 r  scan_seg_1/scan_cnt_reg[0]/C
+    SLICE_X64Y66         FDCE (Prop_fdce_C_Q)         0.164     0.164 f  scan_seg_1/scan_cnt_reg[0]/Q
+                         net (fo=18, routed)          0.187     0.351    scan_seg_1/scan_cnt[0]
+    SLICE_X64Y66         LUT1 (Prop_lut1_I0_O)        0.045     0.396 r  scan_seg_1/scan_cnt[0]_i_1/O
+                         net (fo=1, routed)           0.000     0.396    scan_seg_1/scan_cnt[0]_i_1_n_0
+    SLICE_X64Y66         FDCE                                         r  scan_seg_1/scan_cnt_reg[0]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 main_state_switcher_1/level_3_timer_reg[0]/C
+  Source:                 scan_seg_1/cnt_reg[0]/C
                             (rising edge-triggered cell FDCE)
-  Destination:            main_state_switcher_1/level_3_timer_reg[0]/D
+  Destination:            scan_seg_1/cnt_reg[3]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.366ns  (logic 0.186ns (50.759%)  route 0.180ns (49.241%))
-  Logic Levels:           2  (FDCE=1 LUT6=1)
+  Data Path Delay:        0.499ns  (logic 0.254ns (50.910%)  route 0.245ns (49.090%))
+  Logic Levels:           3  (FDCE=1 LUT5=2)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X59Y45         FDCE                         0.000     0.000 r  main_state_switcher_1/level_3_timer_reg[0]/C
-    SLICE_X59Y45         FDCE (Prop_fdce_C_Q)         0.141     0.141 f  main_state_switcher_1/level_3_timer_reg[0]/Q
-                         net (fo=3, routed)           0.180     0.321    main_state_switcher_1/level_3_timer[0]
-    SLICE_X59Y45         LUT6 (Prop_lut6_I5_O)        0.045     0.366 r  main_state_switcher_1/level_3_timer[0]_i_1/O
-                         net (fo=1, routed)           0.000     0.366    main_state_switcher_1/level_3_timer_next[0]
-    SLICE_X59Y45         FDCE                                         r  main_state_switcher_1/level_3_timer_reg[0]/D
+    SLICE_X64Y60         FDCE                         0.000     0.000 r  scan_seg_1/cnt_reg[0]/C
+    SLICE_X64Y60         FDCE (Prop_fdce_C_Q)         0.164     0.164 f  scan_seg_1/cnt_reg[0]/Q
+                         net (fo=3, routed)           0.117     0.281    scan_seg_1/cnt_reg_n_0_[0]
+    SLICE_X63Y60         LUT5 (Prop_lut5_I2_O)        0.045     0.326 r  scan_seg_1/cnt[31]_i_5/O
+                         net (fo=32, routed)          0.128     0.454    scan_seg_1/cnt[31]_i_5_n_0
+    SLICE_X63Y60         LUT5 (Prop_lut5_I2_O)        0.045     0.499 r  scan_seg_1/cnt[3]_i_1/O
+                         net (fo=1, routed)           0.000     0.499    scan_seg_1/cnt[3]
+    SLICE_X63Y60         FDCE                                         r  scan_seg_1/cnt_reg[3]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 scan_seg_1/cnt_reg[8]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            scan_seg_1/cnt_reg[9]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.505ns  (logic 0.231ns (45.698%)  route 0.274ns (54.302%))
+  Logic Levels:           3  (FDCE=1 LUT5=2)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X61Y61         FDCE                         0.000     0.000 r  scan_seg_1/cnt_reg[8]/C
+    SLICE_X61Y61         FDCE (Prop_fdce_C_Q)         0.141     0.141 r  scan_seg_1/cnt_reg[8]/Q
+                         net (fo=2, routed)           0.176     0.317    scan_seg_1/cnt_reg_n_0_[8]
+    SLICE_X63Y62         LUT5 (Prop_lut5_I2_O)        0.045     0.362 r  scan_seg_1/cnt[31]_i_6/O
+                         net (fo=32, routed)          0.099     0.460    scan_seg_1/cnt[31]_i_6_n_0
+    SLICE_X63Y62         LUT5 (Prop_lut5_I3_O)        0.045     0.505 r  scan_seg_1/cnt[9]_i_1/O
+                         net (fo=1, routed)           0.000     0.505    scan_seg_1/cnt[9]
+    SLICE_X63Y62         FDCE                                         r  scan_seg_1/cnt_reg[9]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 scan_seg_1/cnt_reg[8]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            scan_seg_1/cnt_reg[10]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.506ns  (logic 0.231ns (45.608%)  route 0.275ns (54.392%))
+  Logic Levels:           3  (FDCE=1 LUT5=2)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X61Y61         FDCE                         0.000     0.000 r  scan_seg_1/cnt_reg[8]/C
+    SLICE_X61Y61         FDCE (Prop_fdce_C_Q)         0.141     0.141 r  scan_seg_1/cnt_reg[8]/Q
+                         net (fo=2, routed)           0.176     0.317    scan_seg_1/cnt_reg_n_0_[8]
+    SLICE_X63Y62         LUT5 (Prop_lut5_I2_O)        0.045     0.362 r  scan_seg_1/cnt[31]_i_6/O
+                         net (fo=32, routed)          0.100     0.461    scan_seg_1/cnt[31]_i_6_n_0
+    SLICE_X63Y62         LUT5 (Prop_lut5_I3_O)        0.045     0.506 r  scan_seg_1/cnt[10]_i_1/O
+                         net (fo=1, routed)           0.000     0.506    scan_seg_1/cnt[10]
+    SLICE_X63Y62         FDCE                                         r  scan_seg_1/cnt_reg[10]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 scan_seg_1/cnt_reg[24]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            scan_seg_1/cnt_reg[27]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.537ns  (logic 0.231ns (43.023%)  route 0.306ns (56.977%))
+  Logic Levels:           3  (FDCE=1 LUT5=2)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X63Y65         FDCE                         0.000     0.000 r  scan_seg_1/cnt_reg[24]/C
+    SLICE_X63Y65         FDCE (Prop_fdce_C_Q)         0.141     0.141 r  scan_seg_1/cnt_reg[24]/Q
+                         net (fo=2, routed)           0.200     0.341    scan_seg_1/cnt_reg_n_0_[24]
+    SLICE_X63Y65         LUT5 (Prop_lut5_I2_O)        0.045     0.386 r  scan_seg_1/cnt[31]_i_4/O
+                         net (fo=32, routed)          0.106     0.492    scan_seg_1/cnt[31]_i_4_n_0
+    SLICE_X63Y65         LUT5 (Prop_lut5_I1_O)        0.045     0.537 r  scan_seg_1/cnt[27]_i_1/O
+                         net (fo=1, routed)           0.000     0.537    scan_seg_1/cnt[27]
+    SLICE_X63Y65         FDCE                                         r  scan_seg_1/cnt_reg[27]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 scan_seg_1/cnt_reg[17]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            scan_seg_1/cnt_reg[19]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.556ns  (logic 0.231ns (41.522%)  route 0.325ns (58.478%))
+  Logic Levels:           3  (FDCE=1 LUT5=2)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X63Y64         FDCE                         0.000     0.000 r  scan_seg_1/cnt_reg[17]/C
+    SLICE_X63Y64         FDCE (Prop_fdce_C_Q)         0.141     0.141 r  scan_seg_1/cnt_reg[17]/Q
+                         net (fo=2, routed)           0.207     0.348    scan_seg_1/cnt_reg_n_0_[17]
+    SLICE_X63Y64         LUT5 (Prop_lut5_I2_O)        0.045     0.393 r  scan_seg_1/cnt[31]_i_3/O
+                         net (fo=32, routed)          0.118     0.511    scan_seg_1/cnt[31]_i_3_n_0
+    SLICE_X63Y64         LUT5 (Prop_lut5_I0_O)        0.045     0.556 r  scan_seg_1/cnt[19]_i_1/O
+                         net (fo=1, routed)           0.000     0.556    scan_seg_1/cnt[19]
+    SLICE_X63Y64         FDCE                                         r  scan_seg_1/cnt_reg[19]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 scan_seg_1/cnt_reg[17]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            scan_seg_1/cnt_reg[20]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.594ns  (logic 0.231ns (38.867%)  route 0.363ns (61.133%))
+  Logic Levels:           3  (FDCE=1 LUT5=2)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X63Y64         FDCE                         0.000     0.000 r  scan_seg_1/cnt_reg[17]/C
+    SLICE_X63Y64         FDCE (Prop_fdce_C_Q)         0.141     0.141 r  scan_seg_1/cnt_reg[17]/Q
+                         net (fo=2, routed)           0.207     0.348    scan_seg_1/cnt_reg_n_0_[17]
+    SLICE_X63Y64         LUT5 (Prop_lut5_I2_O)        0.045     0.393 r  scan_seg_1/cnt[31]_i_3/O
+                         net (fo=32, routed)          0.156     0.549    scan_seg_1/cnt[31]_i_3_n_0
+    SLICE_X61Y64         LUT5 (Prop_lut5_I0_O)        0.045     0.594 r  scan_seg_1/cnt[20]_i_1/O
+                         net (fo=1, routed)           0.000     0.594    scan_seg_1/cnt[20]
+    SLICE_X61Y64         FDCE                                         r  scan_seg_1/cnt_reg[20]/D
   -------------------------------------------------------------------    -------------------
 
 
