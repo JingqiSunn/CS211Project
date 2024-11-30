@@ -118,6 +118,7 @@ module main(
     .level_2_button(level_2_button),
     .level_3_button(level_3_button),
     .self_clean_button(self_clean_button),
+    .power_menu_button(power_menu_button),
     .power_menu_button_long(power_menu_button_long),
     .power_menu_button_short(power_menu_button_short),
     .F6(F6),
