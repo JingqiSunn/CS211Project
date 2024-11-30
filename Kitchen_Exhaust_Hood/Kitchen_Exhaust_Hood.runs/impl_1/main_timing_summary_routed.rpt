@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (lin64) Build 5076996 Wed May 22 18:36:09 MDT 2024
-| Date         : Fri Nov 29 12:56:46 2024
+| Date         : Sat Nov 30 09:52:28 2024
 | Host         : PC running 64-bit Ubuntu 24.04.1 LTS
 | Command      : report_timing_summary -max_paths 10 -report_unconstrained -file main_timing_summary_routed.rpt -pb main_timing_summary_routed.pb -rpx main_timing_summary_routed.rpx -warn_on_violation
 | Design       : main
@@ -41,9 +41,11 @@ Timing Summary Report
 | ------------------
 ------------------------------------------------------------------------------------------------
 
-Rule       Severity          Description                  Violations  
----------  ----------------  ---------------------------  ----------  
-TIMING-17  Critical Warning  Non-clocked sequential cell  36          
+Rule       Severity          Description                     Violations  
+---------  ----------------  ------------------------------  ----------  
+TIMING-17  Critical Warning  Non-clocked sequential cell     386         
+TIMING-20  Warning           Non-clocked latch               42          
+LATCH-1    Advisory          Existing latches in the design  1           
 
 Note: This report is based on the most recent report_methodology run and may not be up-to-date. Run report_methodology on the current design for the latest report.
 
@@ -53,12 +55,12 @@ check_timing report
 
 Table of Contents
 -----------------
-1. checking no_clock (36)
+1. checking no_clock (690)
 2. checking constant_clock (0)
 3. checking pulse_width_clock (0)
-4. checking unconstrained_internal_endpoints (72)
-5. checking no_input_delay (1)
-6. checking no_output_delay (22)
+4. checking unconstrained_internal_endpoints (953)
+5. checking no_input_delay (7)
+6. checking no_output_delay (36)
 7. checking multiple_clock (0)
 8. checking generated_clocks (0)
 9. checking loops (0)
@@ -66,11 +68,53 @@ Table of Contents
 11. checking partial_output_delay (0)
 12. checking latch_loops (0)
 
-1. checking no_clock (36)
--------------------------
- There are 33 register/latch pins with no clock driven by root clock pin: P17 (HIGH)
+1. checking no_clock (690)
+--------------------------
+ There are 226 register/latch pins with no clock driven by root clock pin: P17 (HIGH)
 
- There are 3 register/latch pins with no clock driven by root clock pin: scan_seg_1/clkout_reg/Q (HIGH)
+ There are 28 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/current_time_reg[10]/Q (HIGH)
+
+ There are 28 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/current_time_reg[11]/Q (HIGH)
+
+ There are 28 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/current_time_reg[9]/Q (HIGH)
+
+ There are 3 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/scan_seg_1/clkout_reg/Q (HIGH)
+
+ There are 11 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_in_edit_state_next_reg[0]/Q (HIGH)
+
+ There are 11 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_in_edit_state_next_reg[1]/Q (HIGH)
+
+ There are 11 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_in_edit_state_next_reg[2]/Q (HIGH)
+
+ There are 11 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_in_edit_state_reg[0]/Q (HIGH)
+
+ There are 11 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_in_edit_state_reg[1]/Q (HIGH)
+
+ There are 11 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_in_edit_state_reg[2]/Q (HIGH)
+
+ There are 14 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[0]/Q (HIGH)
+
+ There are 14 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[10]/Q (HIGH)
+
+ There are 14 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[1]/Q (HIGH)
+
+ There are 14 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[2]/Q (HIGH)
+
+ There are 14 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[3]/Q (HIGH)
+
+ There are 14 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[4]/Q (HIGH)
+
+ There are 14 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[5]/Q (HIGH)
+
+ There are 14 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[6]/Q (HIGH)
+
+ There are 14 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[7]/Q (HIGH)
+
+ There are 14 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[8]/Q (HIGH)
+
+ There are 14 register/latch pins with no clock driven by root clock pin: main_state_switcher_1/state_reg[9]/Q (HIGH)
+
+ There are 157 register/latch pins with no clock driven by root clock pin: standard_clock_generator_60_1/nolabel_line31/standard_clock_reg/Q (HIGH)
 
 
 2. checking constant_clock (0)
@@ -83,23 +127,23 @@ Table of Contents
  There are 0 register/latch pins which need pulse_width check
 
 
-4. checking unconstrained_internal_endpoints (72)
--------------------------------------------------
- There are 72 pins that are not constrained for maximum delay. (HIGH)
+4. checking unconstrained_internal_endpoints (953)
+--------------------------------------------------
+ There are 953 pins that are not constrained for maximum delay. (HIGH)
 
  There are 0 pins that are not constrained for maximum delay due to constant clock.
 
 
-5. checking no_input_delay (1)
+5. checking no_input_delay (7)
 ------------------------------
- There is 1 input port with no input delay specified. (HIGH)
+ There are 7 input ports with no input delay specified. (HIGH)
 
  There are 0 input ports with no input delay but user has a false path constraint.
 
 
-6. checking no_output_delay (22)
+6. checking no_output_delay (36)
 --------------------------------
- There are 22 ports with no output delay specified. (HIGH)
+ There are 36 ports with no output delay specified. (HIGH)
 
  There are 0 ports with no output delay but user has a false path constraint
 
@@ -144,7 +188,7 @@ Table of Contents
 
     WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
     -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-        inf        0.000                      0                   94          inf        0.000                      0                   94           NA           NA                      NA                    NA  
+        inf        0.000                      0                  989          inf        0.000                      0                  989           NA           NA                      NA                    NA  
 
 
 There are no user specified timing constraints.
@@ -213,221 +257,966 @@ Path Group:  (none)
 From Clock:  
   To Clock:  
 
-Max Delay            94 Endpoints
-Min Delay            94 Endpoints
+Max Delay           989 Endpoints
+Min Delay           989 Endpoints
 --------------------------------------------------------------------------------------
 
 
 Max Delay Paths
 --------------------------------------------------------------------------------------
 Slack:                    inf
-  Source:                 scan_seg_1/scan_cnt_reg[1]/C
+  Source:                 main_state_switcher_1/strong_standby_timer_reg[0]/C
                             (rising edge-triggered cell FDCE)
-  Destination:            B4
-                            (output port)
+  Destination:            main_state_switcher_1/content_4_reg[2]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        7.921ns  (logic 4.575ns (57.751%)  route 3.347ns (42.249%))
-  Logic Levels:           3  (FDCE=1 LUT3=1 OBUF=1)
+  Data Path Delay:        27.654ns  (logic 10.881ns (39.347%)  route 16.773ns (60.653%))
+  Logic Levels:           35  (CARRY4=22 FDCE=1 LUT1=2 LUT2=1 LUT3=2 LUT4=3 LUT5=1 LUT6=3)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X64Y66         FDCE                         0.000     0.000 r  scan_seg_1/scan_cnt_reg[1]/C
-    SLICE_X64Y66         FDCE (Prop_fdce_C_Q)         0.478     0.478 f  scan_seg_1/scan_cnt_reg[1]/Q
-                         net (fo=17, routed)          1.087     1.565    scan_seg_1/scan_cnt[1]
-    SLICE_X64Y73         LUT3 (Prop_lut3_I1_O)        0.327     1.892 r  scan_seg_1/g0_b7/O
-                         net (fo=2, routed)           2.259     4.152    D4_OBUF
-    B4                   OBUF (Prop_obuf_I_O)         3.770     7.921 r  B4_OBUF_inst/O
-                         net (fo=0)                   0.000     7.921    B4
-    B4                                                                r  B4 (OUT)
+    SLICE_X49Y50         FDCE                         0.000     0.000 r  main_state_switcher_1/strong_standby_timer_reg[0]/C
+    SLICE_X49Y50         FDCE (Prop_fdce_C_Q)         0.456     0.456 f  main_state_switcher_1/strong_standby_timer_reg[0]/Q
+                         net (fo=30, routed)          0.856     1.312    main_state_switcher_1/strong_standby_timer[0]
+    SLICE_X48Y51         LUT1 (Prop_lut1_I0_O)        0.149     1.461 r  main_state_switcher_1/content_6[1]_i_32/O
+                         net (fo=1, routed)           0.531     1.992    main_state_switcher_1/content_6[1]_i_32_n_0
+    SLICE_X48Y52         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.788     2.780 r  main_state_switcher_1/content_6_reg[1]_i_13/CO[3]
+                         net (fo=1, routed)           0.000     2.780    main_state_switcher_1/content_6_reg[1]_i_13_n_0
+    SLICE_X48Y53         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     2.894 r  main_state_switcher_1/content_6_reg[1]_i_18/CO[3]
+                         net (fo=1, routed)           0.000     2.894    main_state_switcher_1/content_6_reg[1]_i_18_n_0
+    SLICE_X48Y54         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     3.008 r  main_state_switcher_1/content_3_reg[1]_i_38/CO[3]
+                         net (fo=1, routed)           0.000     3.008    main_state_switcher_1/content_3_reg[1]_i_38_n_0
+    SLICE_X48Y55         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     3.122 r  main_state_switcher_1/content_3_reg[1]_i_157/CO[3]
+                         net (fo=1, routed)           0.000     3.122    main_state_switcher_1/content_3_reg[1]_i_157_n_0
+    SLICE_X48Y56         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222     3.344 r  main_state_switcher_1/content_3_reg[1]_i_154/O[0]
+                         net (fo=27, routed)          2.626     5.971    main_state_switcher_1/total_seconds00_out[17]
+    SLICE_X49Y65         LUT3 (Prop_lut3_I2_O)        0.299     6.270 r  main_state_switcher_1/content_3[1]_i_351/O
+                         net (fo=1, routed)           0.855     7.125    main_state_switcher_1/content_3[1]_i_351_n_0
+    SLICE_X49Y60         CARRY4 (Prop_carry4_DI[1]_CO[3])
+                                                      0.507     7.632 r  main_state_switcher_1/content_3_reg[1]_i_304/CO[3]
+                         net (fo=1, routed)           0.000     7.632    main_state_switcher_1/content_3_reg[1]_i_304_n_0
+    SLICE_X49Y61         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.746 r  main_state_switcher_1/content_3_reg[1]_i_249/CO[3]
+                         net (fo=1, routed)           0.000     7.746    main_state_switcher_1/content_3_reg[1]_i_249_n_0
+    SLICE_X49Y62         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.334     8.080 r  main_state_switcher_1/content_3_reg[1]_i_185/O[1]
+                         net (fo=3, routed)           1.124     9.204    main_state_switcher_1/content_3_reg[1]_i_185_n_6
+    SLICE_X52Y61         LUT3 (Prop_lut3_I2_O)        0.303     9.507 r  main_state_switcher_1/content_3[1]_i_177/O
+                         net (fo=1, routed)           0.338     9.844    main_state_switcher_1/content_3[1]_i_177_n_0
+    SLICE_X51Y61         CARRY4 (Prop_carry4_DI[3]_CO[3])
+                                                      0.385    10.229 r  main_state_switcher_1/content_3_reg[1]_i_144/CO[3]
+                         net (fo=1, routed)           0.000    10.229    main_state_switcher_1/content_3_reg[1]_i_144_n_0
+    SLICE_X51Y62         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    10.343 r  main_state_switcher_1/content_3_reg[1]_i_97/CO[3]
+                         net (fo=1, routed)           0.000    10.343    main_state_switcher_1/content_3_reg[1]_i_97_n_0
+    SLICE_X51Y63         CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239    10.582 r  main_state_switcher_1/content_3_reg[1]_i_71/O[2]
+                         net (fo=3, routed)           1.181    11.763    main_state_switcher_1/content_3_reg[1]_i_71_n_5
+    SLICE_X52Y63         LUT4 (Prop_lut4_I3_O)        0.302    12.065 r  main_state_switcher_1/content_3[1]_i_102/O
+                         net (fo=1, routed)           0.000    12.065    main_state_switcher_1/content_3[1]_i_102_n_0
+    SLICE_X52Y63         CARRY4 (Prop_carry4_S[1]_O[2])
+                                                      0.578    12.643 r  main_state_switcher_1/content_3_reg[1]_i_70/O[2]
+                         net (fo=1, routed)           0.407    13.050    main_state_switcher_1/content_3_reg[1]_i_70_n_5
+    SLICE_X53Y63         LUT2 (Prop_lut2_I1_O)        0.301    13.351 r  main_state_switcher_1/content_3[1]_i_39/O
+                         net (fo=1, routed)           0.000    13.351    main_state_switcher_1/content_3[1]_i_39_n_0
+    SLICE_X53Y63         CARRY4 (Prop_carry4_S[3]_O[3])
+                                                      0.248    13.599 r  main_state_switcher_1/content_3_reg[1]_i_22/O[3]
+                         net (fo=6, routed)           1.117    14.716    main_state_switcher_1/content_3_reg[1]_i_22_n_4
+    SLICE_X48Y65         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.707    15.423 r  main_state_switcher_1/content_3_reg[1]_i_24/CO[3]
+                         net (fo=1, routed)           0.000    15.423    main_state_switcher_1/content_3_reg[1]_i_24_n_0
+    SLICE_X48Y66         CARRY4 (Prop_carry4_CI_CO[0])
+                                                      0.271    15.694 r  main_state_switcher_1/content_3_reg[1]_i_23/CO[0]
+                         net (fo=43, routed)          1.295    16.988    main_state_switcher_1/content_3_reg[1]_i_23_n_3
+    SLICE_X52Y65         LUT4 (Prop_lut4_I1_O)        0.373    17.361 r  main_state_switcher_1/content_4[0]_i_57/O
+                         net (fo=1, routed)           0.000    17.361    main_state_switcher_1/content_4[0]_i_57_n_0
+    SLICE_X52Y65         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533    17.894 r  main_state_switcher_1/content_4_reg[0]_i_18/CO[3]
+                         net (fo=1, routed)           0.000    17.894    main_state_switcher_1/content_4_reg[0]_i_18_n_0
+    SLICE_X52Y66         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    18.011 r  main_state_switcher_1/content_4_reg[0]_i_7/CO[3]
+                         net (fo=1, routed)           0.000    18.011    main_state_switcher_1/content_4_reg[0]_i_7_n_0
+    SLICE_X52Y67         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.219    18.230 f  main_state_switcher_1/content_3_reg[1]_i_10/O[0]
+                         net (fo=9, routed)           1.179    19.410    main_state_switcher_1/content_3_reg[1]_i_10_n_7
+    SLICE_X54Y65         LUT1 (Prop_lut1_I0_O)        0.295    19.705 r  main_state_switcher_1/content_4[0]_i_80/O
+                         net (fo=1, routed)           0.000    19.705    main_state_switcher_1/content_4[0]_i_80_n_0
+    SLICE_X54Y65         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533    20.238 r  main_state_switcher_1/content_4_reg[0]_i_47/CO[3]
+                         net (fo=1, routed)           0.000    20.238    main_state_switcher_1/content_4_reg[0]_i_47_n_0
+    SLICE_X54Y66         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    20.561 r  main_state_switcher_1/content_4_reg[0]_i_15/O[1]
+                         net (fo=3, routed)           0.746    21.307    main_state_switcher_1/content_4_reg[0]_i_15_n_6
+    SLICE_X51Y66         LUT4 (Prop_lut4_I0_O)        0.306    21.613 r  main_state_switcher_1/content_4[0]_i_41/O
+                         net (fo=1, routed)           0.606    22.219    main_state_switcher_1/content_4[0]_i_41_n_0
+    SLICE_X53Y66         CARRY4 (Prop_carry4_DI[1]_CO[3])
+                                                      0.507    22.726 r  main_state_switcher_1/content_4_reg[0]_i_12/CO[3]
+                         net (fo=1, routed)           0.000    22.726    main_state_switcher_1/content_4_reg[0]_i_12_n_0
+    SLICE_X53Y67         CARRY4 (Prop_carry4_CI_CO[0])
+                                                      0.271    22.997 r  main_state_switcher_1/content_4_reg[0]_i_4/CO[0]
+                         net (fo=3, routed)           0.983    23.980    main_state_switcher_1/content_4_reg[0]_i_4_n_3
+    SLICE_X55Y66         LUT6 (Prop_lut6_I0_O)        0.373    24.353 r  main_state_switcher_1/content_3[1]_i_12/O
+                         net (fo=5, routed)           0.844    25.197    main_state_switcher_1/content_3[1]_i_12_n_0
+    SLICE_X55Y65         LUT6 (Prop_lut6_I0_O)        0.124    25.321 r  main_state_switcher_1/content_4[2]_i_8/O
+                         net (fo=1, routed)           1.247    26.568    main_state_switcher_1/strong_standby_minute_1[2]
+    SLICE_X47Y63         LUT6 (Prop_lut6_I0_O)        0.124    26.692 r  main_state_switcher_1/content_4[2]_i_4/O
+                         net (fo=1, routed)           0.838    27.530    main_state_switcher_1/content_4[2]_i_4_n_0
+    SLICE_X47Y56         LUT5 (Prop_lut5_I4_O)        0.124    27.654 r  main_state_switcher_1/content_4[2]_i_1/O
+                         net (fo=1, routed)           0.000    27.654    main_state_switcher_1/content_4[2]_i_1_n_0
+    SLICE_X47Y56         FDSE                                         r  main_state_switcher_1/content_4_reg[2]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 scan_seg_1/scan_cnt_reg[0]/C
+  Source:                 main_state_switcher_1/strong_standby_timer_reg[0]/C
                             (rising edge-triggered cell FDCE)
-  Destination:            A3
-                            (output port)
+  Destination:            main_state_switcher_1/content_3_reg[0]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        7.870ns  (logic 4.461ns (56.678%)  route 3.410ns (43.322%))
-  Logic Levels:           3  (FDCE=1 LUT3=1 OBUF=1)
+  Data Path Delay:        27.469ns  (logic 10.881ns (39.612%)  route 16.588ns (60.388%))
+  Logic Levels:           35  (CARRY4=22 FDCE=1 LUT1=2 LUT2=1 LUT3=2 LUT4=3 LUT5=1 LUT6=3)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X64Y66         FDCE                         0.000     0.000 r  scan_seg_1/scan_cnt_reg[0]/C
-    SLICE_X64Y66         FDCE (Prop_fdce_C_Q)         0.518     0.518 f  scan_seg_1/scan_cnt_reg[0]/Q
-                         net (fo=18, routed)          1.076     1.594    scan_seg_1/scan_cnt[0]
-    SLICE_X64Y73         LUT3 (Prop_lut3_I2_O)        0.152     1.746 r  scan_seg_1/g0_b5/O
-                         net (fo=2, routed)           2.333     4.080    D3_OBUF
-    A3                   OBUF (Prop_obuf_I_O)         3.791     7.870 r  A3_OBUF_inst/O
-                         net (fo=0)                   0.000     7.870    A3
-    A3                                                                r  A3 (OUT)
+    SLICE_X49Y50         FDCE                         0.000     0.000 r  main_state_switcher_1/strong_standby_timer_reg[0]/C
+    SLICE_X49Y50         FDCE (Prop_fdce_C_Q)         0.456     0.456 f  main_state_switcher_1/strong_standby_timer_reg[0]/Q
+                         net (fo=30, routed)          0.856     1.312    main_state_switcher_1/strong_standby_timer[0]
+    SLICE_X48Y51         LUT1 (Prop_lut1_I0_O)        0.149     1.461 r  main_state_switcher_1/content_6[1]_i_32/O
+                         net (fo=1, routed)           0.531     1.992    main_state_switcher_1/content_6[1]_i_32_n_0
+    SLICE_X48Y52         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.788     2.780 r  main_state_switcher_1/content_6_reg[1]_i_13/CO[3]
+                         net (fo=1, routed)           0.000     2.780    main_state_switcher_1/content_6_reg[1]_i_13_n_0
+    SLICE_X48Y53         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     2.894 r  main_state_switcher_1/content_6_reg[1]_i_18/CO[3]
+                         net (fo=1, routed)           0.000     2.894    main_state_switcher_1/content_6_reg[1]_i_18_n_0
+    SLICE_X48Y54         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     3.008 r  main_state_switcher_1/content_3_reg[1]_i_38/CO[3]
+                         net (fo=1, routed)           0.000     3.008    main_state_switcher_1/content_3_reg[1]_i_38_n_0
+    SLICE_X48Y55         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     3.122 r  main_state_switcher_1/content_3_reg[1]_i_157/CO[3]
+                         net (fo=1, routed)           0.000     3.122    main_state_switcher_1/content_3_reg[1]_i_157_n_0
+    SLICE_X48Y56         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222     3.344 r  main_state_switcher_1/content_3_reg[1]_i_154/O[0]
+                         net (fo=27, routed)          2.626     5.971    main_state_switcher_1/total_seconds00_out[17]
+    SLICE_X49Y65         LUT3 (Prop_lut3_I2_O)        0.299     6.270 r  main_state_switcher_1/content_3[1]_i_351/O
+                         net (fo=1, routed)           0.855     7.125    main_state_switcher_1/content_3[1]_i_351_n_0
+    SLICE_X49Y60         CARRY4 (Prop_carry4_DI[1]_CO[3])
+                                                      0.507     7.632 r  main_state_switcher_1/content_3_reg[1]_i_304/CO[3]
+                         net (fo=1, routed)           0.000     7.632    main_state_switcher_1/content_3_reg[1]_i_304_n_0
+    SLICE_X49Y61         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.746 r  main_state_switcher_1/content_3_reg[1]_i_249/CO[3]
+                         net (fo=1, routed)           0.000     7.746    main_state_switcher_1/content_3_reg[1]_i_249_n_0
+    SLICE_X49Y62         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.334     8.080 r  main_state_switcher_1/content_3_reg[1]_i_185/O[1]
+                         net (fo=3, routed)           1.124     9.204    main_state_switcher_1/content_3_reg[1]_i_185_n_6
+    SLICE_X52Y61         LUT3 (Prop_lut3_I2_O)        0.303     9.507 r  main_state_switcher_1/content_3[1]_i_177/O
+                         net (fo=1, routed)           0.338     9.844    main_state_switcher_1/content_3[1]_i_177_n_0
+    SLICE_X51Y61         CARRY4 (Prop_carry4_DI[3]_CO[3])
+                                                      0.385    10.229 r  main_state_switcher_1/content_3_reg[1]_i_144/CO[3]
+                         net (fo=1, routed)           0.000    10.229    main_state_switcher_1/content_3_reg[1]_i_144_n_0
+    SLICE_X51Y62         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    10.343 r  main_state_switcher_1/content_3_reg[1]_i_97/CO[3]
+                         net (fo=1, routed)           0.000    10.343    main_state_switcher_1/content_3_reg[1]_i_97_n_0
+    SLICE_X51Y63         CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239    10.582 r  main_state_switcher_1/content_3_reg[1]_i_71/O[2]
+                         net (fo=3, routed)           1.181    11.763    main_state_switcher_1/content_3_reg[1]_i_71_n_5
+    SLICE_X52Y63         LUT4 (Prop_lut4_I3_O)        0.302    12.065 r  main_state_switcher_1/content_3[1]_i_102/O
+                         net (fo=1, routed)           0.000    12.065    main_state_switcher_1/content_3[1]_i_102_n_0
+    SLICE_X52Y63         CARRY4 (Prop_carry4_S[1]_O[2])
+                                                      0.578    12.643 r  main_state_switcher_1/content_3_reg[1]_i_70/O[2]
+                         net (fo=1, routed)           0.407    13.050    main_state_switcher_1/content_3_reg[1]_i_70_n_5
+    SLICE_X53Y63         LUT2 (Prop_lut2_I1_O)        0.301    13.351 r  main_state_switcher_1/content_3[1]_i_39/O
+                         net (fo=1, routed)           0.000    13.351    main_state_switcher_1/content_3[1]_i_39_n_0
+    SLICE_X53Y63         CARRY4 (Prop_carry4_S[3]_O[3])
+                                                      0.248    13.599 r  main_state_switcher_1/content_3_reg[1]_i_22/O[3]
+                         net (fo=6, routed)           1.117    14.716    main_state_switcher_1/content_3_reg[1]_i_22_n_4
+    SLICE_X48Y65         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.707    15.423 r  main_state_switcher_1/content_3_reg[1]_i_24/CO[3]
+                         net (fo=1, routed)           0.000    15.423    main_state_switcher_1/content_3_reg[1]_i_24_n_0
+    SLICE_X48Y66         CARRY4 (Prop_carry4_CI_CO[0])
+                                                      0.271    15.694 r  main_state_switcher_1/content_3_reg[1]_i_23/CO[0]
+                         net (fo=43, routed)          1.295    16.988    main_state_switcher_1/content_3_reg[1]_i_23_n_3
+    SLICE_X52Y65         LUT4 (Prop_lut4_I1_O)        0.373    17.361 r  main_state_switcher_1/content_4[0]_i_57/O
+                         net (fo=1, routed)           0.000    17.361    main_state_switcher_1/content_4[0]_i_57_n_0
+    SLICE_X52Y65         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533    17.894 r  main_state_switcher_1/content_4_reg[0]_i_18/CO[3]
+                         net (fo=1, routed)           0.000    17.894    main_state_switcher_1/content_4_reg[0]_i_18_n_0
+    SLICE_X52Y66         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    18.011 r  main_state_switcher_1/content_4_reg[0]_i_7/CO[3]
+                         net (fo=1, routed)           0.000    18.011    main_state_switcher_1/content_4_reg[0]_i_7_n_0
+    SLICE_X52Y67         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.219    18.230 f  main_state_switcher_1/content_3_reg[1]_i_10/O[0]
+                         net (fo=9, routed)           1.179    19.410    main_state_switcher_1/content_3_reg[1]_i_10_n_7
+    SLICE_X54Y65         LUT1 (Prop_lut1_I0_O)        0.295    19.705 r  main_state_switcher_1/content_4[0]_i_80/O
+                         net (fo=1, routed)           0.000    19.705    main_state_switcher_1/content_4[0]_i_80_n_0
+    SLICE_X54Y65         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533    20.238 r  main_state_switcher_1/content_4_reg[0]_i_47/CO[3]
+                         net (fo=1, routed)           0.000    20.238    main_state_switcher_1/content_4_reg[0]_i_47_n_0
+    SLICE_X54Y66         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    20.561 r  main_state_switcher_1/content_4_reg[0]_i_15/O[1]
+                         net (fo=3, routed)           0.746    21.307    main_state_switcher_1/content_4_reg[0]_i_15_n_6
+    SLICE_X51Y66         LUT4 (Prop_lut4_I0_O)        0.306    21.613 r  main_state_switcher_1/content_4[0]_i_41/O
+                         net (fo=1, routed)           0.606    22.219    main_state_switcher_1/content_4[0]_i_41_n_0
+    SLICE_X53Y66         CARRY4 (Prop_carry4_DI[1]_CO[3])
+                                                      0.507    22.726 r  main_state_switcher_1/content_4_reg[0]_i_12/CO[3]
+                         net (fo=1, routed)           0.000    22.726    main_state_switcher_1/content_4_reg[0]_i_12_n_0
+    SLICE_X53Y67         CARRY4 (Prop_carry4_CI_CO[0])
+                                                      0.271    22.997 r  main_state_switcher_1/content_4_reg[0]_i_4/CO[0]
+                         net (fo=3, routed)           0.983    23.980    main_state_switcher_1/content_4_reg[0]_i_4_n_3
+    SLICE_X55Y66         LUT6 (Prop_lut6_I0_O)        0.373    24.353 r  main_state_switcher_1/content_3[1]_i_12/O
+                         net (fo=5, routed)           0.671    25.024    main_state_switcher_1/content_3[1]_i_12_n_0
+    SLICE_X55Y65         LUT6 (Prop_lut6_I5_O)        0.124    25.148 r  main_state_switcher_1/content_3[0]_i_4/O
+                         net (fo=2, routed)           1.049    26.197    main_state_switcher_1/strong_standby_minute_0[0]
+    SLICE_X53Y59         LUT6 (Prop_lut6_I0_O)        0.124    26.321 r  main_state_switcher_1/content_3[0]_i_2/O
+                         net (fo=1, routed)           0.645    26.966    main_state_switcher_1/content_3[0]_i_2_n_0
+    SLICE_X53Y59         LUT5 (Prop_lut5_I0_O)        0.124    27.090 r  main_state_switcher_1/content_3[0]_i_1/O
+                         net (fo=1, routed)           0.379    27.469    main_state_switcher_1/content_3[0]_i_1_n_0
+    SLICE_X53Y59         FDSE                                         r  main_state_switcher_1/content_3_reg[0]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 scan_seg_1/scan_cnt_reg[1]/C
+  Source:                 main_state_switcher_1/strong_standby_timer_reg[0]/C
                             (rising edge-triggered cell FDCE)
-  Destination:            A4
-                            (output port)
+  Destination:            main_state_switcher_1/content_4_reg[1]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        7.768ns  (logic 4.337ns (55.826%)  route 3.432ns (44.174%))
-  Logic Levels:           3  (FDCE=1 LUT3=1 OBUF=1)
+  Data Path Delay:        26.808ns  (logic 10.881ns (40.588%)  route 15.927ns (59.412%))
+  Logic Levels:           35  (CARRY4=22 FDCE=1 LUT1=2 LUT2=1 LUT3=2 LUT4=3 LUT5=1 LUT6=3)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X64Y66         FDCE                         0.000     0.000 r  scan_seg_1/scan_cnt_reg[1]/C
-    SLICE_X64Y66         FDCE (Prop_fdce_C_Q)         0.478     0.478 r  scan_seg_1/scan_cnt_reg[1]/Q
-                         net (fo=17, routed)          1.087     1.565    scan_seg_1/scan_cnt[1]
-    SLICE_X64Y73         LUT3 (Prop_lut3_I1_O)        0.298     1.863 r  scan_seg_1/g0_b6/O
-                         net (fo=2, routed)           2.344     4.208    E3_OBUF
-    A4                   OBUF (Prop_obuf_I_O)         3.561     7.768 r  A4_OBUF_inst/O
-                         net (fo=0)                   0.000     7.768    A4
-    A4                                                                r  A4 (OUT)
+    SLICE_X49Y50         FDCE                         0.000     0.000 r  main_state_switcher_1/strong_standby_timer_reg[0]/C
+    SLICE_X49Y50         FDCE (Prop_fdce_C_Q)         0.456     0.456 f  main_state_switcher_1/strong_standby_timer_reg[0]/Q
+                         net (fo=30, routed)          0.856     1.312    main_state_switcher_1/strong_standby_timer[0]
+    SLICE_X48Y51         LUT1 (Prop_lut1_I0_O)        0.149     1.461 r  main_state_switcher_1/content_6[1]_i_32/O
+                         net (fo=1, routed)           0.531     1.992    main_state_switcher_1/content_6[1]_i_32_n_0
+    SLICE_X48Y52         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.788     2.780 r  main_state_switcher_1/content_6_reg[1]_i_13/CO[3]
+                         net (fo=1, routed)           0.000     2.780    main_state_switcher_1/content_6_reg[1]_i_13_n_0
+    SLICE_X48Y53         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     2.894 r  main_state_switcher_1/content_6_reg[1]_i_18/CO[3]
+                         net (fo=1, routed)           0.000     2.894    main_state_switcher_1/content_6_reg[1]_i_18_n_0
+    SLICE_X48Y54         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     3.008 r  main_state_switcher_1/content_3_reg[1]_i_38/CO[3]
+                         net (fo=1, routed)           0.000     3.008    main_state_switcher_1/content_3_reg[1]_i_38_n_0
+    SLICE_X48Y55         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     3.122 r  main_state_switcher_1/content_3_reg[1]_i_157/CO[3]
+                         net (fo=1, routed)           0.000     3.122    main_state_switcher_1/content_3_reg[1]_i_157_n_0
+    SLICE_X48Y56         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222     3.344 r  main_state_switcher_1/content_3_reg[1]_i_154/O[0]
+                         net (fo=27, routed)          2.626     5.971    main_state_switcher_1/total_seconds00_out[17]
+    SLICE_X49Y65         LUT3 (Prop_lut3_I2_O)        0.299     6.270 r  main_state_switcher_1/content_3[1]_i_351/O
+                         net (fo=1, routed)           0.855     7.125    main_state_switcher_1/content_3[1]_i_351_n_0
+    SLICE_X49Y60         CARRY4 (Prop_carry4_DI[1]_CO[3])
+                                                      0.507     7.632 r  main_state_switcher_1/content_3_reg[1]_i_304/CO[3]
+                         net (fo=1, routed)           0.000     7.632    main_state_switcher_1/content_3_reg[1]_i_304_n_0
+    SLICE_X49Y61         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.746 r  main_state_switcher_1/content_3_reg[1]_i_249/CO[3]
+                         net (fo=1, routed)           0.000     7.746    main_state_switcher_1/content_3_reg[1]_i_249_n_0
+    SLICE_X49Y62         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.334     8.080 r  main_state_switcher_1/content_3_reg[1]_i_185/O[1]
+                         net (fo=3, routed)           1.124     9.204    main_state_switcher_1/content_3_reg[1]_i_185_n_6
+    SLICE_X52Y61         LUT3 (Prop_lut3_I2_O)        0.303     9.507 r  main_state_switcher_1/content_3[1]_i_177/O
+                         net (fo=1, routed)           0.338     9.844    main_state_switcher_1/content_3[1]_i_177_n_0
+    SLICE_X51Y61         CARRY4 (Prop_carry4_DI[3]_CO[3])
+                                                      0.385    10.229 r  main_state_switcher_1/content_3_reg[1]_i_144/CO[3]
+                         net (fo=1, routed)           0.000    10.229    main_state_switcher_1/content_3_reg[1]_i_144_n_0
+    SLICE_X51Y62         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    10.343 r  main_state_switcher_1/content_3_reg[1]_i_97/CO[3]
+                         net (fo=1, routed)           0.000    10.343    main_state_switcher_1/content_3_reg[1]_i_97_n_0
+    SLICE_X51Y63         CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239    10.582 r  main_state_switcher_1/content_3_reg[1]_i_71/O[2]
+                         net (fo=3, routed)           1.181    11.763    main_state_switcher_1/content_3_reg[1]_i_71_n_5
+    SLICE_X52Y63         LUT4 (Prop_lut4_I3_O)        0.302    12.065 r  main_state_switcher_1/content_3[1]_i_102/O
+                         net (fo=1, routed)           0.000    12.065    main_state_switcher_1/content_3[1]_i_102_n_0
+    SLICE_X52Y63         CARRY4 (Prop_carry4_S[1]_O[2])
+                                                      0.578    12.643 r  main_state_switcher_1/content_3_reg[1]_i_70/O[2]
+                         net (fo=1, routed)           0.407    13.050    main_state_switcher_1/content_3_reg[1]_i_70_n_5
+    SLICE_X53Y63         LUT2 (Prop_lut2_I1_O)        0.301    13.351 r  main_state_switcher_1/content_3[1]_i_39/O
+                         net (fo=1, routed)           0.000    13.351    main_state_switcher_1/content_3[1]_i_39_n_0
+    SLICE_X53Y63         CARRY4 (Prop_carry4_S[3]_O[3])
+                                                      0.248    13.599 r  main_state_switcher_1/content_3_reg[1]_i_22/O[3]
+                         net (fo=6, routed)           1.117    14.716    main_state_switcher_1/content_3_reg[1]_i_22_n_4
+    SLICE_X48Y65         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.707    15.423 r  main_state_switcher_1/content_3_reg[1]_i_24/CO[3]
+                         net (fo=1, routed)           0.000    15.423    main_state_switcher_1/content_3_reg[1]_i_24_n_0
+    SLICE_X48Y66         CARRY4 (Prop_carry4_CI_CO[0])
+                                                      0.271    15.694 r  main_state_switcher_1/content_3_reg[1]_i_23/CO[0]
+                         net (fo=43, routed)          1.295    16.988    main_state_switcher_1/content_3_reg[1]_i_23_n_3
+    SLICE_X52Y65         LUT4 (Prop_lut4_I1_O)        0.373    17.361 r  main_state_switcher_1/content_4[0]_i_57/O
+                         net (fo=1, routed)           0.000    17.361    main_state_switcher_1/content_4[0]_i_57_n_0
+    SLICE_X52Y65         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533    17.894 r  main_state_switcher_1/content_4_reg[0]_i_18/CO[3]
+                         net (fo=1, routed)           0.000    17.894    main_state_switcher_1/content_4_reg[0]_i_18_n_0
+    SLICE_X52Y66         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    18.011 r  main_state_switcher_1/content_4_reg[0]_i_7/CO[3]
+                         net (fo=1, routed)           0.000    18.011    main_state_switcher_1/content_4_reg[0]_i_7_n_0
+    SLICE_X52Y67         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.219    18.230 f  main_state_switcher_1/content_3_reg[1]_i_10/O[0]
+                         net (fo=9, routed)           1.179    19.410    main_state_switcher_1/content_3_reg[1]_i_10_n_7
+    SLICE_X54Y65         LUT1 (Prop_lut1_I0_O)        0.295    19.705 r  main_state_switcher_1/content_4[0]_i_80/O
+                         net (fo=1, routed)           0.000    19.705    main_state_switcher_1/content_4[0]_i_80_n_0
+    SLICE_X54Y65         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533    20.238 r  main_state_switcher_1/content_4_reg[0]_i_47/CO[3]
+                         net (fo=1, routed)           0.000    20.238    main_state_switcher_1/content_4_reg[0]_i_47_n_0
+    SLICE_X54Y66         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    20.561 r  main_state_switcher_1/content_4_reg[0]_i_15/O[1]
+                         net (fo=3, routed)           0.746    21.307    main_state_switcher_1/content_4_reg[0]_i_15_n_6
+    SLICE_X51Y66         LUT4 (Prop_lut4_I0_O)        0.306    21.613 r  main_state_switcher_1/content_4[0]_i_41/O
+                         net (fo=1, routed)           0.606    22.219    main_state_switcher_1/content_4[0]_i_41_n_0
+    SLICE_X53Y66         CARRY4 (Prop_carry4_DI[1]_CO[3])
+                                                      0.507    22.726 r  main_state_switcher_1/content_4_reg[0]_i_12/CO[3]
+                         net (fo=1, routed)           0.000    22.726    main_state_switcher_1/content_4_reg[0]_i_12_n_0
+    SLICE_X53Y67         CARRY4 (Prop_carry4_CI_CO[0])
+                                                      0.271    22.997 r  main_state_switcher_1/content_4_reg[0]_i_4/CO[0]
+                         net (fo=3, routed)           0.983    23.980    main_state_switcher_1/content_4_reg[0]_i_4_n_3
+    SLICE_X55Y66         LUT6 (Prop_lut6_I0_O)        0.373    24.353 r  main_state_switcher_1/content_3[1]_i_12/O
+                         net (fo=5, routed)           0.671    25.024    main_state_switcher_1/content_3[1]_i_12_n_0
+    SLICE_X55Y65         LUT6 (Prop_lut6_I5_O)        0.124    25.148 r  main_state_switcher_1/content_3[0]_i_4/O
+                         net (fo=2, routed)           0.457    25.605    main_state_switcher_1/strong_standby_minute_0[0]
+    SLICE_X54Y63         LUT6 (Prop_lut6_I3_O)        0.124    25.729 f  main_state_switcher_1/content_4[1]_i_5/O
+                         net (fo=1, routed)           0.956    26.684    main_state_switcher_1/content_4[1]_i_5_n_0
+    SLICE_X48Y60         LUT5 (Prop_lut5_I4_O)        0.124    26.808 r  main_state_switcher_1/content_4[1]_i_1/O
+                         net (fo=1, routed)           0.000    26.808    main_state_switcher_1/content_4[1]_i_1_n_0
+    SLICE_X48Y60         FDRE                                         r  main_state_switcher_1/content_4_reg[1]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 scan_seg_1/scan_cnt_reg[0]/C
+  Source:                 main_state_switcher_1/strong_standby_timer_reg[0]/C
                             (rising edge-triggered cell FDCE)
-  Destination:            A1
-                            (output port)
+  Destination:            main_state_switcher_1/content_3_reg[2]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        7.714ns  (logic 4.432ns (57.459%)  route 3.281ns (42.541%))
-  Logic Levels:           3  (FDCE=1 LUT3=1 OBUF=1)
+  Data Path Delay:        26.591ns  (logic 10.881ns (40.920%)  route 15.710ns (59.080%))
+  Logic Levels:           35  (CARRY4=22 FDCE=1 LUT1=2 LUT2=1 LUT3=2 LUT4=3 LUT5=1 LUT6=3)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X64Y66         FDCE                         0.000     0.000 r  scan_seg_1/scan_cnt_reg[0]/C
-    SLICE_X64Y66         FDCE (Prop_fdce_C_Q)         0.518     0.518 r  scan_seg_1/scan_cnt_reg[0]/Q
-                         net (fo=18, routed)          1.086     1.604    scan_seg_1/scan_cnt[0]
-    SLICE_X64Y73         LUT3 (Prop_lut3_I2_O)        0.150     1.754 r  scan_seg_1/g0_b3/O
-                         net (fo=2, routed)           2.195     3.949    F3_OBUF
-    A1                   OBUF (Prop_obuf_I_O)         3.764     7.714 r  A1_OBUF_inst/O
-                         net (fo=0)                   0.000     7.714    A1
-    A1                                                                r  A1 (OUT)
+    SLICE_X49Y50         FDCE                         0.000     0.000 r  main_state_switcher_1/strong_standby_timer_reg[0]/C
+    SLICE_X49Y50         FDCE (Prop_fdce_C_Q)         0.456     0.456 f  main_state_switcher_1/strong_standby_timer_reg[0]/Q
+                         net (fo=30, routed)          0.856     1.312    main_state_switcher_1/strong_standby_timer[0]
+    SLICE_X48Y51         LUT1 (Prop_lut1_I0_O)        0.149     1.461 r  main_state_switcher_1/content_6[1]_i_32/O
+                         net (fo=1, routed)           0.531     1.992    main_state_switcher_1/content_6[1]_i_32_n_0
+    SLICE_X48Y52         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.788     2.780 r  main_state_switcher_1/content_6_reg[1]_i_13/CO[3]
+                         net (fo=1, routed)           0.000     2.780    main_state_switcher_1/content_6_reg[1]_i_13_n_0
+    SLICE_X48Y53         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     2.894 r  main_state_switcher_1/content_6_reg[1]_i_18/CO[3]
+                         net (fo=1, routed)           0.000     2.894    main_state_switcher_1/content_6_reg[1]_i_18_n_0
+    SLICE_X48Y54         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     3.008 r  main_state_switcher_1/content_3_reg[1]_i_38/CO[3]
+                         net (fo=1, routed)           0.000     3.008    main_state_switcher_1/content_3_reg[1]_i_38_n_0
+    SLICE_X48Y55         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     3.122 r  main_state_switcher_1/content_3_reg[1]_i_157/CO[3]
+                         net (fo=1, routed)           0.000     3.122    main_state_switcher_1/content_3_reg[1]_i_157_n_0
+    SLICE_X48Y56         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222     3.344 r  main_state_switcher_1/content_3_reg[1]_i_154/O[0]
+                         net (fo=27, routed)          2.626     5.971    main_state_switcher_1/total_seconds00_out[17]
+    SLICE_X49Y65         LUT3 (Prop_lut3_I2_O)        0.299     6.270 r  main_state_switcher_1/content_3[1]_i_351/O
+                         net (fo=1, routed)           0.855     7.125    main_state_switcher_1/content_3[1]_i_351_n_0
+    SLICE_X49Y60         CARRY4 (Prop_carry4_DI[1]_CO[3])
+                                                      0.507     7.632 r  main_state_switcher_1/content_3_reg[1]_i_304/CO[3]
+                         net (fo=1, routed)           0.000     7.632    main_state_switcher_1/content_3_reg[1]_i_304_n_0
+    SLICE_X49Y61         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.746 r  main_state_switcher_1/content_3_reg[1]_i_249/CO[3]
+                         net (fo=1, routed)           0.000     7.746    main_state_switcher_1/content_3_reg[1]_i_249_n_0
+    SLICE_X49Y62         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.334     8.080 r  main_state_switcher_1/content_3_reg[1]_i_185/O[1]
+                         net (fo=3, routed)           1.124     9.204    main_state_switcher_1/content_3_reg[1]_i_185_n_6
+    SLICE_X52Y61         LUT3 (Prop_lut3_I2_O)        0.303     9.507 r  main_state_switcher_1/content_3[1]_i_177/O
+                         net (fo=1, routed)           0.338     9.844    main_state_switcher_1/content_3[1]_i_177_n_0
+    SLICE_X51Y61         CARRY4 (Prop_carry4_DI[3]_CO[3])
+                                                      0.385    10.229 r  main_state_switcher_1/content_3_reg[1]_i_144/CO[3]
+                         net (fo=1, routed)           0.000    10.229    main_state_switcher_1/content_3_reg[1]_i_144_n_0
+    SLICE_X51Y62         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    10.343 r  main_state_switcher_1/content_3_reg[1]_i_97/CO[3]
+                         net (fo=1, routed)           0.000    10.343    main_state_switcher_1/content_3_reg[1]_i_97_n_0
+    SLICE_X51Y63         CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239    10.582 r  main_state_switcher_1/content_3_reg[1]_i_71/O[2]
+                         net (fo=3, routed)           1.181    11.763    main_state_switcher_1/content_3_reg[1]_i_71_n_5
+    SLICE_X52Y63         LUT4 (Prop_lut4_I3_O)        0.302    12.065 r  main_state_switcher_1/content_3[1]_i_102/O
+                         net (fo=1, routed)           0.000    12.065    main_state_switcher_1/content_3[1]_i_102_n_0
+    SLICE_X52Y63         CARRY4 (Prop_carry4_S[1]_O[2])
+                                                      0.578    12.643 r  main_state_switcher_1/content_3_reg[1]_i_70/O[2]
+                         net (fo=1, routed)           0.407    13.050    main_state_switcher_1/content_3_reg[1]_i_70_n_5
+    SLICE_X53Y63         LUT2 (Prop_lut2_I1_O)        0.301    13.351 r  main_state_switcher_1/content_3[1]_i_39/O
+                         net (fo=1, routed)           0.000    13.351    main_state_switcher_1/content_3[1]_i_39_n_0
+    SLICE_X53Y63         CARRY4 (Prop_carry4_S[3]_O[3])
+                                                      0.248    13.599 r  main_state_switcher_1/content_3_reg[1]_i_22/O[3]
+                         net (fo=6, routed)           1.117    14.716    main_state_switcher_1/content_3_reg[1]_i_22_n_4
+    SLICE_X48Y65         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.707    15.423 r  main_state_switcher_1/content_3_reg[1]_i_24/CO[3]
+                         net (fo=1, routed)           0.000    15.423    main_state_switcher_1/content_3_reg[1]_i_24_n_0
+    SLICE_X48Y66         CARRY4 (Prop_carry4_CI_CO[0])
+                                                      0.271    15.694 r  main_state_switcher_1/content_3_reg[1]_i_23/CO[0]
+                         net (fo=43, routed)          1.295    16.988    main_state_switcher_1/content_3_reg[1]_i_23_n_3
+    SLICE_X52Y65         LUT4 (Prop_lut4_I1_O)        0.373    17.361 r  main_state_switcher_1/content_4[0]_i_57/O
+                         net (fo=1, routed)           0.000    17.361    main_state_switcher_1/content_4[0]_i_57_n_0
+    SLICE_X52Y65         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533    17.894 r  main_state_switcher_1/content_4_reg[0]_i_18/CO[3]
+                         net (fo=1, routed)           0.000    17.894    main_state_switcher_1/content_4_reg[0]_i_18_n_0
+    SLICE_X52Y66         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    18.011 r  main_state_switcher_1/content_4_reg[0]_i_7/CO[3]
+                         net (fo=1, routed)           0.000    18.011    main_state_switcher_1/content_4_reg[0]_i_7_n_0
+    SLICE_X52Y67         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.219    18.230 f  main_state_switcher_1/content_3_reg[1]_i_10/O[0]
+                         net (fo=9, routed)           1.179    19.410    main_state_switcher_1/content_3_reg[1]_i_10_n_7
+    SLICE_X54Y65         LUT1 (Prop_lut1_I0_O)        0.295    19.705 r  main_state_switcher_1/content_4[0]_i_80/O
+                         net (fo=1, routed)           0.000    19.705    main_state_switcher_1/content_4[0]_i_80_n_0
+    SLICE_X54Y65         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533    20.238 r  main_state_switcher_1/content_4_reg[0]_i_47/CO[3]
+                         net (fo=1, routed)           0.000    20.238    main_state_switcher_1/content_4_reg[0]_i_47_n_0
+    SLICE_X54Y66         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    20.561 r  main_state_switcher_1/content_4_reg[0]_i_15/O[1]
+                         net (fo=3, routed)           0.746    21.307    main_state_switcher_1/content_4_reg[0]_i_15_n_6
+    SLICE_X51Y66         LUT4 (Prop_lut4_I0_O)        0.306    21.613 r  main_state_switcher_1/content_4[0]_i_41/O
+                         net (fo=1, routed)           0.606    22.219    main_state_switcher_1/content_4[0]_i_41_n_0
+    SLICE_X53Y66         CARRY4 (Prop_carry4_DI[1]_CO[3])
+                                                      0.507    22.726 r  main_state_switcher_1/content_4_reg[0]_i_12/CO[3]
+                         net (fo=1, routed)           0.000    22.726    main_state_switcher_1/content_4_reg[0]_i_12_n_0
+    SLICE_X53Y67         CARRY4 (Prop_carry4_CI_CO[0])
+                                                      0.271    22.997 r  main_state_switcher_1/content_4_reg[0]_i_4/CO[0]
+                         net (fo=3, routed)           0.983    23.980    main_state_switcher_1/content_4_reg[0]_i_4_n_3
+    SLICE_X55Y66         LUT6 (Prop_lut6_I0_O)        0.373    24.353 r  main_state_switcher_1/content_3[1]_i_12/O
+                         net (fo=5, routed)           0.676    25.029    main_state_switcher_1/content_3[1]_i_12_n_0
+    SLICE_X55Y65         LUT6 (Prop_lut6_I3_O)        0.124    25.153 r  main_state_switcher_1/content_3[2]_i_12/O
+                         net (fo=1, routed)           1.025    26.178    main_state_switcher_1/strong_standby_minute_0[2]
+    SLICE_X52Y56         LUT6 (Prop_lut6_I5_O)        0.124    26.302 r  main_state_switcher_1/content_3[2]_i_6/O
+                         net (fo=1, routed)           0.165    26.467    main_state_switcher_1/content_3[2]_i_6_n_0
+    SLICE_X52Y56         LUT5 (Prop_lut5_I4_O)        0.124    26.591 r  main_state_switcher_1/content_3[2]_i_2/O
+                         net (fo=1, routed)           0.000    26.591    main_state_switcher_1/content_3[2]_i_2_n_0
+    SLICE_X52Y56         FDSE                                         r  main_state_switcher_1/content_3_reg[2]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 scan_seg_1/scan_cnt_reg[1]/C
+  Source:                 main_state_switcher_1/self_clean_timer_reg[1]/C
                             (rising edge-triggered cell FDCE)
-  Destination:            D4
-                            (output port)
+  Destination:            main_state_switcher_1/content_4_reg[0]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        7.559ns  (logic 4.558ns (60.300%)  route 3.001ns (39.700%))
-  Logic Levels:           3  (FDCE=1 LUT3=1 OBUF=1)
+  Data Path Delay:        26.571ns  (logic 10.074ns (37.914%)  route 16.497ns (62.086%))
+  Logic Levels:           34  (CARRY4=20 FDCE=1 LUT1=3 LUT2=1 LUT3=1 LUT4=3 LUT5=1 LUT6=4)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X64Y66         FDCE                         0.000     0.000 r  scan_seg_1/scan_cnt_reg[1]/C
-    SLICE_X64Y66         FDCE (Prop_fdce_C_Q)         0.478     0.478 f  scan_seg_1/scan_cnt_reg[1]/Q
-                         net (fo=17, routed)          1.087     1.565    scan_seg_1/scan_cnt[1]
-    SLICE_X64Y73         LUT3 (Prop_lut3_I1_O)        0.327     1.892 r  scan_seg_1/g0_b7/O
-                         net (fo=2, routed)           1.914     3.806    D4_OBUF
-    D4                   OBUF (Prop_obuf_I_O)         3.753     7.559 r  D4_OBUF_inst/O
-                         net (fo=0)                   0.000     7.559    D4
-    D4                                                                r  D4 (OUT)
+    SLICE_X44Y39         FDCE                         0.000     0.000 r  main_state_switcher_1/self_clean_timer_reg[1]/C
+    SLICE_X44Y39         FDCE (Prop_fdce_C_Q)         0.419     0.419 f  main_state_switcher_1/self_clean_timer_reg[1]/Q
+                         net (fo=3, routed)           1.112     1.531    main_state_switcher_1/self_clean_timer[1]
+    SLICE_X39Y39         LUT1 (Prop_lut1_I0_O)        0.299     1.830 r  main_state_switcher_1/content_7[1]_i_30/O
+                         net (fo=1, routed)           0.000     1.830    main_state_switcher_1/content_7[1]_i_30_n_0
+    SLICE_X39Y39         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532     2.362 r  main_state_switcher_1/content_7_reg[1]_i_13/CO[3]
+                         net (fo=1, routed)           0.000     2.362    main_state_switcher_1/content_7_reg[1]_i_13_n_0
+    SLICE_X39Y40         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     2.476 r  main_state_switcher_1/content_4_reg[2]_i_22/CO[3]
+                         net (fo=1, routed)           0.000     2.476    main_state_switcher_1/content_4_reg[2]_i_22_n_0
+    SLICE_X39Y41         CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239     2.715 r  main_state_switcher_1/content_4_reg[2]_i_21/O[2]
+                         net (fo=34, routed)          2.542     5.257    main_state_switcher_1/total_seconds04_out[11]
+    SLICE_X38Y44         LUT6 (Prop_lut6_I4_O)        0.302     5.559 r  main_state_switcher_1/content_4[2]_i_219/O
+                         net (fo=1, routed)           0.000     5.559    main_state_switcher_1/content_4[2]_i_219_n_0
+    SLICE_X38Y44         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513     6.072 r  main_state_switcher_1/content_4_reg[2]_i_184/CO[3]
+                         net (fo=1, routed)           0.000     6.072    main_state_switcher_1/content_4_reg[2]_i_184_n_0
+    SLICE_X38Y45         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323     6.395 r  main_state_switcher_1/content_4_reg[2]_i_164/O[1]
+                         net (fo=3, routed)           0.995     7.390    main_state_switcher_1/content_4_reg[2]_i_164_n_6
+    SLICE_X41Y43         LUT3 (Prop_lut3_I2_O)        0.306     7.696 r  main_state_switcher_1/content_4[2]_i_157/O
+                         net (fo=1, routed)           0.474     8.170    main_state_switcher_1/content_4[2]_i_157_n_0
+    SLICE_X40Y44         CARRY4 (Prop_carry4_DI[3]_CO[3])
+                                                      0.385     8.555 r  main_state_switcher_1/content_4_reg[2]_i_121/CO[3]
+                         net (fo=1, routed)           0.000     8.555    main_state_switcher_1/content_4_reg[2]_i_121_n_0
+    SLICE_X40Y45         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     8.669 r  main_state_switcher_1/content_4_reg[2]_i_80/CO[3]
+                         net (fo=1, routed)           0.000     8.669    main_state_switcher_1/content_4_reg[2]_i_80_n_0
+    SLICE_X40Y46         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     8.783 r  main_state_switcher_1/content_4_reg[2]_i_64/CO[3]
+                         net (fo=1, routed)           0.000     8.783    main_state_switcher_1/content_4_reg[2]_i_64_n_0
+    SLICE_X40Y47         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.334     9.117 r  main_state_switcher_1/content_4_reg[2]_i_48/O[1]
+                         net (fo=4, routed)           1.172    10.289    main_state_switcher_1/content_4_reg[2]_i_48_n_6
+    SLICE_X36Y49         LUT4 (Prop_lut4_I2_O)        0.303    10.592 r  main_state_switcher_1/content_4[2]_i_53/O
+                         net (fo=1, routed)           0.000    10.592    main_state_switcher_1/content_4[2]_i_53_n_0
+    SLICE_X36Y49         CARRY4 (Prop_carry4_S[1]_O[1])
+                                                      0.227    10.819 r  main_state_switcher_1/content_4_reg[2]_i_42/O[1]
+                         net (fo=1, routed)           0.967    11.786    main_state_switcher_1/content_4_reg[2]_i_42_n_6
+    SLICE_X37Y50         LUT2 (Prop_lut2_I1_O)        0.303    12.089 r  main_state_switcher_1/content_4[2]_i_24/O
+                         net (fo=1, routed)           0.000    12.089    main_state_switcher_1/content_4[2]_i_24_n_0
+    SLICE_X37Y50         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.398    12.487 r  main_state_switcher_1/content_4_reg[2]_i_11/CO[3]
+                         net (fo=1, routed)           0.000    12.487    main_state_switcher_1/content_4_reg[2]_i_11_n_0
+    SLICE_X37Y51         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222    12.709 f  main_state_switcher_1/content_4_reg[2]_i_44/O[0]
+                         net (fo=1, routed)           0.730    13.439    main_state_switcher_1/content_4_reg[2]_i_44_n_7
+    SLICE_X36Y54         LUT1 (Prop_lut1_I0_O)        0.299    13.738 r  main_state_switcher_1/content_4[2]_i_27/O
+                         net (fo=1, routed)           0.000    13.738    main_state_switcher_1/content_4[2]_i_27_n_0
+    SLICE_X36Y54         CARRY4 (Prop_carry4_S[0]_CO[0])
+                                                      0.364    14.102 r  main_state_switcher_1/content_4_reg[2]_i_12/CO[0]
+                         net (fo=44, routed)          1.567    15.669    main_state_switcher_1/content_4_reg[2]_i_12_n_3
+    SLICE_X41Y52         LUT4 (Prop_lut4_I1_O)        0.373    16.042 r  main_state_switcher_1/content_4[1]_i_96/O
+                         net (fo=1, routed)           0.000    16.042    main_state_switcher_1/content_4[1]_i_96_n_0
+    SLICE_X41Y52         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.398    16.440 r  main_state_switcher_1/content_4_reg[1]_i_47/CO[3]
+                         net (fo=1, routed)           0.000    16.440    main_state_switcher_1/content_4_reg[1]_i_47_n_0
+    SLICE_X41Y53         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    16.554 r  main_state_switcher_1/content_4_reg[1]_i_17/CO[3]
+                         net (fo=1, routed)           0.000    16.554    main_state_switcher_1/content_4_reg[1]_i_17_n_0
+    SLICE_X41Y54         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222    16.776 f  main_state_switcher_1/content_4_reg[2]_i_6/O[0]
+                         net (fo=9, routed)           1.134    17.910    main_state_switcher_1/content_4_reg[2]_i_6_n_7
+    SLICE_X37Y52         LUT1 (Prop_lut1_I0_O)        0.299    18.209 r  main_state_switcher_1/content_4[1]_i_152/O
+                         net (fo=1, routed)           0.000    18.209    main_state_switcher_1/content_4[1]_i_152_n_0
+    SLICE_X37Y52         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550    18.759 r  main_state_switcher_1/content_4_reg[1]_i_99/CO[3]
+                         net (fo=1, routed)           0.000    18.759    main_state_switcher_1/content_4_reg[1]_i_99_n_0
+    SLICE_X37Y53         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.313    19.072 r  main_state_switcher_1/content_4_reg[1]_i_56/O[3]
+                         net (fo=3, routed)           1.087    20.159    main_state_switcher_1/content_4_reg[1]_i_56_n_4
+    SLICE_X38Y55         LUT4 (Prop_lut4_I0_O)        0.306    20.465 r  main_state_switcher_1/content_4[1]_i_105/O
+                         net (fo=1, routed)           0.481    20.946    main_state_switcher_1/content_4[1]_i_105_n_0
+    SLICE_X38Y53         CARRY4 (Prop_carry4_DI[3]_CO[3])
+                                                      0.396    21.342 r  main_state_switcher_1/content_4_reg[1]_i_59/CO[3]
+                         net (fo=1, routed)           0.000    21.342    main_state_switcher_1/content_4_reg[1]_i_59_n_0
+    SLICE_X38Y54         CARRY4 (Prop_carry4_CI_CO[0])
+                                                      0.254    21.596 r  main_state_switcher_1/content_4_reg[1]_i_20/CO[0]
+                         net (fo=3, routed)           0.756    22.352    main_state_switcher_1/content_4_reg[1]_i_20_n_3
+    SLICE_X40Y55         LUT5 (Prop_lut5_I4_O)        0.367    22.719 r  main_state_switcher_1/content_4[0]_i_28/O
+                         net (fo=1, routed)           0.993    23.712    main_state_switcher_1/content_4[0]_i_28_n_0
+    SLICE_X43Y60         LUT6 (Prop_lut6_I3_O)        0.124    23.836 r  main_state_switcher_1/content_4[0]_i_8/O
+                         net (fo=1, routed)           1.159    24.994    main_state_switcher_1/content_4[0]_i_8_n_0
+    SLICE_X55Y66         LUT6 (Prop_lut6_I5_O)        0.124    25.118 r  main_state_switcher_1/content_4[0]_i_2/O
+                         net (fo=1, routed)           1.329    26.447    main_state_switcher_1/content_4[0]_i_2_n_0
+    SLICE_X52Y58         LUT6 (Prop_lut6_I4_O)        0.124    26.571 r  main_state_switcher_1/content_4[0]_i_1/O
+                         net (fo=1, routed)           0.000    26.571    main_state_switcher_1/content_4[0]_i_1_n_0
+    SLICE_X52Y58         FDSE                                         r  main_state_switcher_1/content_4_reg[0]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 P15
-                            (input port)
-  Destination:            scan_seg_1/clkout_reg/CLR
+  Source:                 main_state_switcher_1/strong_standby_timer_reg[0]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            main_state_switcher_1/content_4_reg[3]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        7.513ns  (logic 1.587ns (21.123%)  route 5.926ns (78.877%))
-  Logic Levels:           2  (IBUF=1 LUT1=1)
+  Data Path Delay:        26.399ns  (logic 10.757ns (40.748%)  route 15.642ns (59.252%))
+  Logic Levels:           34  (CARRY4=22 FDCE=1 LUT1=2 LUT2=1 LUT3=2 LUT4=3 LUT5=1 LUT6=2)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    P15                                               0.000     0.000 r  P15 (IN)
-                         net (fo=0)                   0.000     0.000    P15
-    P15                  IBUF (Prop_ibuf_I_O)         1.463     1.463 r  P15_IBUF_inst/O
-                         net (fo=1, routed)           3.669     5.132    scan_seg_1/P15_IBUF
-    SLICE_X54Y59         LUT1 (Prop_lut1_I0_O)        0.124     5.256 f  scan_seg_1/cnt[31]_i_2/O
-                         net (fo=36, routed)          2.258     7.513    scan_seg_1/cnt[31]_i_2_n_0
-    SLICE_X61Y66         FDCE                                         f  scan_seg_1/clkout_reg/CLR
+    SLICE_X49Y50         FDCE                         0.000     0.000 r  main_state_switcher_1/strong_standby_timer_reg[0]/C
+    SLICE_X49Y50         FDCE (Prop_fdce_C_Q)         0.456     0.456 f  main_state_switcher_1/strong_standby_timer_reg[0]/Q
+                         net (fo=30, routed)          0.856     1.312    main_state_switcher_1/strong_standby_timer[0]
+    SLICE_X48Y51         LUT1 (Prop_lut1_I0_O)        0.149     1.461 r  main_state_switcher_1/content_6[1]_i_32/O
+                         net (fo=1, routed)           0.531     1.992    main_state_switcher_1/content_6[1]_i_32_n_0
+    SLICE_X48Y52         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.788     2.780 r  main_state_switcher_1/content_6_reg[1]_i_13/CO[3]
+                         net (fo=1, routed)           0.000     2.780    main_state_switcher_1/content_6_reg[1]_i_13_n_0
+    SLICE_X48Y53         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     2.894 r  main_state_switcher_1/content_6_reg[1]_i_18/CO[3]
+                         net (fo=1, routed)           0.000     2.894    main_state_switcher_1/content_6_reg[1]_i_18_n_0
+    SLICE_X48Y54         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     3.008 r  main_state_switcher_1/content_3_reg[1]_i_38/CO[3]
+                         net (fo=1, routed)           0.000     3.008    main_state_switcher_1/content_3_reg[1]_i_38_n_0
+    SLICE_X48Y55         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     3.122 r  main_state_switcher_1/content_3_reg[1]_i_157/CO[3]
+                         net (fo=1, routed)           0.000     3.122    main_state_switcher_1/content_3_reg[1]_i_157_n_0
+    SLICE_X48Y56         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222     3.344 r  main_state_switcher_1/content_3_reg[1]_i_154/O[0]
+                         net (fo=27, routed)          2.626     5.971    main_state_switcher_1/total_seconds00_out[17]
+    SLICE_X49Y65         LUT3 (Prop_lut3_I2_O)        0.299     6.270 r  main_state_switcher_1/content_3[1]_i_351/O
+                         net (fo=1, routed)           0.855     7.125    main_state_switcher_1/content_3[1]_i_351_n_0
+    SLICE_X49Y60         CARRY4 (Prop_carry4_DI[1]_CO[3])
+                                                      0.507     7.632 r  main_state_switcher_1/content_3_reg[1]_i_304/CO[3]
+                         net (fo=1, routed)           0.000     7.632    main_state_switcher_1/content_3_reg[1]_i_304_n_0
+    SLICE_X49Y61         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.746 r  main_state_switcher_1/content_3_reg[1]_i_249/CO[3]
+                         net (fo=1, routed)           0.000     7.746    main_state_switcher_1/content_3_reg[1]_i_249_n_0
+    SLICE_X49Y62         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.334     8.080 r  main_state_switcher_1/content_3_reg[1]_i_185/O[1]
+                         net (fo=3, routed)           1.124     9.204    main_state_switcher_1/content_3_reg[1]_i_185_n_6
+    SLICE_X52Y61         LUT3 (Prop_lut3_I2_O)        0.303     9.507 r  main_state_switcher_1/content_3[1]_i_177/O
+                         net (fo=1, routed)           0.338     9.844    main_state_switcher_1/content_3[1]_i_177_n_0
+    SLICE_X51Y61         CARRY4 (Prop_carry4_DI[3]_CO[3])
+                                                      0.385    10.229 r  main_state_switcher_1/content_3_reg[1]_i_144/CO[3]
+                         net (fo=1, routed)           0.000    10.229    main_state_switcher_1/content_3_reg[1]_i_144_n_0
+    SLICE_X51Y62         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    10.343 r  main_state_switcher_1/content_3_reg[1]_i_97/CO[3]
+                         net (fo=1, routed)           0.000    10.343    main_state_switcher_1/content_3_reg[1]_i_97_n_0
+    SLICE_X51Y63         CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239    10.582 r  main_state_switcher_1/content_3_reg[1]_i_71/O[2]
+                         net (fo=3, routed)           1.181    11.763    main_state_switcher_1/content_3_reg[1]_i_71_n_5
+    SLICE_X52Y63         LUT4 (Prop_lut4_I3_O)        0.302    12.065 r  main_state_switcher_1/content_3[1]_i_102/O
+                         net (fo=1, routed)           0.000    12.065    main_state_switcher_1/content_3[1]_i_102_n_0
+    SLICE_X52Y63         CARRY4 (Prop_carry4_S[1]_O[2])
+                                                      0.578    12.643 r  main_state_switcher_1/content_3_reg[1]_i_70/O[2]
+                         net (fo=1, routed)           0.407    13.050    main_state_switcher_1/content_3_reg[1]_i_70_n_5
+    SLICE_X53Y63         LUT2 (Prop_lut2_I1_O)        0.301    13.351 r  main_state_switcher_1/content_3[1]_i_39/O
+                         net (fo=1, routed)           0.000    13.351    main_state_switcher_1/content_3[1]_i_39_n_0
+    SLICE_X53Y63         CARRY4 (Prop_carry4_S[3]_O[3])
+                                                      0.248    13.599 r  main_state_switcher_1/content_3_reg[1]_i_22/O[3]
+                         net (fo=6, routed)           1.117    14.716    main_state_switcher_1/content_3_reg[1]_i_22_n_4
+    SLICE_X48Y65         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.707    15.423 r  main_state_switcher_1/content_3_reg[1]_i_24/CO[3]
+                         net (fo=1, routed)           0.000    15.423    main_state_switcher_1/content_3_reg[1]_i_24_n_0
+    SLICE_X48Y66         CARRY4 (Prop_carry4_CI_CO[0])
+                                                      0.271    15.694 r  main_state_switcher_1/content_3_reg[1]_i_23/CO[0]
+                         net (fo=43, routed)          1.295    16.988    main_state_switcher_1/content_3_reg[1]_i_23_n_3
+    SLICE_X52Y65         LUT4 (Prop_lut4_I1_O)        0.373    17.361 r  main_state_switcher_1/content_4[0]_i_57/O
+                         net (fo=1, routed)           0.000    17.361    main_state_switcher_1/content_4[0]_i_57_n_0
+    SLICE_X52Y65         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533    17.894 r  main_state_switcher_1/content_4_reg[0]_i_18/CO[3]
+                         net (fo=1, routed)           0.000    17.894    main_state_switcher_1/content_4_reg[0]_i_18_n_0
+    SLICE_X52Y66         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    18.011 r  main_state_switcher_1/content_4_reg[0]_i_7/CO[3]
+                         net (fo=1, routed)           0.000    18.011    main_state_switcher_1/content_4_reg[0]_i_7_n_0
+    SLICE_X52Y67         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.219    18.230 f  main_state_switcher_1/content_3_reg[1]_i_10/O[0]
+                         net (fo=9, routed)           1.179    19.410    main_state_switcher_1/content_3_reg[1]_i_10_n_7
+    SLICE_X54Y65         LUT1 (Prop_lut1_I0_O)        0.295    19.705 r  main_state_switcher_1/content_4[0]_i_80/O
+                         net (fo=1, routed)           0.000    19.705    main_state_switcher_1/content_4[0]_i_80_n_0
+    SLICE_X54Y65         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533    20.238 r  main_state_switcher_1/content_4_reg[0]_i_47/CO[3]
+                         net (fo=1, routed)           0.000    20.238    main_state_switcher_1/content_4_reg[0]_i_47_n_0
+    SLICE_X54Y66         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    20.561 r  main_state_switcher_1/content_4_reg[0]_i_15/O[1]
+                         net (fo=3, routed)           0.746    21.307    main_state_switcher_1/content_4_reg[0]_i_15_n_6
+    SLICE_X51Y66         LUT4 (Prop_lut4_I0_O)        0.306    21.613 r  main_state_switcher_1/content_4[0]_i_41/O
+                         net (fo=1, routed)           0.606    22.219    main_state_switcher_1/content_4[0]_i_41_n_0
+    SLICE_X53Y66         CARRY4 (Prop_carry4_DI[1]_CO[3])
+                                                      0.507    22.726 r  main_state_switcher_1/content_4_reg[0]_i_12/CO[3]
+                         net (fo=1, routed)           0.000    22.726    main_state_switcher_1/content_4_reg[0]_i_12_n_0
+    SLICE_X53Y67         CARRY4 (Prop_carry4_CI_CO[0])
+                                                      0.271    22.997 r  main_state_switcher_1/content_4_reg[0]_i_4/CO[0]
+                         net (fo=3, routed)           0.983    23.980    main_state_switcher_1/content_4_reg[0]_i_4_n_3
+    SLICE_X55Y66         LUT6 (Prop_lut6_I0_O)        0.373    24.353 r  main_state_switcher_1/content_3[1]_i_12/O
+                         net (fo=5, routed)           0.849    25.202    main_state_switcher_1/content_3[1]_i_12_n_0
+    SLICE_X55Y65         LUT6 (Prop_lut6_I4_O)        0.124    25.326 r  main_state_switcher_1/content_4[3]_i_3/O
+                         net (fo=1, routed)           0.949    26.275    main_state_switcher_1/strong_standby_minute_1[3]
+    SLICE_X55Y63         LUT5 (Prop_lut5_I2_O)        0.124    26.399 r  main_state_switcher_1/content_4[3]_i_1/O
+                         net (fo=1, routed)           0.000    26.399    main_state_switcher_1/content_4[3]_i_1_n_0
+    SLICE_X55Y63         FDRE                                         r  main_state_switcher_1/content_4_reg[3]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 P15
-                            (input port)
-  Destination:            scan_seg_1/cnt_reg[26]/CLR
+  Source:                 main_state_switcher_1/level_3_timer_reg[0]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            main_state_switcher_1/content_3_reg[1]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        7.513ns  (logic 1.587ns (21.123%)  route 5.926ns (78.877%))
-  Logic Levels:           2  (IBUF=1 LUT1=1)
+  Data Path Delay:        26.083ns  (logic 10.677ns (40.935%)  route 15.406ns (59.065%))
+  Logic Levels:           35  (CARRY4=21 FDCE=1 LUT1=2 LUT2=1 LUT3=2 LUT4=4 LUT5=1 LUT6=3)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    P15                                               0.000     0.000 r  P15 (IN)
-                         net (fo=0)                   0.000     0.000    P15
-    P15                  IBUF (Prop_ibuf_I_O)         1.463     1.463 r  P15_IBUF_inst/O
-                         net (fo=1, routed)           3.669     5.132    scan_seg_1/P15_IBUF
-    SLICE_X54Y59         LUT1 (Prop_lut1_I0_O)        0.124     5.256 f  scan_seg_1/cnt[31]_i_2/O
-                         net (fo=36, routed)          2.258     7.513    scan_seg_1/cnt[31]_i_2_n_0
-    SLICE_X61Y66         FDCE                                         f  scan_seg_1/cnt_reg[26]/CLR
+    SLICE_X54Y42         FDCE                         0.000     0.000 r  main_state_switcher_1/level_3_timer_reg[0]/C
+    SLICE_X54Y42         FDCE (Prop_fdce_C_Q)         0.518     0.518 f  main_state_switcher_1/level_3_timer_reg[0]/Q
+                         net (fo=30, routed)          0.799     1.317    main_state_switcher_1/level_3_timer[0]
+    SLICE_X52Y42         LUT1 (Prop_lut1_I0_O)        0.124     1.441 r  main_state_switcher_1/content_7[1]_i_18/O
+                         net (fo=1, routed)           0.190     1.631    main_state_switcher_1/content_7[1]_i_18_n_0
+    SLICE_X53Y42         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.580     2.211 r  main_state_switcher_1/content_7_reg[1]_i_7/CO[3]
+                         net (fo=1, routed)           0.000     2.211    main_state_switcher_1/content_7_reg[1]_i_7_n_0
+    SLICE_X53Y43         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     2.325 r  main_state_switcher_1/content_7_reg[1]_i_23/CO[3]
+                         net (fo=1, routed)           0.000     2.325    main_state_switcher_1/content_7_reg[1]_i_23_n_0
+    SLICE_X53Y44         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222     2.547 r  main_state_switcher_1/content_4_reg[1]_i_73/O[0]
+                         net (fo=39, routed)          2.101     4.648    main_state_switcher_1/total_seconds02_out[9]
+    SLICE_X48Y42         LUT3 (Prop_lut3_I1_O)        0.329     4.977 r  main_state_switcher_1/content_4[1]_i_328/O
+                         net (fo=2, routed)           0.690     5.667    main_state_switcher_1/content_4[1]_i_328_n_0
+    SLICE_X48Y42         LUT4 (Prop_lut4_I0_O)        0.327     5.994 r  main_state_switcher_1/content_4[1]_i_332/O
+                         net (fo=1, routed)           0.000     5.994    main_state_switcher_1/content_4[1]_i_332_n_0
+    SLICE_X48Y42         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401     6.395 r  main_state_switcher_1/content_4_reg[1]_i_300/CO[3]
+                         net (fo=1, routed)           0.000     6.395    main_state_switcher_1/content_4_reg[1]_i_300_n_0
+    SLICE_X48Y43         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     6.509 r  main_state_switcher_1/content_4_reg[1]_i_280/CO[3]
+                         net (fo=1, routed)           0.000     6.509    main_state_switcher_1/content_4_reg[1]_i_280_n_0
+    SLICE_X48Y44         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     6.623 r  main_state_switcher_1/content_4_reg[1]_i_246/CO[3]
+                         net (fo=1, routed)           0.000     6.623    main_state_switcher_1/content_4_reg[1]_i_246_n_0
+    SLICE_X48Y45         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     6.737 r  main_state_switcher_1/content_4_reg[1]_i_209/CO[3]
+                         net (fo=1, routed)           0.000     6.737    main_state_switcher_1/content_4_reg[1]_i_209_n_0
+    SLICE_X48Y46         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.334     7.071 r  main_state_switcher_1/content_4_reg[1]_i_198/O[1]
+                         net (fo=3, routed)           1.346     8.417    main_state_switcher_1/content_4_reg[1]_i_198_n_6
+    SLICE_X45Y45         LUT3 (Prop_lut3_I2_O)        0.303     8.720 r  main_state_switcher_1/content_4[1]_i_186/O
+                         net (fo=1, routed)           0.535     9.255    main_state_switcher_1/content_4[1]_i_186_n_0
+    SLICE_X47Y45         CARRY4 (Prop_carry4_DI[3]_CO[3])
+                                                      0.385     9.640 r  main_state_switcher_1/content_4_reg[1]_i_165/CO[3]
+                         net (fo=1, routed)           0.000     9.640    main_state_switcher_1/content_4_reg[1]_i_165_n_0
+    SLICE_X47Y46         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.334     9.974 r  main_state_switcher_1/content_4_reg[1]_i_130/O[1]
+                         net (fo=3, routed)           0.826    10.800    main_state_switcher_1/content_4_reg[1]_i_130_n_6
+    SLICE_X46Y48         LUT4 (Prop_lut4_I1_O)        0.303    11.103 r  main_state_switcher_1/content_4[1]_i_171/O
+                         net (fo=1, routed)           0.000    11.103    main_state_switcher_1/content_4[1]_i_171_n_0
+    SLICE_X46Y48         CARRY4 (Prop_carry4_S[1]_O[2])
+                                                      0.578    11.681 r  main_state_switcher_1/content_4_reg[1]_i_129/O[2]
+                         net (fo=1, routed)           0.953    12.634    main_state_switcher_1/content_4_reg[1]_i_129_n_5
+    SLICE_X45Y50         LUT2 (Prop_lut2_I1_O)        0.301    12.935 r  main_state_switcher_1/content_4[1]_i_74/O
+                         net (fo=1, routed)           0.000    12.935    main_state_switcher_1/content_4[1]_i_74_n_0
+    SLICE_X45Y50         CARRY4 (Prop_carry4_S[3]_O[3])
+                                                      0.248    13.183 r  main_state_switcher_1/content_4_reg[1]_i_33/O[3]
+                         net (fo=7, routed)           0.985    14.168    main_state_switcher_1/content_4_reg[1]_i_33_n_4
+    SLICE_X47Y53         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.707    14.875 r  main_state_switcher_1/content_4_reg[1]_i_31/CO[3]
+                         net (fo=1, routed)           0.000    14.875    main_state_switcher_1/content_4_reg[1]_i_31_n_0
+    SLICE_X47Y54         CARRY4 (Prop_carry4_CI_CO[0])
+                                                      0.271    15.146 r  main_state_switcher_1/content_4_reg[1]_i_32/CO[0]
+                         net (fo=44, routed)          1.312    16.458    main_state_switcher_1/content_4_reg[1]_i_32_n_3
+    SLICE_X46Y51         LUT4 (Prop_lut4_I1_O)        0.373    16.831 r  main_state_switcher_1/content_4[1]_i_65/O
+                         net (fo=1, routed)           0.000    16.831    main_state_switcher_1/content_4[1]_i_65_n_0
+    SLICE_X46Y51         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.376    17.207 r  main_state_switcher_1/content_4_reg[1]_i_22/CO[3]
+                         net (fo=1, routed)           0.000    17.207    main_state_switcher_1/content_4_reg[1]_i_22_n_0
+    SLICE_X46Y52         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    17.324 r  main_state_switcher_1/content_4_reg[1]_i_8/CO[3]
+                         net (fo=1, routed)           0.000    17.324    main_state_switcher_1/content_4_reg[1]_i_8_n_0
+    SLICE_X46Y53         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    17.647 f  main_state_switcher_1/content_4_reg[1]_i_12/O[1]
+                         net (fo=8, routed)           0.602    18.249    main_state_switcher_1/content_4_reg[1]_i_12_n_6
+    SLICE_X44Y52         LUT1 (Prop_lut1_I0_O)        0.306    18.555 r  main_state_switcher_1/content_4[1]_i_132/O
+                         net (fo=1, routed)           0.000    18.555    main_state_switcher_1/content_4[1]_i_132_n_0
+    SLICE_X44Y52         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.398    18.953 r  main_state_switcher_1/content_4_reg[1]_i_78/CO[3]
+                         net (fo=1, routed)           0.000    18.953    main_state_switcher_1/content_4_reg[1]_i_78_n_0
+    SLICE_X44Y53         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222    19.175 r  main_state_switcher_1/content_4_reg[1]_i_34/O[0]
+                         net (fo=3, routed)           0.974    20.149    main_state_switcher_1/content_4_reg[1]_i_34_n_7
+    SLICE_X47Y51         LUT4 (Prop_lut4_I0_O)        0.299    20.448 r  main_state_switcher_1/content_4[1]_i_87/O
+                         net (fo=1, routed)           0.691    21.139    main_state_switcher_1/content_4[1]_i_87_n_0
+    SLICE_X45Y53         CARRY4 (Prop_carry4_DI[0]_CO[3])
+                                                      0.526    21.665 r  main_state_switcher_1/content_4_reg[1]_i_37/CO[3]
+                         net (fo=1, routed)           0.000    21.665    main_state_switcher_1/content_4_reg[1]_i_37_n_0
+    SLICE_X45Y54         CARRY4 (Prop_carry4_CI_CO[0])
+                                                      0.271    21.936 r  main_state_switcher_1/content_4_reg[1]_i_11/CO[0]
+                         net (fo=3, routed)           0.602    22.539    main_state_switcher_1/content_4_reg[1]_i_11_n_3
+    SLICE_X43Y54         LUT6 (Prop_lut6_I0_O)        0.373    22.912 r  main_state_switcher_1/content_4[1]_i_14/O
+                         net (fo=5, routed)           0.986    23.898    main_state_switcher_1/content_4[1]_i_14_n_0
+    SLICE_X44Y56         LUT6 (Prop_lut6_I4_O)        0.124    24.022 r  main_state_switcher_1/content_3[1]_i_7/O
+                         net (fo=1, routed)           0.797    24.819    main_state_switcher_1/level_3_minute_0[1]
+    SLICE_X43Y58         LUT6 (Prop_lut6_I0_O)        0.124    24.943 r  main_state_switcher_1/content_3[1]_i_4/O
+                         net (fo=1, routed)           1.016    25.959    main_state_switcher_1/content_3[1]_i_4_n_0
+    SLICE_X55Y63         LUT5 (Prop_lut5_I0_O)        0.124    26.083 r  main_state_switcher_1/content_3[1]_i_2/O
+                         net (fo=1, routed)           0.000    26.083    main_state_switcher_1/content_3[1]_i_2_n_0
+    SLICE_X55Y63         FDRE                                         r  main_state_switcher_1/content_3_reg[1]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 P15
-                            (input port)
-  Destination:            scan_seg_1/cnt_reg[31]/CLR
+  Source:                 main_state_switcher_1/strong_standby_timer_reg[0]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            main_state_switcher_1/content_7_reg[2]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        7.513ns  (logic 1.587ns (21.123%)  route 5.926ns (78.877%))
-  Logic Levels:           2  (IBUF=1 LUT1=1)
+  Data Path Delay:        18.571ns  (logic 6.664ns (35.883%)  route 11.907ns (64.117%))
+  Logic Levels:           23  (CARRY4=11 FDCE=1 LUT1=2 LUT2=1 LUT3=2 LUT4=1 LUT5=2 LUT6=3)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    P15                                               0.000     0.000 r  P15 (IN)
-                         net (fo=0)                   0.000     0.000    P15
-    P15                  IBUF (Prop_ibuf_I_O)         1.463     1.463 r  P15_IBUF_inst/O
-                         net (fo=1, routed)           3.669     5.132    scan_seg_1/P15_IBUF
-    SLICE_X54Y59         LUT1 (Prop_lut1_I0_O)        0.124     5.256 f  scan_seg_1/cnt[31]_i_2/O
-                         net (fo=36, routed)          2.258     7.513    scan_seg_1/cnt[31]_i_2_n_0
-    SLICE_X61Y66         FDCE                                         f  scan_seg_1/cnt_reg[31]/CLR
+    SLICE_X49Y50         FDCE                         0.000     0.000 r  main_state_switcher_1/strong_standby_timer_reg[0]/C
+    SLICE_X49Y50         FDCE (Prop_fdce_C_Q)         0.456     0.456 f  main_state_switcher_1/strong_standby_timer_reg[0]/Q
+                         net (fo=30, routed)          0.856     1.312    main_state_switcher_1/strong_standby_timer[0]
+    SLICE_X48Y51         LUT1 (Prop_lut1_I0_O)        0.149     1.461 r  main_state_switcher_1/content_6[1]_i_32/O
+                         net (fo=1, routed)           0.531     1.992    main_state_switcher_1/content_6[1]_i_32_n_0
+    SLICE_X48Y52         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.788     2.780 r  main_state_switcher_1/content_6_reg[1]_i_13/CO[3]
+                         net (fo=1, routed)           0.000     2.780    main_state_switcher_1/content_6_reg[1]_i_13_n_0
+    SLICE_X48Y53         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     2.894 r  main_state_switcher_1/content_6_reg[1]_i_18/CO[3]
+                         net (fo=1, routed)           0.000     2.894    main_state_switcher_1/content_6_reg[1]_i_18_n_0
+    SLICE_X48Y54         CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239     3.133 r  main_state_switcher_1/content_3_reg[1]_i_38/O[2]
+                         net (fo=34, routed)          1.918     5.052    main_state_switcher_1/total_seconds00_out[11]
+    SLICE_X46Y57         LUT3 (Prop_lut3_I0_O)        0.328     5.380 r  main_state_switcher_1/content_6[1]_i_241/O
+                         net (fo=2, routed)           0.857     6.236    main_state_switcher_1/content_6[1]_i_241_n_0
+    SLICE_X46Y57         LUT4 (Prop_lut4_I3_O)        0.328     6.564 r  main_state_switcher_1/content_6[1]_i_245/O
+                         net (fo=1, routed)           0.000     6.564    main_state_switcher_1/content_6[1]_i_245_n_0
+    SLICE_X46Y57         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533     7.097 r  main_state_switcher_1/content_6_reg[1]_i_209/CO[3]
+                         net (fo=1, routed)           0.000     7.097    main_state_switcher_1/content_6_reg[1]_i_209_n_0
+    SLICE_X46Y58         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     7.214 r  main_state_switcher_1/content_6_reg[1]_i_145/CO[3]
+                         net (fo=1, routed)           0.000     7.214    main_state_switcher_1/content_6_reg[1]_i_145_n_0
+    SLICE_X46Y59         CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239     7.453 r  main_state_switcher_1/content_6_reg[1]_i_95/O[2]
+                         net (fo=3, routed)           1.071     8.524    main_state_switcher_1/content_6_reg[1]_i_95_n_5
+    SLICE_X44Y58         LUT3 (Prop_lut3_I2_O)        0.301     8.825 r  main_state_switcher_1/content_6[1]_i_144/O
+                         net (fo=3, routed)           0.667     9.492    main_state_switcher_1/content_6[1]_i_144_n_0
+    SLICE_X44Y57         LUT5 (Prop_lut5_I4_O)        0.124     9.616 r  main_state_switcher_1/content_6[1]_i_84/O
+                         net (fo=2, routed)           1.243    10.859    main_state_switcher_1/content_6[1]_i_84_n_0
+    SLICE_X47Y59         LUT6 (Prop_lut6_I0_O)        0.124    10.983 r  main_state_switcher_1/content_6[1]_i_88/O
+                         net (fo=1, routed)           0.000    10.983    main_state_switcher_1/content_6[1]_i_88_n_0
+    SLICE_X47Y59         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401    11.384 r  main_state_switcher_1/content_6_reg[1]_i_57/CO[3]
+                         net (fo=1, routed)           0.000    11.384    main_state_switcher_1/content_6_reg[1]_i_57_n_0
+    SLICE_X47Y60         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    11.498 r  main_state_switcher_1/content_6_reg[1]_i_48/CO[3]
+                         net (fo=1, routed)           0.000    11.498    main_state_switcher_1/content_6_reg[1]_i_48_n_0
+    SLICE_X47Y61         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.334    11.832 f  main_state_switcher_1/content_6_reg[1]_i_56/O[1]
+                         net (fo=1, routed)           0.933    12.765    main_state_switcher_1/content_6_reg[1]_i_56_n_6
+    SLICE_X45Y57         LUT1 (Prop_lut1_I0_O)        0.303    13.068 r  main_state_switcher_1/content_6[1]_i_46/O
+                         net (fo=1, routed)           0.000    13.068    main_state_switcher_1/content_6[1]_i_46_n_0
+    SLICE_X45Y57         CARRY4 (Prop_carry4_S[2]_O[3])
+                                                      0.352    13.420 r  main_state_switcher_1/content_6_reg[1]_i_36/O[3]
+                         net (fo=1, routed)           1.242    14.662    main_state_switcher_1/content_6_reg[1]_i_36_n_4
+    SLICE_X51Y54         LUT2 (Prop_lut2_I1_O)        0.306    14.968 r  main_state_switcher_1/content_6[1]_i_20/O
+                         net (fo=1, routed)           0.000    14.968    main_state_switcher_1/content_6[1]_i_20_n_0
+    SLICE_X51Y54         CARRY4 (Prop_carry4_S[1]_O[1])
+                                                      0.227    15.195 r  main_state_switcher_1/content_6_reg[1]_i_9/O[1]
+                         net (fo=5, routed)           0.828    16.023    main_state_switcher_1/content_6_reg[1]_i_9_n_6
+    SLICE_X51Y55         LUT5 (Prop_lut5_I2_O)        0.331    16.354 r  main_state_switcher_1/content_6[1]_i_3/O
+                         net (fo=2, routed)           1.116    17.470    main_state_switcher_1/strong_standby_second_0[1]
+    SLICE_X51Y52         LUT6 (Prop_lut6_I3_O)        0.332    17.802 r  main_state_switcher_1/content_7[2]_i_2/O
+                         net (fo=1, routed)           0.645    18.447    main_state_switcher_1/content_7[2]_i_2_n_0
+    SLICE_X51Y52         LUT6 (Prop_lut6_I0_O)        0.124    18.571 r  main_state_switcher_1/content_7[2]_i_1/O
+                         net (fo=1, routed)           0.000    18.571    main_state_switcher_1/content_7[2]_i_1_n_0
+    SLICE_X51Y52         FDSE                                         r  main_state_switcher_1/content_7_reg[2]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 P15
-                            (input port)
-  Destination:            scan_seg_1/cnt_reg[28]/CLR
+  Source:                 main_state_switcher_1/current_time_reg[5]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            main_state_switcher_1/content_0_reg[0]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        7.366ns  (logic 1.587ns (21.545%)  route 5.779ns (78.455%))
-  Logic Levels:           2  (IBUF=1 LUT1=1)
+  Data Path Delay:        18.377ns  (logic 6.102ns (33.204%)  route 12.275ns (66.796%))
+  Logic Levels:           23  (CARRY4=13 FDCE=1 LUT3=3 LUT4=2 LUT5=2 LUT6=2)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    P15                                               0.000     0.000 r  P15 (IN)
-                         net (fo=0)                   0.000     0.000    P15
-    P15                  IBUF (Prop_ibuf_I_O)         1.463     1.463 r  P15_IBUF_inst/O
-                         net (fo=1, routed)           3.669     5.132    scan_seg_1/P15_IBUF
-    SLICE_X54Y59         LUT1 (Prop_lut1_I0_O)        0.124     5.256 f  scan_seg_1/cnt[31]_i_2/O
-                         net (fo=36, routed)          2.110     7.366    scan_seg_1/cnt[31]_i_2_n_0
-    SLICE_X63Y66         FDCE                                         f  scan_seg_1/cnt_reg[28]/CLR
+    SLICE_X33Y63         FDCE                         0.000     0.000 r  main_state_switcher_1/current_time_reg[5]/C
+    SLICE_X33Y63         FDCE (Prop_fdce_C_Q)         0.456     0.456 r  main_state_switcher_1/current_time_reg[5]/Q
+                         net (fo=59, routed)          2.530     2.986    main_state_switcher_1/current_time_reg_n_0_[5]
+    SLICE_X36Y56         LUT3 (Prop_lut3_I2_O)        0.153     3.139 r  main_state_switcher_1/content_1[2]_i_275/O
+                         net (fo=4, routed)           0.967     4.106    main_state_switcher_1/content_1[2]_i_275_n_0
+    SLICE_X39Y56         LUT4 (Prop_lut4_I0_O)        0.327     4.433 r  main_state_switcher_1/content_1[2]_i_277/O
+                         net (fo=1, routed)           0.000     4.433    main_state_switcher_1/content_1[2]_i_277_n_0
+    SLICE_X39Y56         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401     4.834 r  main_state_switcher_1/content_1_reg[2]_i_238/CO[3]
+                         net (fo=1, routed)           0.000     4.834    main_state_switcher_1/content_1_reg[2]_i_238_n_0
+    SLICE_X39Y57         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     4.948 r  main_state_switcher_1/content_1_reg[2]_i_191/CO[3]
+                         net (fo=1, routed)           0.000     4.948    main_state_switcher_1/content_1_reg[2]_i_191_n_0
+    SLICE_X39Y58         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     5.062 r  main_state_switcher_1/content_1_reg[2]_i_190/CO[3]
+                         net (fo=1, routed)           0.000     5.062    main_state_switcher_1/content_1_reg[2]_i_190_n_0
+    SLICE_X39Y59         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     5.176 r  main_state_switcher_1/content_1_reg[2]_i_143/CO[3]
+                         net (fo=1, routed)           0.000     5.176    main_state_switcher_1/content_1_reg[2]_i_143_n_0
+    SLICE_X39Y60         CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239     5.415 r  main_state_switcher_1/content_1_reg[2]_i_78/O[2]
+                         net (fo=3, routed)           0.913     6.328    main_state_switcher_1/content_1_reg[2]_i_78_n_5
+    SLICE_X45Y61         LUT3 (Prop_lut3_I2_O)        0.302     6.630 r  main_state_switcher_1/content_1[2]_i_40/O
+                         net (fo=1, routed)           0.658     7.288    main_state_switcher_1/content_1[2]_i_40_n_0
+    SLICE_X41Y61         CARRY4 (Prop_carry4_DI[0]_CO[3])
+                                                      0.526     7.814 r  main_state_switcher_1/content_1_reg[2]_i_14/CO[3]
+                         net (fo=1, routed)           0.000     7.814    main_state_switcher_1/content_1_reg[2]_i_14_n_0
+    SLICE_X41Y62         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.928 r  main_state_switcher_1/content_1_reg[2]_i_10/CO[3]
+                         net (fo=1, routed)           0.000     7.928    main_state_switcher_1/content_1_reg[2]_i_10_n_0
+    SLICE_X41Y63         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222     8.150 f  main_state_switcher_1/content_0_reg[1]_i_8/O[0]
+                         net (fo=12, routed)          1.495     9.645    main_state_switcher_1/content_0_reg[1]_i_8_n_7
+    SLICE_X38Y67         LUT3 (Prop_lut3_I1_O)        0.299     9.944 r  main_state_switcher_1/content_1[1]_i_72/O
+                         net (fo=1, routed)           0.568    10.512    main_state_switcher_1/content_1[1]_i_72_n_0
+    SLICE_X39Y67         CARRY4 (Prop_carry4_DI[1]_CO[3])
+                                                      0.507    11.019 r  main_state_switcher_1/content_1_reg[1]_i_41/CO[3]
+                         net (fo=1, routed)           0.000    11.019    main_state_switcher_1/content_1_reg[1]_i_41_n_0
+    SLICE_X39Y68         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.334    11.353 r  main_state_switcher_1/content_1_reg[1]_i_21/O[1]
+                         net (fo=3, routed)           0.968    12.321    main_state_switcher_1/content_1_reg[1]_i_21_n_6
+    SLICE_X35Y68         LUT4 (Prop_lut4_I2_O)        0.303    12.624 r  main_state_switcher_1/content_1[1]_i_67/O
+                         net (fo=1, routed)           0.000    12.624    main_state_switcher_1/content_1[1]_i_67_n_0
+    SLICE_X35Y68         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550    13.174 r  main_state_switcher_1/content_1_reg[1]_i_32/CO[3]
+                         net (fo=1, routed)           0.000    13.174    main_state_switcher_1/content_1_reg[1]_i_32_n_0
+    SLICE_X35Y69         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.288 r  main_state_switcher_1/content_1_reg[1]_i_14/CO[3]
+                         net (fo=1, routed)           0.000    13.288    main_state_switcher_1/content_1_reg[1]_i_14_n_0
+    SLICE_X35Y70         CARRY4 (Prop_carry4_CI_CO[2])
+                                                      0.228    13.516 r  main_state_switcher_1/content_1_reg[1]_i_7/CO[2]
+                         net (fo=5, routed)           0.944    14.460    main_state_switcher_1/content_1_reg[1]_i_7_n_1
+    SLICE_X47Y68         LUT5 (Prop_lut5_I3_O)        0.313    14.773 r  main_state_switcher_1/content_1[3]_i_5/O
+                         net (fo=3, routed)           1.242    16.015    main_state_switcher_1/content_1[3]_i_5_n_0
+    SLICE_X48Y67         LUT6 (Prop_lut6_I0_O)        0.124    16.139 r  main_state_switcher_1/content_1[1]_i_5/O
+                         net (fo=2, routed)           1.206    17.345    main_state_switcher_1/hour_0[0]
+    SLICE_X57Y62         LUT6 (Prop_lut6_I5_O)        0.124    17.469 r  main_state_switcher_1/content_0[0]_i_2/O
+                         net (fo=1, routed)           0.784    18.253    main_state_switcher_1/content_0[0]_i_2_n_0
+    SLICE_X53Y58         LUT5 (Prop_lut5_I0_O)        0.124    18.377 r  main_state_switcher_1/content_0[0]_i_1/O
+                         net (fo=1, routed)           0.000    18.377    main_state_switcher_1/content_0[0]
+    SLICE_X53Y58         FDRE                                         r  main_state_switcher_1/content_0_reg[0]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 P15
-                            (input port)
-  Destination:            scan_seg_1/cnt_reg[29]/CLR
+  Source:                 main_state_switcher_1/self_clean_timer_reg[1]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            main_state_switcher_1/content_7_reg[1]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        7.366ns  (logic 1.587ns (21.545%)  route 5.779ns (78.455%))
-  Logic Levels:           2  (IBUF=1 LUT1=1)
+  Data Path Delay:        17.996ns  (logic 6.947ns (38.603%)  route 11.049ns (61.397%))
+  Logic Levels:           21  (CARRY4=10 FDCE=1 LUT1=2 LUT2=1 LUT3=2 LUT4=1 LUT5=1 LUT6=3)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    P15                                               0.000     0.000 r  P15 (IN)
-                         net (fo=0)                   0.000     0.000    P15
-    P15                  IBUF (Prop_ibuf_I_O)         1.463     1.463 r  P15_IBUF_inst/O
-                         net (fo=1, routed)           3.669     5.132    scan_seg_1/P15_IBUF
-    SLICE_X54Y59         LUT1 (Prop_lut1_I0_O)        0.124     5.256 f  scan_seg_1/cnt[31]_i_2/O
-                         net (fo=36, routed)          2.110     7.366    scan_seg_1/cnt[31]_i_2_n_0
-    SLICE_X63Y66         FDCE                                         f  scan_seg_1/cnt_reg[29]/CLR
+    SLICE_X44Y39         FDCE                         0.000     0.000 r  main_state_switcher_1/self_clean_timer_reg[1]/C
+    SLICE_X44Y39         FDCE (Prop_fdce_C_Q)         0.419     0.419 f  main_state_switcher_1/self_clean_timer_reg[1]/Q
+                         net (fo=3, routed)           1.112     1.531    main_state_switcher_1/self_clean_timer[1]
+    SLICE_X39Y39         LUT1 (Prop_lut1_I0_O)        0.299     1.830 r  main_state_switcher_1/content_7[1]_i_30/O
+                         net (fo=1, routed)           0.000     1.830    main_state_switcher_1/content_7[1]_i_30_n_0
+    SLICE_X39Y39         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532     2.362 r  main_state_switcher_1/content_7_reg[1]_i_13/CO[3]
+                         net (fo=1, routed)           0.000     2.362    main_state_switcher_1/content_7_reg[1]_i_13_n_0
+    SLICE_X39Y40         CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239     2.601 r  main_state_switcher_1/content_4_reg[2]_i_22/O[2]
+                         net (fo=38, routed)          2.843     5.444    main_state_switcher_1/total_seconds04_out[7]
+    SLICE_X39Y48         LUT3 (Prop_lut3_I2_O)        0.330     5.774 r  main_state_switcher_1/content_7[1]_i_245/O
+                         net (fo=2, routed)           0.849     6.623    main_state_switcher_1/content_7[1]_i_245_n_0
+    SLICE_X39Y48         LUT4 (Prop_lut4_I3_O)        0.326     6.949 r  main_state_switcher_1/content_7[1]_i_249/O
+                         net (fo=1, routed)           0.000     6.949    main_state_switcher_1/content_7[1]_i_249_n_0
+    SLICE_X39Y48         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550     7.499 r  main_state_switcher_1/content_7_reg[1]_i_224/CO[3]
+                         net (fo=1, routed)           0.000     7.499    main_state_switcher_1/content_7_reg[1]_i_224_n_0
+    SLICE_X39Y49         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.613 r  main_state_switcher_1/content_7_reg[1]_i_175/CO[3]
+                         net (fo=1, routed)           0.001     7.614    main_state_switcher_1/content_7_reg[1]_i_175_n_0
+    SLICE_X39Y50         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.728 r  main_state_switcher_1/content_7_reg[1]_i_112/CO[3]
+                         net (fo=1, routed)           0.000     7.728    main_state_switcher_1/content_7_reg[1]_i_112_n_0
+    SLICE_X39Y51         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.223     7.951 r  main_state_switcher_1/content_7_reg[1]_i_109/O[0]
+                         net (fo=4, routed)           1.290     9.241    main_state_switcher_1/content_7_reg[1]_i_109_n_7
+    SLICE_X43Y52         LUT3 (Prop_lut3_I0_O)        0.327     9.568 r  main_state_switcher_1/content_7[1]_i_117/O
+                         net (fo=1, routed)           0.587    10.155    main_state_switcher_1/content_7[1]_i_117_n_0
+    SLICE_X40Y53         LUT6 (Prop_lut6_I1_O)        0.326    10.481 r  main_state_switcher_1/content_7[1]_i_64/O
+                         net (fo=1, routed)           0.000    10.481    main_state_switcher_1/content_7[1]_i_64_n_0
+    SLICE_X40Y53         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550    11.031 r  main_state_switcher_1/content_7_reg[1]_i_44/CO[3]
+                         net (fo=1, routed)           0.000    11.031    main_state_switcher_1/content_7_reg[1]_i_44_n_0
+    SLICE_X40Y54         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222    11.253 f  main_state_switcher_1/content_7_reg[1]_i_56/O[0]
+                         net (fo=1, routed)           0.947    12.200    main_state_switcher_1/content_7_reg[1]_i_56_n_7
+    SLICE_X42Y52         LUT1 (Prop_lut1_I0_O)        0.299    12.499 r  main_state_switcher_1/content_7[1]_i_43/O
+                         net (fo=1, routed)           0.000    12.499    main_state_switcher_1/content_7[1]_i_43_n_0
+    SLICE_X42Y52         CARRY4 (Prop_carry4_S[1]_O[3])
+                                                      0.643    13.142 r  main_state_switcher_1/content_7_reg[1]_i_31/O[3]
+                         net (fo=1, routed)           0.594    13.736    main_state_switcher_1/content_7_reg[1]_i_31_n_4
+    SLICE_X42Y51         LUT2 (Prop_lut2_I1_O)        0.307    14.043 r  main_state_switcher_1/content_6[1]_i_30/O
+                         net (fo=1, routed)           0.000    14.043    main_state_switcher_1/content_6[1]_i_30_n_0
+    SLICE_X42Y51         CARRY4 (Prop_carry4_S[1]_O[2])
+                                                      0.578    14.621 r  main_state_switcher_1/content_6_reg[1]_i_12/O[2]
+                         net (fo=5, routed)           0.990    15.611    main_state_switcher_1/content_6_reg[1]_i_12_n_5
+    SLICE_X44Y51         LUT6 (Prop_lut6_I0_O)        0.301    15.912 r  main_state_switcher_1/content_6[0]_i_5/O
+                         net (fo=3, routed)           0.814    16.726    main_state_switcher_1/self_clean_second_0[0]
+    SLICE_X47Y50         LUT6 (Prop_lut6_I0_O)        0.124    16.850 r  main_state_switcher_1/content_7[1]_i_2/O
+                         net (fo=1, routed)           1.022    17.872    main_state_switcher_1/content_7[1]_i_2_n_0
+    SLICE_X51Y52         LUT5 (Prop_lut5_I0_O)        0.124    17.996 r  main_state_switcher_1/content_7[1]_i_1/O
+                         net (fo=1, routed)           0.000    17.996    main_state_switcher_1/content_7[1]_i_1_n_0
+    SLICE_X51Y52         FDRE                                         r  main_state_switcher_1/content_7_reg[1]/D
   -------------------------------------------------------------------    -------------------
 
 
@@ -437,205 +1226,177 @@ Slack:                    inf
 Min Delay Paths
 --------------------------------------------------------------------------------------
 Slack:                    inf
-  Source:                 scan_seg_1/clkout_reg/C
-                            (rising edge-triggered cell FDCE)
-  Destination:            scan_seg_1/clkout_reg/D
+  Source:                 main_state_switcher_1/state_in_edit_state_next_reg[0]/G
+                            (positive level-sensitive latch)
+  Destination:            main_state_switcher_1/state_in_edit_state_reg[0]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.354ns  (logic 0.186ns (52.498%)  route 0.168ns (47.502%))
-  Logic Levels:           2  (FDCE=1 LUT5=1)
+  Data Path Delay:        0.256ns  (logic 0.158ns (61.763%)  route 0.098ns (38.237%))
+  Logic Levels:           1  (LDCE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X61Y66         FDCE                         0.000     0.000 r  scan_seg_1/clkout_reg/C
-    SLICE_X61Y66         FDCE (Prop_fdce_C_Q)         0.141     0.141 r  scan_seg_1/clkout_reg/Q
-                         net (fo=4, routed)           0.168     0.309    scan_seg_1/clkout_reg_n_0
-    SLICE_X61Y66         LUT5 (Prop_lut5_I4_O)        0.045     0.354 r  scan_seg_1/clkout_i_1/O
-                         net (fo=1, routed)           0.000     0.354    scan_seg_1/clkout_i_1_n_0
-    SLICE_X61Y66         FDCE                                         r  scan_seg_1/clkout_reg/D
+    SLICE_X58Y50         LDCE                         0.000     0.000 r  main_state_switcher_1/state_in_edit_state_next_reg[0]/G
+    SLICE_X58Y50         LDCE (EnToQ_ldce_G_Q)        0.158     0.158 r  main_state_switcher_1/state_in_edit_state_next_reg[0]/Q
+                         net (fo=2, routed)           0.098     0.256    main_state_switcher_1/state_in_edit_state_next[0]
+    SLICE_X59Y50         FDPE                                         r  main_state_switcher_1/state_in_edit_state_reg[0]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 scan_seg_1/cnt_reg[0]/C
-                            (rising edge-triggered cell FDCE)
-  Destination:            scan_seg_1/cnt_reg[0]/D
+  Source:                 main_state_switcher_1/next_state_reg[5]/G
+                            (positive level-sensitive latch)
+  Destination:            main_state_switcher_1/state_reg[5]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.384ns  (logic 0.209ns (54.393%)  route 0.175ns (45.607%))
-  Logic Levels:           2  (FDCE=1 LUT1=1)
+  Data Path Delay:        0.284ns  (logic 0.158ns (55.573%)  route 0.126ns (44.427%))
+  Logic Levels:           1  (LDCE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X64Y60         FDCE                         0.000     0.000 r  scan_seg_1/cnt_reg[0]/C
-    SLICE_X64Y60         FDCE (Prop_fdce_C_Q)         0.164     0.164 f  scan_seg_1/cnt_reg[0]/Q
-                         net (fo=3, routed)           0.175     0.339    scan_seg_1/cnt_reg_n_0_[0]
-    SLICE_X64Y60         LUT1 (Prop_lut1_I0_O)        0.045     0.384 r  scan_seg_1/cnt[0]_i_1/O
-                         net (fo=1, routed)           0.000     0.384    scan_seg_1/cnt[0]
-    SLICE_X64Y60         FDCE                                         r  scan_seg_1/cnt_reg[0]/D
+    SLICE_X61Y48         LDCE                         0.000     0.000 r  main_state_switcher_1/next_state_reg[5]/G
+    SLICE_X61Y48         LDCE (EnToQ_ldce_G_Q)        0.158     0.158 r  main_state_switcher_1/next_state_reg[5]/Q
+                         net (fo=7, routed)           0.126     0.284    main_state_switcher_1/next_state[5]
+    SLICE_X62Y49         FDCE                                         r  main_state_switcher_1/state_reg[5]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 scan_seg_1/scan_cnt_reg[0]/C
-                            (rising edge-triggered cell FDCE)
-  Destination:            scan_seg_1/scan_cnt_reg[1]/D
+  Source:                 main_state_switcher_1/next_state_reg[3]/G
+                            (positive level-sensitive latch)
+  Destination:            main_state_switcher_1/state_reg[3]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.395ns  (logic 0.208ns (52.671%)  route 0.187ns (47.329%))
-  Logic Levels:           2  (FDCE=1 LUT2=1)
+  Data Path Delay:        0.290ns  (logic 0.178ns (61.350%)  route 0.112ns (38.650%))
+  Logic Levels:           1  (LDCE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X64Y66         FDCE                         0.000     0.000 r  scan_seg_1/scan_cnt_reg[0]/C
-    SLICE_X64Y66         FDCE (Prop_fdce_C_Q)         0.164     0.164 r  scan_seg_1/scan_cnt_reg[0]/Q
-                         net (fo=18, routed)          0.187     0.351    scan_seg_1/scan_cnt[0]
-    SLICE_X64Y66         LUT2 (Prop_lut2_I1_O)        0.044     0.395 r  scan_seg_1/scan_cnt[1]_i_1/O
-                         net (fo=1, routed)           0.000     0.395    scan_seg_1/scan_cnt[1]_i_1_n_0
-    SLICE_X64Y66         FDCE                                         r  scan_seg_1/scan_cnt_reg[1]/D
+    SLICE_X64Y48         LDCE                         0.000     0.000 r  main_state_switcher_1/next_state_reg[3]/G
+    SLICE_X64Y48         LDCE (EnToQ_ldce_G_Q)        0.178     0.178 r  main_state_switcher_1/next_state_reg[3]/Q
+                         net (fo=5, routed)           0.112     0.290    main_state_switcher_1/next_state[3]
+    SLICE_X63Y48         FDCE                                         r  main_state_switcher_1/state_reg[3]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 scan_seg_1/scan_cnt_reg[0]/C
-                            (rising edge-triggered cell FDCE)
-  Destination:            scan_seg_1/scan_cnt_reg[0]/D
+  Source:                 main_state_switcher_1/state_in_edit_state_next_reg[1]/G
+                            (positive level-sensitive latch)
+  Destination:            main_state_switcher_1/state_in_edit_state_reg[1]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.396ns  (logic 0.209ns (52.790%)  route 0.187ns (47.210%))
-  Logic Levels:           2  (FDCE=1 LUT1=1)
+  Data Path Delay:        0.307ns  (logic 0.158ns (51.455%)  route 0.149ns (48.545%))
+  Logic Levels:           1  (LDCE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X64Y66         FDCE                         0.000     0.000 r  scan_seg_1/scan_cnt_reg[0]/C
-    SLICE_X64Y66         FDCE (Prop_fdce_C_Q)         0.164     0.164 f  scan_seg_1/scan_cnt_reg[0]/Q
-                         net (fo=18, routed)          0.187     0.351    scan_seg_1/scan_cnt[0]
-    SLICE_X64Y66         LUT1 (Prop_lut1_I0_O)        0.045     0.396 r  scan_seg_1/scan_cnt[0]_i_1/O
-                         net (fo=1, routed)           0.000     0.396    scan_seg_1/scan_cnt[0]_i_1_n_0
-    SLICE_X64Y66         FDCE                                         r  scan_seg_1/scan_cnt_reg[0]/D
+    SLICE_X58Y50         LDCE                         0.000     0.000 r  main_state_switcher_1/state_in_edit_state_next_reg[1]/G
+    SLICE_X58Y50         LDCE (EnToQ_ldce_G_Q)        0.158     0.158 r  main_state_switcher_1/state_in_edit_state_next_reg[1]/Q
+                         net (fo=2, routed)           0.149     0.307    main_state_switcher_1/state_in_edit_state_next[1]
+    SLICE_X59Y50         FDCE                                         r  main_state_switcher_1/state_in_edit_state_reg[1]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 scan_seg_1/cnt_reg[0]/C
-                            (rising edge-triggered cell FDCE)
-  Destination:            scan_seg_1/cnt_reg[3]/D
+  Source:                 main_state_switcher_1/state_in_edit_state_next_reg[2]/G
+                            (positive level-sensitive latch)
+  Destination:            main_state_switcher_1/state_in_edit_state_reg[2]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.499ns  (logic 0.254ns (50.910%)  route 0.245ns (49.090%))
-  Logic Levels:           3  (FDCE=1 LUT5=2)
+  Data Path Delay:        0.309ns  (logic 0.158ns (51.118%)  route 0.151ns (48.882%))
+  Logic Levels:           1  (LDCE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X64Y60         FDCE                         0.000     0.000 r  scan_seg_1/cnt_reg[0]/C
-    SLICE_X64Y60         FDCE (Prop_fdce_C_Q)         0.164     0.164 f  scan_seg_1/cnt_reg[0]/Q
-                         net (fo=3, routed)           0.117     0.281    scan_seg_1/cnt_reg_n_0_[0]
-    SLICE_X63Y60         LUT5 (Prop_lut5_I2_O)        0.045     0.326 r  scan_seg_1/cnt[31]_i_5/O
-                         net (fo=32, routed)          0.128     0.454    scan_seg_1/cnt[31]_i_5_n_0
-    SLICE_X63Y60         LUT5 (Prop_lut5_I2_O)        0.045     0.499 r  scan_seg_1/cnt[3]_i_1/O
-                         net (fo=1, routed)           0.000     0.499    scan_seg_1/cnt[3]
-    SLICE_X63Y60         FDCE                                         r  scan_seg_1/cnt_reg[3]/D
+    SLICE_X58Y50         LDCE                         0.000     0.000 r  main_state_switcher_1/state_in_edit_state_next_reg[2]/G
+    SLICE_X58Y50         LDCE (EnToQ_ldce_G_Q)        0.158     0.158 r  main_state_switcher_1/state_in_edit_state_next_reg[2]/Q
+                         net (fo=2, routed)           0.151     0.309    main_state_switcher_1/state_in_edit_state_next[2]
+    SLICE_X59Y50         FDCE                                         r  main_state_switcher_1/state_in_edit_state_reg[2]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 scan_seg_1/cnt_reg[8]/C
-                            (rising edge-triggered cell FDCE)
-  Destination:            scan_seg_1/cnt_reg[9]/D
+  Source:                 main_state_switcher_1/next_state_reg[7]/G
+                            (positive level-sensitive latch)
+  Destination:            main_state_switcher_1/state_reg[7]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.505ns  (logic 0.231ns (45.698%)  route 0.274ns (54.302%))
-  Logic Levels:           3  (FDCE=1 LUT5=2)
+  Data Path Delay:        0.314ns  (logic 0.158ns (50.263%)  route 0.156ns (49.737%))
+  Logic Levels:           1  (LDCE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X61Y61         FDCE                         0.000     0.000 r  scan_seg_1/cnt_reg[8]/C
-    SLICE_X61Y61         FDCE (Prop_fdce_C_Q)         0.141     0.141 r  scan_seg_1/cnt_reg[8]/Q
-                         net (fo=2, routed)           0.176     0.317    scan_seg_1/cnt_reg_n_0_[8]
-    SLICE_X63Y62         LUT5 (Prop_lut5_I2_O)        0.045     0.362 r  scan_seg_1/cnt[31]_i_6/O
-                         net (fo=32, routed)          0.099     0.460    scan_seg_1/cnt[31]_i_6_n_0
-    SLICE_X63Y62         LUT5 (Prop_lut5_I3_O)        0.045     0.505 r  scan_seg_1/cnt[9]_i_1/O
-                         net (fo=1, routed)           0.000     0.505    scan_seg_1/cnt[9]
-    SLICE_X63Y62         FDCE                                         r  scan_seg_1/cnt_reg[9]/D
+    SLICE_X61Y48         LDCE                         0.000     0.000 r  main_state_switcher_1/next_state_reg[7]/G
+    SLICE_X61Y48         LDCE (EnToQ_ldce_G_Q)        0.158     0.158 r  main_state_switcher_1/next_state_reg[7]/Q
+                         net (fo=7, routed)           0.156     0.314    main_state_switcher_1/next_state[7]
+    SLICE_X60Y49         FDCE                                         r  main_state_switcher_1/state_reg[7]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 scan_seg_1/cnt_reg[8]/C
+  Source:                 main_state_switcher_1/total_working_time_reg[4]/C
                             (rising edge-triggered cell FDCE)
-  Destination:            scan_seg_1/cnt_reg[10]/D
+  Destination:            main_state_switcher_1/total_working_time_reg[4]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.506ns  (logic 0.231ns (45.608%)  route 0.275ns (54.392%))
-  Logic Levels:           3  (FDCE=1 LUT5=2)
+  Data Path Delay:        0.320ns  (logic 0.186ns (58.183%)  route 0.134ns (41.817%))
+  Logic Levels:           2  (FDCE=1 LUT6=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X61Y61         FDCE                         0.000     0.000 r  scan_seg_1/cnt_reg[8]/C
-    SLICE_X61Y61         FDCE (Prop_fdce_C_Q)         0.141     0.141 r  scan_seg_1/cnt_reg[8]/Q
-                         net (fo=2, routed)           0.176     0.317    scan_seg_1/cnt_reg_n_0_[8]
-    SLICE_X63Y62         LUT5 (Prop_lut5_I2_O)        0.045     0.362 r  scan_seg_1/cnt[31]_i_6/O
-                         net (fo=32, routed)          0.100     0.461    scan_seg_1/cnt[31]_i_6_n_0
-    SLICE_X63Y62         LUT5 (Prop_lut5_I3_O)        0.045     0.506 r  scan_seg_1/cnt[10]_i_1/O
-                         net (fo=1, routed)           0.000     0.506    scan_seg_1/cnt[10]
-    SLICE_X63Y62         FDCE                                         r  scan_seg_1/cnt_reg[10]/D
+    SLICE_X65Y50         FDCE                         0.000     0.000 r  main_state_switcher_1/total_working_time_reg[4]/C
+    SLICE_X65Y50         FDCE (Prop_fdce_C_Q)         0.141     0.141 r  main_state_switcher_1/total_working_time_reg[4]/Q
+                         net (fo=57, routed)          0.134     0.275    main_state_switcher_1/total_working_time[4]
+    SLICE_X65Y50         LUT6 (Prop_lut6_I5_O)        0.045     0.320 r  main_state_switcher_1/total_working_time[4]_i_1/O
+                         net (fo=1, routed)           0.000     0.320    main_state_switcher_1/total_working_time_next[4]
+    SLICE_X65Y50         FDCE                                         r  main_state_switcher_1/total_working_time_reg[4]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 scan_seg_1/cnt_reg[24]/C
+  Source:                 debounce_1/button_in_d1_reg/C
                             (rising edge-triggered cell FDCE)
-  Destination:            scan_seg_1/cnt_reg[27]/D
+  Destination:            debounce_1/button_out_reg/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.537ns  (logic 0.231ns (43.023%)  route 0.306ns (56.977%))
-  Logic Levels:           3  (FDCE=1 LUT5=2)
+  Data Path Delay:        0.326ns  (logic 0.227ns (69.637%)  route 0.099ns (30.363%))
+  Logic Levels:           2  (FDCE=1 LUT4=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X63Y65         FDCE                         0.000     0.000 r  scan_seg_1/cnt_reg[24]/C
-    SLICE_X63Y65         FDCE (Prop_fdce_C_Q)         0.141     0.141 r  scan_seg_1/cnt_reg[24]/Q
-                         net (fo=2, routed)           0.200     0.341    scan_seg_1/cnt_reg_n_0_[24]
-    SLICE_X63Y65         LUT5 (Prop_lut5_I2_O)        0.045     0.386 r  scan_seg_1/cnt[31]_i_4/O
-                         net (fo=32, routed)          0.106     0.492    scan_seg_1/cnt[31]_i_4_n_0
-    SLICE_X63Y65         LUT5 (Prop_lut5_I1_O)        0.045     0.537 r  scan_seg_1/cnt[27]_i_1/O
-                         net (fo=1, routed)           0.000     0.537    scan_seg_1/cnt[27]
-    SLICE_X63Y65         FDCE                                         r  scan_seg_1/cnt_reg[27]/D
+    SLICE_X55Y41         FDCE                         0.000     0.000 r  debounce_1/button_in_d1_reg/C
+    SLICE_X55Y41         FDCE (Prop_fdce_C_Q)         0.128     0.128 r  debounce_1/button_in_d1_reg/Q
+                         net (fo=23, routed)          0.099     0.227    debounce_1/button_in_d1
+    SLICE_X55Y41         LUT4 (Prop_lut4_I1_O)        0.099     0.326 r  debounce_1/button_out_i_1/O
+                         net (fo=1, routed)           0.000     0.326    debounce_1/button_out_i_1_n_0
+    SLICE_X55Y41         FDCE                                         r  debounce_1/button_out_reg/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 scan_seg_1/cnt_reg[17]/C
-                            (rising edge-triggered cell FDCE)
-  Destination:            scan_seg_1/cnt_reg[19]/D
+  Source:                 main_state_switcher_1/next_state_reg[2]/G
+                            (positive level-sensitive latch)
+  Destination:            main_state_switcher_1/state_reg[2]_lopt_replica/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.556ns  (logic 0.231ns (41.522%)  route 0.325ns (58.478%))
-  Logic Levels:           3  (FDCE=1 LUT5=2)
+  Data Path Delay:        0.338ns  (logic 0.178ns (52.701%)  route 0.160ns (47.299%))
+  Logic Levels:           1  (LDCE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X63Y64         FDCE                         0.000     0.000 r  scan_seg_1/cnt_reg[17]/C
-    SLICE_X63Y64         FDCE (Prop_fdce_C_Q)         0.141     0.141 r  scan_seg_1/cnt_reg[17]/Q
-                         net (fo=2, routed)           0.207     0.348    scan_seg_1/cnt_reg_n_0_[17]
-    SLICE_X63Y64         LUT5 (Prop_lut5_I2_O)        0.045     0.393 r  scan_seg_1/cnt[31]_i_3/O
-                         net (fo=32, routed)          0.118     0.511    scan_seg_1/cnt[31]_i_3_n_0
-    SLICE_X63Y64         LUT5 (Prop_lut5_I0_O)        0.045     0.556 r  scan_seg_1/cnt[19]_i_1/O
-                         net (fo=1, routed)           0.000     0.556    scan_seg_1/cnt[19]
-    SLICE_X63Y64         FDCE                                         r  scan_seg_1/cnt_reg[19]/D
+    SLICE_X64Y48         LDCE                         0.000     0.000 r  main_state_switcher_1/next_state_reg[2]/G
+    SLICE_X64Y48         LDCE (EnToQ_ldce_G_Q)        0.178     0.178 r  main_state_switcher_1/next_state_reg[2]/Q
+                         net (fo=6, routed)           0.160     0.338    main_state_switcher_1/next_state[2]
+    SLICE_X64Y49         FDCE                                         r  main_state_switcher_1/state_reg[2]_lopt_replica/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 scan_seg_1/cnt_reg[17]/C
-                            (rising edge-triggered cell FDCE)
-  Destination:            scan_seg_1/cnt_reg[20]/D
+  Source:                 main_state_switcher_1/current_time_next_reg[21]/G
+                            (positive level-sensitive latch)
+  Destination:            main_state_switcher_1/current_time_reg[21]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.594ns  (logic 0.231ns (38.867%)  route 0.363ns (61.133%))
-  Logic Levels:           3  (FDCE=1 LUT5=2)
+  Data Path Delay:        0.339ns  (logic 0.227ns (66.985%)  route 0.112ns (33.015%))
+  Logic Levels:           1  (LDCE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X63Y64         FDCE                         0.000     0.000 r  scan_seg_1/cnt_reg[17]/C
-    SLICE_X63Y64         FDCE (Prop_fdce_C_Q)         0.141     0.141 r  scan_seg_1/cnt_reg[17]/Q
-                         net (fo=2, routed)           0.207     0.348    scan_seg_1/cnt_reg_n_0_[17]
-    SLICE_X63Y64         LUT5 (Prop_lut5_I2_O)        0.045     0.393 r  scan_seg_1/cnt[31]_i_3/O
-                         net (fo=32, routed)          0.156     0.549    scan_seg_1/cnt[31]_i_3_n_0
-    SLICE_X61Y64         LUT5 (Prop_lut5_I0_O)        0.045     0.594 r  scan_seg_1/cnt[20]_i_1/O
-                         net (fo=1, routed)           0.000     0.594    scan_seg_1/cnt[20]
-    SLICE_X61Y64         FDCE                                         r  scan_seg_1/cnt_reg[20]/D
+    SLICE_X31Y67         LDCE                         0.000     0.000 r  main_state_switcher_1/current_time_next_reg[21]/G
+    SLICE_X31Y67         LDCE (EnToQ_ldce_G_Q)        0.227     0.227 r  main_state_switcher_1/current_time_next_reg[21]/Q
+                         net (fo=3, routed)           0.112     0.339    main_state_switcher_1/current_time_next[21]
+    SLICE_X33Y67         FDCE                                         r  main_state_switcher_1/current_time_reg[21]/D
   -------------------------------------------------------------------    -------------------
 
 
