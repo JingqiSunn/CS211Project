@@ -101,6 +101,15 @@ module main(
     .whether_short_touch(power_menu_button_short)
     );
     
+    wire power_menu_three, power_menu_no_three;
+    three_second_button_signal_checker three_second_button_signal_checker_1(
+    .target_button(power_menu_button),
+    .clk(standard_clock_1),
+    .reset(P15),
+    .whether_long_touch(power_menu_three),
+    .whether_short_touch(power_menu_no_three)
+    );
+        
     main_state_switcher main_state_switcher_1(
     .edit_state_button(P5),
     .P4(P4),
@@ -109,7 +118,7 @@ module main(
     .R2(R2),
     .M4(M4),
     .N4(N4),
-    .R1(R1),
+    .light_mode_button(R1),
     .clk(P17),
     .standard_clock_1(standard_clock_1),
     .standard_clock_60(standard_clock_60),
@@ -121,6 +130,7 @@ module main(
     .power_menu_button(power_menu_button),
     .power_menu_button_long(power_menu_button_long),
     .power_menu_button_short(power_menu_button_short),
+    .power_menu_button_three(power_menu_three),
     .F6(F6),
     .G4(G4),
     .G3(G3),

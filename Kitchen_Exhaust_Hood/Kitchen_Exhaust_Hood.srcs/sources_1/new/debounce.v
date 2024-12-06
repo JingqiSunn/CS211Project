@@ -29,7 +29,8 @@ module debounce(
     parameter debounce_count_standard = 20'b11110100001001000000; 
     reg [19:0] debounce_counter;  
     reg button_in_d1;             
-
+    
+    
     always @(posedge clk or negedge reset) begin
         if (~reset) begin
             debounce_counter <= 0;

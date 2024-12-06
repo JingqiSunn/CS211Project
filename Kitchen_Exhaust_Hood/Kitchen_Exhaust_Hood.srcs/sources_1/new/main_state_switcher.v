@@ -28,7 +28,7 @@ module main_state_switcher(
     input R2,
     input M4,
     input N4,
-    input R1,
+    input light_mode_button,
     input clk,
     input standard_clock_1,
     input standard_clock_60,
@@ -40,6 +40,7 @@ module main_state_switcher(
     input power_menu_button,
     input power_menu_button_long,
     input power_menu_button_short,
+    input power_menu_button_three,
     output reg F6,
     output reg G4,
     output reg G3,
@@ -51,11 +52,11 @@ module main_state_switcher(
     output reg K1,
     output reg H6,
     output reg H5,
-    output J5,
+    output reg J5,
     output K6,
     output L1,
-    output M1,
-    output K3,
+    output reg M1,
+    output reg K3,
     output B4,
     output A4,
     output A3,
@@ -81,14 +82,13 @@ module main_state_switcher(
     output E1,
     output G6
     );
-    
+    wire the_left_right_signal;
     wire clock_for_edit;
     standard_clock_generator_edit standard_clock_generator_edit_1(
     .clk_in(clk),
     .reset(reset),
     .standard_clock(clock_for_edit)
     );
-    
     reg [10:0] state, next_state;
     reg [2:0] state_in_edit_state, state_in_edit_state_next;
     reg [2:0] state_in_hour_minute_second, state_in_hour_minute_second_next;
@@ -132,9 +132,9 @@ module main_state_switcher(
     wire [5:0] total_working_standard_edit_hour_0, total_working_standard_edit_hour_1, total_working_standard_edit_minute_0, total_working_standard_edit_minute_1, total_working_standard_edit_second_0_useless, total_working_standard_edit_second_1_useless;   
     wire [5:0] strong_standby_standard_edit_hour_0_useless, strong_standby_standard_edit_hour_1_useless, strong_standby_standard_edit_minute_0, strong_standby_standard_edit_minute_1, strong_standby_standard_edit_second_0, strong_standby_standard_edit_second_1;   
     wire [5:0] level_3_standard_edit_hour_0_useless, level_3_standard_edit_hour_1_useless, level_3_standard_edit_minute_0, level_3_standard_edit_minute_1, level_3_standard_edit_second_0, level_3_standard_edit_second_1;   
+      
     
     
-        
     parameter 
     power_off_state                 = 11'b000000000001,
     power_off_a_state               = 11'b000000000010,
@@ -220,7 +220,7 @@ module main_state_switcher(
     );
     
     second_time_switcher second_time_switcher_for_left_right(
-    .total_seconds(left_right_standard), 
+    .total_seconds({22'b0,left_right_standard}), 
     .hour_0(left_right_edit_hour_0_useless),          
     .hour_1(left_right_edit_hour_1_useless),         
     .minute_0(left_right_edit_minute_0_useless), 
@@ -253,7 +253,7 @@ module main_state_switcher(
     .total_seconds(level_3_timer_standard), 
     .hour_0(level_3_standard_edit_hour_0_useless),          
     .hour_1(level_3_standard_edit_hour_1_useless),         
-    .minute_0(level_3_strong_standby_standard_edit_minute_0), 
+    .minute_0(level_3_standard_edit_minute_0), 
     .minute_1(level_3_standard_edit_minute_1),       
     .second_0(level_3_standard_edit_second_0),        
     .second_1(level_3_standard_edit_second_1)  
@@ -272,7 +272,7 @@ module main_state_switcher(
                     strong_standby_timer_standard <= 28'b0000000000000000000000001000;
                     current_time <= 28'b0;
                     total_working_time <= 28'b0;
-                    total_working_time_standard <= 28'b000000000000000000000111100;
+                    total_working_time_standard <= 28'b0000000000000000000000000010;
                     state_in_hour_minute_second <= second;
                     left_right <= 6'b0;
                     left_right_standard <= 6'b000101;
@@ -317,6 +317,19 @@ module main_state_switcher(
                     left_right_standard <= left_right_standard_next;
                 end
         end
+     
+     
+     left_right_signal left_right_signal_1(
+        .reset(reset),
+        .target_time(left_right_standard),
+        .clk(clk),
+        .standard_clock(standard_clock_1),
+        .left_button(level_1_button),
+        .right_button(level_3_button),
+        .left_right_signal_out(the_left_right_signal)
+    ); 
+    
+    
      always @(state, power_menu_button_short, power_menu_button_long, level_1_button, level_2_button, level_3_button, self_clean_button, edit_state_button)
         case (state)
             power_off_state: 
@@ -330,6 +343,10 @@ module main_state_switcher(
                     if (next_state != state) 
                         begin
                             next_state <= next_state; 
+                        end
+                    else if (the_left_right_signal == 1)
+                        begin
+                            next_state <= standby_state;
                         end
                     else if (power_menu_button_short == 0) 
                         begin
@@ -355,6 +372,10 @@ module main_state_switcher(
                     else if (edit_state_button == 1)
                         begin
                             next_state <= edit_state; 
+                        end
+                    else if (the_left_right_signal == 1)
+                        begin
+                            next_state <= power_off_state;
                         end
                     else if (power_menu_button_long == 1)
                         begin
@@ -423,6 +444,10 @@ module main_state_switcher(
                         begin
                             next_state <= next_state;
                         end
+                    else if (power_menu_button_three == 1'b1)
+                        begin
+                            next_state <= power_off_state;
+                        end
                     else if (level_1_button == 1)
                         begin
                             next_state <= level_1_state;
@@ -454,6 +479,11 @@ module main_state_switcher(
                     if (next_state != state)
                         begin
                             next_state <= next_state;
+                            state_in_edit_state_next <= change_self_clean;
+                        end
+                    else if (power_menu_button_three == 1'b1)
+                        begin
+                            next_state <= power_off_state;
                             state_in_edit_state_next <= change_self_clean;
                         end
                     if (state_in_edit_state_next != state_in_edit_state)
@@ -508,6 +538,10 @@ module main_state_switcher(
                         begin
                             next_state <= next_state;
                         end
+                    else if (power_menu_button_three == 1'b1)
+                        begin
+                            next_state <= power_off_state;
+                        end
                     else if (level_2_button == 1) 
                         begin
                             next_state <= level_2_state;
@@ -533,6 +567,10 @@ module main_state_switcher(
                         begin
                             next_state <= next_state;
                         end
+                    else if (power_menu_button_three == 1'b1)
+                        begin
+                            next_state <= power_off_state;
+                        end
                     else if (level_1_button == 1) 
                         begin
                             next_state <= level_1_state;
@@ -557,6 +595,11 @@ module main_state_switcher(
                         if (next_state != state)
                             begin
                                 next_state <= next_state;
+                                level_3_timer_next <= 28'b0;
+                            end
+                        else if (power_menu_button_three == 1'b1)
+                            begin
+                                next_state <= power_off_state;
                                 level_3_timer_next <= 28'b0;
                             end
                         else if (power_menu_button_short == 1)
@@ -588,6 +631,11 @@ module main_state_switcher(
                             next_state <= next_state;
                             self_clean_timer_next <= 28'b0;
                         end
+                    else if (power_menu_button_three == 1'b1)
+                        begin
+                            next_state <= power_off_state;
+                            self_clean_timer_next <= 28'b0;
+                        end
                     else if (self_clean_timer != self_clean_timer_standard)
                         begin
                             next_state <= self_clean_state;
@@ -610,6 +658,11 @@ module main_state_switcher(
                     if (next_state != state)
                         begin
                             next_state <= next_state;
+                            strong_standby_timer_next <= 28'b0;
+                        end
+                    else if (power_menu_button_three == 1'b1)
+                        begin
+                            next_state <= power_off_state;
                             strong_standby_timer_next <= 28'b0;
                         end
                     else if (strong_standby_timer != strong_standby_timer_standard)
@@ -1186,14 +1239,58 @@ module main_state_switcher(
                     end
                 level_1_state:
                     begin
-                        content_0 <= total_working_time_hour_0;
-                        content_1 <= total_working_time_hour_1;
+                        content_0 <= hour_0;
+                        content_1 <= hour_1;
                         content_2 <= 6'b100100;
-                        content_3 <= total_working_time_minute_0;
-                        content_4 <= total_working_time_minute_1;
+                        content_3 <= minute_0;
+                        content_4 <= minute_1;
                         content_5 <= 6'b100100;
-                        content_6 <= total_working_time_second_0;
-                        content_7 <= total_working_time_second_1;
+                        content_6 <= second_0;
+                        content_7 <= second_1;
+                    end
+                menu_state:
+                    begin
+                        content_0 <= hour_0;
+                        content_1 <= hour_1;
+                        content_2 <= 6'b100100;
+                        content_3 <= minute_0;
+                        content_4 <= minute_1;
+                        content_5 <= 6'b100100;
+                        content_6 <= second_0;
+                        content_7 <= second_1;
+                    end
+                level_2_state:
+                    begin
+                        content_0 <= hour_0;
+                        content_1 <= hour_1;
+                        content_2 <= 6'b100100;
+                        content_3 <= minute_0;
+                        content_4 <= minute_1;
+                        content_5 <= 6'b100100;
+                        content_6 <= second_0;
+                        content_7 <= second_1;
+                    end
+                power_off_a_state:
+                    begin
+                        content_0 <= hour_0;
+                        content_1 <= hour_1;
+                        content_2 <= 6'b100100;
+                        content_3 <= minute_0;
+                        content_4 <= minute_1;
+                        content_5 <= 6'b100100;
+                        content_6 <= second_0;
+                        content_7 <= second_1;
+                    end
+                power_off_b_state:
+                    begin
+                        content_0 <= hour_0;
+                        content_1 <= hour_1;
+                        content_2 <= 6'b100100;
+                        content_3 <= minute_0;
+                        content_4 <= minute_1;
+                        content_5 <= 6'b100100;
+                        content_6 <= second_0;
+                        content_7 <= second_1;
                     end
                 edit_state:
                     begin
@@ -1310,5 +1407,31 @@ module main_state_switcher(
      always @(state)
         begin
             {F6, G4, G3, J4, H4, J3, J2, K2, K1, H6, H5} = state;
+        end
+     always @(the_left_right_signal)
+        begin
+            J5 = the_left_right_signal;
+        end
+     always @(total_working_time, total_working_time_standard)
+        if (total_working_time == total_working_time_standard)
+            begin
+                K3 <= 1;
+            end
+        else 
+            K3 <= 0;
+     always @(light_mode_button)
+        begin
+            if (state == power_off_state)
+                begin
+                    M1 <= 1'b0;
+                end
+            else if (light_mode_button == 1)
+                begin
+                    M1 <= 1'b1;
+                end
+            else
+                begin
+                    M1 <= 1'b0;
+                end
         end
 endmodule
