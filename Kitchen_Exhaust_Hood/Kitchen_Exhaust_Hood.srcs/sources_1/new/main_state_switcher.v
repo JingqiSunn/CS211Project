@@ -120,6 +120,8 @@ module main_state_switcher(
     reg [5:0] left_right, left_right_next;
     reg [5:0] left_right_standard, left_right_standard_next;
     
+    reg already_use_level_3,already_use_level_3_next; 
+    
     
     reg [5:0] content_0, content_1, content_2,content_3, content_4, content_5, content_6, content_7;
     wire [5:0] hour_0, hour_1, minute_0, minute_1, second_0, second_1;
@@ -265,17 +267,18 @@ module main_state_switcher(
                     state <= power_off_state;
                     state_in_edit_state <= change_self_clean;
                     self_clean_timer <= 28'b0;
-                    self_clean_timer_standard <= 28'b0000000000000000000000000100;
+                    self_clean_timer_standard <= 28'b0000000000000000000010110100;
                     level_3_timer <= 28'b0;
-                    level_3_timer_standard <= 28'b0000000000000000000000001000;
+                    level_3_timer_standard <= 28'b0000000000000000000000111100;
                     strong_standby_timer <= 28'b0;
-                    strong_standby_timer_standard <= 28'b0000000000000000000000001000;
+                    strong_standby_timer_standard <= 28'b0000000000000000000000111100;
                     current_time <= 28'b0;
                     total_working_time <= 28'b0;
-                    total_working_time_standard <= 28'b0000000000000000000000000010;
+                    total_working_time_standard <= 28'b0000000000001000110010100000;
                     state_in_hour_minute_second <= second;
                     left_right <= 6'b0;
                     left_right_standard <= 6'b000101;
+                    already_use_level_3 <= 1'b0;
                 end
              else
                 begin
@@ -315,6 +318,7 @@ module main_state_switcher(
                     state_in_hour_minute_second <= state_in_hour_minute_second_next;
                     left_right <= left_right_next;
                     left_right_standard <= left_right_standard_next;
+                    already_use_level_3 <= already_use_level_3_next;
                 end
         end
      
@@ -330,826 +334,1045 @@ module main_state_switcher(
     ); 
     
     
-     always @(state, power_menu_button_short, power_menu_button_long, level_1_button, level_2_button, level_3_button, self_clean_button, edit_state_button)
-        case (state)
-            power_off_state: 
+     always @(reset ,state, power_menu_button_short, power_menu_button_long, level_1_button, level_2_button, level_3_button, self_clean_button, edit_state_button)
+        begin
+            if (~reset)
                 begin
+                    already_use_level_3_next <= 1'b0;
                     left_right_next <= 28'b0;
                     state_in_edit_state_next <= change_self_clean;
                     self_clean_timer_next <= 28'b0;
-                    level_3_timer_next <= 28'b0;
-                    strong_standby_timer_next <= 28'b0;
-                    total_working_time_next <= total_working_time;
-                    if (next_state != state) 
-                        begin
-                            next_state <= next_state; 
-                        end
-                    else if (the_left_right_signal == 1)
-                        begin
-                            next_state <= standby_state;
-                        end
-                    else if (power_menu_button_short == 0) 
-                        begin
-                            next_state <= power_off_state;
-                        end
-                    else 
-                        begin
-                            next_state <= standby_state;
-                        end
-                end
-            standby_state:
-                begin
-                    left_right_next <= 28'b0;
-                    state_in_edit_state_next <= change_self_clean;
-                    self_clean_timer_next <= 28'b0;
-                    level_3_timer_next <= 28'b0;
-                    strong_standby_timer_next <= 28'b0;
-                    total_working_time_next <= total_working_time;
-                    if (next_state != state)
-                        begin
-                            next_state <= next_state;
-                        end    
-                    else if (edit_state_button == 1)
-                        begin
-                            next_state <= edit_state; 
-                        end
-                    else if (the_left_right_signal == 1)
-                        begin
-                            next_state <= power_off_state;
-                        end
-                    else if (power_menu_button_long == 1)
-                        begin
-                            next_state <= power_off_b_state;
-                        end
-                    else if (power_menu_button_short == 1)
-                        begin
-                            next_state = menu_state;
-                        end
-                    else 
-                        begin
-                            next_state <= standby_state;
-                        end
-                end
-            power_off_b_state:
-                begin
-                    left_right_next <= 28'b0;
-                    state_in_edit_state_next <= change_self_clean;
-                    self_clean_timer_next <= 28'b0;
-                    level_3_timer_next <= 28'b0;
-                    strong_standby_timer_next <= 28'b0;
-                    total_working_time_next <= total_working_time;
-                    if (next_state != state)
-                        begin
-                            next_state <= next_state;
-                        end
-                    else if (power_menu_button_long == 1)
-                        begin
-                            next_state <= power_off_a_state;
-                        end
-                    else 
-                        begin
-                            next_state <= standby_state;
-                        end
-                end
-            power_off_a_state:
-                begin
-                    left_right_next <= 28'b0;
-                    state_in_edit_state_next <= change_self_clean;
-                    self_clean_timer_next <= 28'b0;
-                    level_3_timer_next <= 28'b0;
-                    strong_standby_timer_next <= 28'b0;
-                    total_working_time_next <= total_working_time;
-                    if (next_state != state)
-                        begin
-                            next_state <= next_state;
-                        end
-                    else if (power_menu_button_long == 1)
-                        begin
-                            next_state <= power_off_state;
-                        end
-                    else 
-                        begin
-                            next_state <= standby_state;
-                        end
-                end
-            menu_state:
-                begin  
-                    left_right_next <= 28'b0; 
-                    state_in_edit_state_next <= change_self_clean;
-                    self_clean_timer_next <= 28'b0;
-                    level_3_timer_next <= 28'b0;
-                    strong_standby_timer_next <= 28'b0;
-                    total_working_time_next <= total_working_time;
-                    if (next_state != state)
-                        begin
-                            next_state <= next_state;
-                        end
-                    else if (power_menu_button_three == 1'b1)
-                        begin
-                            next_state <= power_off_state;
-                        end
-                    else if (level_1_button == 1)
-                        begin
-                            next_state <= level_1_state;
-                        end
-                    else if (level_2_button == 1)
-                        begin
-                            next_state <= level_2_state;
-                        end
-                    else if (level_3_button == 1)
-                        begin
-                            next_state <= level_3_state;
-                        end
-                    else if (self_clean_button == 1)
-                        begin
-                            next_state <= self_clean_state;
-                        end
-                    else
-                        begin
-                            next_state <= menu_state;
-                        end
-                end
-            edit_state:
-                begin
-                    left_right_next <= 28'b0;
-                    self_clean_timer_next <= 28'b0;
-                    level_3_timer_next <= 28'b0;
-                    strong_standby_timer_next <= 28'b0;
-                    total_working_time_next <= total_working_time;
-                    if (next_state != state)
-                        begin
-                            next_state <= next_state;
-                            state_in_edit_state_next <= change_self_clean;
-                        end
-                    else if (power_menu_button_three == 1'b1)
-                        begin
-                            next_state <= power_off_state;
-                            state_in_edit_state_next <= change_self_clean;
-                        end
-                    if (state_in_edit_state_next != state_in_edit_state)
-                        begin
-                            next_state <= next_state;
-                            state_in_edit_state_next <= state_in_edit_state_next;
-                        end
-                    else if (edit_state_button == 0)
-                        begin
-                            next_state <= standby_state;
-                            state_in_edit_state_next <= change_self_clean;
-                        end
-                    else if (level_3_button == 1)
-                        begin
-                            next_state <= edit_state;
-                            if (state_in_edit_state != change_clock)
-                                begin
-                                    state_in_edit_state_next <= state_in_edit_state + 1;
-                                end
-                            else 
-                                begin
-                                    state_in_edit_state_next <= change_self_clean;
-                                end
-                        end
-                    else if (level_1_button == 1)
-                        begin
-                            next_state <= edit_state;
-                            if (state_in_edit_state != change_self_clean)
-                                begin
-                                    state_in_edit_state_next <= state_in_edit_state - 1;
-                                end
-                            else 
-                                begin
-                                    state_in_edit_state_next <= change_clock;
-                                end
-                        end
-                    else 
-                        begin
-                            next_state <= edit_state;
-                            state_in_edit_state_next <= state_in_edit_state;
-                        end
-                end
-            level_1_state:
-                begin
-                    left_right_next <= 28'b0;
-                    state_in_edit_state_next <= change_self_clean;
-                    self_clean_timer_next <= 28'b0;
-                    level_3_timer_next <= 28'b0;
-                    strong_standby_timer_next <= 28'b0;
-                    total_working_time_next <= total_working_time + 1;
-                    if (next_state != state)
-                        begin
-                            next_state <= next_state;
-                        end
-                    else if (power_menu_button_three == 1'b1)
-                        begin
-                            next_state <= power_off_state;
-                        end
-                    else if (level_2_button == 1) 
-                        begin
-                            next_state <= level_2_state;
-                        end
-                    else if (power_menu_button_short == 1)
-                        begin
-                            next_state <= standby_state;
-                        end
-                    else
-                        begin
-                            next_state <= level_1_state;
-                        end
-                end
-            level_2_state:
-                begin
-                    left_right_next <= 28'b0;
-                    state_in_edit_state_next <= change_self_clean;
-                    self_clean_timer_next <= 28'b0;
-                    level_3_timer_next <= 28'b0;
-                    strong_standby_timer_next <= 28'b0;
-                    total_working_time_next <= total_working_time + 1;
-                    if (next_state != state)
-                        begin
-                            next_state <= next_state;
-                        end
-                    else if (power_menu_button_three == 1'b1)
-                        begin
-                            next_state <= power_off_state;
-                        end
-                    else if (level_1_button == 1) 
-                        begin
-                            next_state <= level_1_state;
-                        end
-                    else if (power_menu_button_short == 1)
-                        begin
-                            next_state <= standby_state;
-                        end
-                    else
-                        begin
-                            next_state <= level_2_state;
-                        end
-                 end
-            level_3_state:
-                begin
-                    left_right_next <= 28'b0;
-                    state_in_edit_state_next <= change_self_clean;
-                    self_clean_timer_next <= 28'b0;
-                    strong_standby_timer_next <= 28'b0;
-                    total_working_time_next <= total_working_time + 1;
-                    begin
-                        if (next_state != state)
-                            begin
-                                next_state <= next_state;
-                                level_3_timer_next <= 28'b0;
-                            end
-                        else if (power_menu_button_three == 1'b1)
-                            begin
-                                next_state <= power_off_state;
-                                level_3_timer_next <= 28'b0;
-                            end
-                        else if (power_menu_button_short == 1)
-                            begin
-                                next_state <= strong_standby_state;
-                                level_3_timer_next <= 28'b0;
-                            end
-                        else if (level_3_timer != level_3_timer_standard)
-                            begin
-                                next_state <= level_3_state;
-                                level_3_timer_next <= level_3_timer + 1;
-                            end
-                        else 
-                            begin
-                                next_state <= level_2_state;
-                                level_3_timer_next <= 28'b0;
-                            end
-                    end
-                end
-            self_clean_state:
-                begin
-                    left_right_next <= 28'b0;
-                    state_in_edit_state_next <= change_self_clean;
                     level_3_timer_next <= 28'b0;
                     strong_standby_timer_next <= 28'b0;
                     total_working_time_next <= 28'b0;
-                    if (next_state != state)
-                        begin
-                            next_state <= next_state;
-                            self_clean_timer_next <= 28'b0;
-                        end
-                    else if (power_menu_button_three == 1'b1)
-                        begin
-                            next_state <= power_off_state;
-                            self_clean_timer_next <= 28'b0;
-                        end
-                    else if (self_clean_timer != self_clean_timer_standard)
-                        begin
-                            next_state <= self_clean_state;
-                            self_clean_timer_next <= self_clean_timer + 1;
-                        end
-                    else 
-                        begin
-                            next_state <= standby_state;
-                            self_clean_timer_next <= 28'b0;
-                        end
-                end
-            strong_standby_state:
-                begin
-                    left_right_next <= 28'b0;
-                    state_in_edit_state_next <= change_self_clean;
-                    self_clean_timer_next <= 28'b0;
-                    level_3_timer_next <= 28'b0;
-                    total_working_time_next <= total_working_time;
-                    
-                    if (next_state != state)
-                        begin
-                            next_state <= next_state;
-                            strong_standby_timer_next <= 28'b0;
-                        end
-                    else if (power_menu_button_three == 1'b1)
-                        begin
-                            next_state <= power_off_state;
-                            strong_standby_timer_next <= 28'b0;
-                        end
-                    else if (strong_standby_timer != strong_standby_timer_standard)
-                        begin
-                            next_state <= strong_standby_state;
-                            strong_standby_timer_next <= strong_standby_timer + 1;
-                        end
-                    else 
-                        begin
-                            next_state <= standby_state;
-                            strong_standby_timer_next <= 28'b0;
-                        end
-                end
-            default:
-                begin
-                    left_right_next <= 28'b0;
-                    state_in_edit_state_next <= change_self_clean;
-                    self_clean_timer_next <= 28'b0;
-                    level_3_timer_next <= 28'b0;
-                    strong_standby_timer_next <= 28'b0;
-                    total_working_time_next <= total_working_time;
                     next_state <= power_off_state;
                 end
-        endcase
-    always @(posedge clock_for_edit)
-        begin
-            case(state)
-                edit_state:
-                    case(state_in_edit_state)
-                        change_self_clean:
+            else    
+                begin
+                    case (state)
+                        power_off_state: 
                             begin
-                                left_right_standard_next <= left_right_standard;
-                                current_time_edit <= current_time;
-                                if (self_clean_timer_standard_next != self_clean_timer_standard)
+                                already_use_level_3_next <= 1'b0;
+                                left_right_next <= 28'b0;
+                                state_in_edit_state_next <= change_self_clean;
+                                self_clean_timer_next <= 28'b0;
+                                level_3_timer_next <= 28'b0;
+                                strong_standby_timer_next <= 28'b0;
+                                total_working_time_next <= total_working_time;
+                                if (next_state != state) 
                                     begin
-                                        state_in_hour_minute_second_next <= state_in_hour_minute_second;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard_next;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard;
+                                        next_state <= next_state; 
                                     end
-                                else if (state_in_hour_minute_second_next != state_in_hour_minute_second)
+                                else if (the_left_right_signal == 1)
                                     begin
-                                        state_in_hour_minute_second_next <= state_in_hour_minute_second_next;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard;
+                                        next_state <= standby_state;
                                     end
-                                else if (level_2_button == 1)
+                                else if (power_menu_button_short == 0) 
                                     begin
-                                        if (state_in_hour_minute_second == second)
-                                            begin   
-                                                state_in_hour_minute_second_next <= minute;
-                                            end
-                                        else 
-                                            begin
-                                                state_in_hour_minute_second_next <= second;
-                                            end
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard;
-                                    end
-                                else if (state_in_hour_minute_second == second && self_clean_button == 1)
-                                    begin
-                                        state_in_hour_minute_second_next <= state_in_hour_minute_second;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard + 1;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard;
-                                    end
-                                else if (state_in_hour_minute_second == second && power_menu_button == 1)
-                                    begin
-                                        state_in_hour_minute_second_next <= state_in_hour_minute_second;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard - 1;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard;
-                                    end
-                                else if ((state_in_hour_minute_second == minute || state_in_hour_minute_second == hour) && self_clean_button == 1)
-                                    begin
-                                        state_in_hour_minute_second_next <= state_in_hour_minute_second;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard + 60;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard;
-                                    end
-                                else if ((state_in_hour_minute_second == minute || state_in_hour_minute_second == hour) && power_menu_button == 1)
-                                    begin
-                                        state_in_hour_minute_second_next <= state_in_hour_minute_second;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard - 60;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard;
+                                        next_state <= power_off_state;
                                     end
                                 else 
                                     begin
-                                        state_in_hour_minute_second_next <= state_in_hour_minute_second;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard;
+                                        next_state <= standby_state;
                                     end
                             end
-                        change_left_right:
+                        standby_state:
                             begin
-                                current_time_edit <= current_time;
-                                if (self_clean_timer_standard_next != self_clean_timer_standard)
+                                already_use_level_3_next <= already_use_level_3;
+                                left_right_next <= 28'b0;
+                                state_in_edit_state_next <= change_self_clean;
+                                self_clean_timer_next <= 28'b0;
+                                level_3_timer_next <= 28'b0;
+                                strong_standby_timer_next <= 28'b0;
+                                total_working_time_next <= total_working_time;
+                                if (next_state != state)
                                     begin
-                                        state_in_hour_minute_second_next <= second;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard_next;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard;
-                                        left_right_standard_next <= left_right_standard;
+                                        next_state <= next_state;
+                                    end    
+                                else if (edit_state_button == 1)
+                                    begin
+                                        next_state <= edit_state; 
                                     end
-                                else if (left_right_standard_next != left_right_standard)
+                                else if (the_left_right_signal == 1)
                                     begin
-                                        state_in_hour_minute_second_next <= second;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard;
-                                        left_right_standard_next <= left_right_standard_next;
+                                        next_state <= power_off_state;
+                                    end
+                                else if (power_menu_button_long == 1)
+                                    begin
+                                        next_state <= power_off_b_state;
+                                    end
+                                else if (power_menu_button_short == 1)
+                                    begin
+                                        next_state = menu_state;
+                                    end
+                                else 
+                                    begin
+                                        next_state <= standby_state;
+                                    end
+                            end
+                        power_off_b_state:
+                            begin
+                                already_use_level_3_next <= already_use_level_3;
+                                left_right_next <= 28'b0;
+                                state_in_edit_state_next <= change_self_clean;
+                                self_clean_timer_next <= 28'b0;
+                                level_3_timer_next <= 28'b0;
+                                strong_standby_timer_next <= 28'b0;
+                                total_working_time_next <= total_working_time;
+                                if (next_state != state)
+                                    begin
+                                        next_state <= next_state;
+                                    end
+                                else if (power_menu_button_long == 1)
+                                    begin
+                                        next_state <= power_off_a_state;
+                                    end
+                                else 
+                                    begin
+                                        next_state <= standby_state;
+                                    end
+                            end
+                        power_off_a_state:
+                            begin
+                                already_use_level_3_next <= already_use_level_3;
+                                left_right_next <= 28'b0;
+                                state_in_edit_state_next <= change_self_clean;
+                                self_clean_timer_next <= 28'b0;
+                                level_3_timer_next <= 28'b0;
+                                strong_standby_timer_next <= 28'b0;
+                                total_working_time_next <= total_working_time;
+                                if (next_state != state)
+                                    begin
+                                        next_state <= next_state;
+                                    end
+                                else if (power_menu_button_long == 1)
+                                    begin
+                                        next_state <= power_off_state;
+                                    end
+                                else 
+                                    begin
+                                        next_state <= standby_state;
+                                    end
+                            end
+                        menu_state:
+                            begin  
+                                already_use_level_3_next <= already_use_level_3;
+                                left_right_next <= 28'b0; 
+                                state_in_edit_state_next <= change_self_clean;
+                                self_clean_timer_next <= 28'b0;
+                                level_3_timer_next <= 28'b0;
+                                strong_standby_timer_next <= 28'b0;
+                                total_working_time_next <= total_working_time;
+                                if (next_state != state)
+                                    begin
+                                        next_state <= next_state;
+                                    end
+                                else if (power_menu_button_three == 1'b1)
+                                    begin
+                                        next_state <= power_off_state;
+                                    end
+                                else if (level_1_button == 1)
+                                    begin
+                                        next_state <= level_1_state;
+                                    end
+                                else if (level_2_button == 1)
+                                    begin
+                                        next_state <= level_2_state;
+                                    end
+                                else if (level_3_button == 1 && already_use_level_3 == 1'b0)
+                                    begin
+                                        next_state <= level_3_state;
                                     end
                                 else if (self_clean_button == 1)
                                     begin
-                                        state_in_hour_minute_second_next <= second;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard;
-                                        left_right_standard_next <= left_right_standard + 1;
+                                        next_state <= self_clean_state;
                                     end
-                                else if (power_menu_button == 1)
+                                else
                                     begin
-                                        state_in_hour_minute_second_next <= second;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard;
-                                        left_right_standard_next <= left_right_standard - 1;
+                                        next_state <= menu_state;
+                                    end
+                            end
+                        edit_state:
+                            begin
+                                already_use_level_3_next <= already_use_level_3;
+                                left_right_next <= 28'b0;
+                                self_clean_timer_next <= 28'b0;
+                                level_3_timer_next <= 28'b0;
+                                strong_standby_timer_next <= 28'b0;
+                                total_working_time_next <= total_working_time;
+                                if (next_state != state)
+                                    begin
+                                        next_state <= next_state;
+                                        state_in_edit_state_next <= change_self_clean;
+                                    end
+                                else if (power_menu_button_three == 1'b1)
+                                    begin
+                                        next_state <= power_off_state;
+                                        state_in_edit_state_next <= change_self_clean;
+                                    end
+                                if (state_in_edit_state_next != state_in_edit_state)
+                                    begin
+                                        next_state <= next_state;
+                                        state_in_edit_state_next <= state_in_edit_state_next;
+                                    end
+                                else if (edit_state_button == 0)
+                                    begin
+                                        next_state <= standby_state;
+                                        state_in_edit_state_next <= change_self_clean;
+                                    end
+                                else if (level_3_button == 1)
+                                    begin
+                                        next_state <= edit_state;
+                                        if (state_in_edit_state != change_clock)
+                                            begin
+                                                state_in_edit_state_next <= state_in_edit_state + 1;
+                                            end
+                                        else 
+                                            begin
+                                                state_in_edit_state_next <= change_self_clean;
+                                            end
+                                    end
+                                else if (level_1_button == 1)
+                                    begin
+                                        next_state <= edit_state;
+                                        if (state_in_edit_state != change_self_clean)
+                                            begin
+                                                state_in_edit_state_next <= state_in_edit_state - 1;
+                                            end
+                                        else 
+                                            begin
+                                                state_in_edit_state_next <= change_clock;
+                                            end
                                     end
                                 else 
                                     begin
-                                        state_in_hour_minute_second_next <= second;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard;
+                                        next_state <= edit_state;
+                                        state_in_edit_state_next <= state_in_edit_state;
+                                    end
+                            end
+                        level_1_state:
+                            begin
+                                already_use_level_3_next <= already_use_level_3;
+                                left_right_next <= 28'b0;
+                                state_in_edit_state_next <= change_self_clean;
+                                self_clean_timer_next <= 28'b0;
+                                level_3_timer_next <= 28'b0;
+                                strong_standby_timer_next <= 28'b0;
+                                total_working_time_next <= total_working_time + 1;
+                                if (next_state != state)
+                                    begin
+                                        next_state <= next_state;
+                                    end
+                                else if (power_menu_button_three == 1'b1)
+                                    begin
+                                        next_state <= power_off_state;
+                                    end
+                                else if (level_2_button == 1) 
+                                    begin
+                                        next_state <= level_2_state;
+                                    end
+                                else if (power_menu_button_short == 1)
+                                    begin
+                                        next_state <= standby_state;
+                                    end
+                                else
+                                    begin
+                                        next_state <= level_1_state;
+                                    end
+                            end
+                        level_2_state:
+                            begin
+                                already_use_level_3_next <= already_use_level_3;
+                                left_right_next <= 28'b0;
+                                state_in_edit_state_next <= change_self_clean;
+                                self_clean_timer_next <= 28'b0;
+                                level_3_timer_next <= 28'b0;
+                                strong_standby_timer_next <= 28'b0;
+                                total_working_time_next <= total_working_time + 1;
+                                if (next_state != state)
+                                    begin
+                                        next_state <= next_state;
+                                    end
+                                else if (power_menu_button_three == 1'b1)
+                                    begin
+                                        next_state <= power_off_state;
+                                    end
+                                else if (level_1_button == 1) 
+                                    begin
+                                        next_state <= level_1_state;
+                                    end
+                                else if (power_menu_button_short == 1)
+                                    begin
+                                        next_state <= standby_state;
+                                    end
+                                else
+                                    begin
+                                        next_state <= level_2_state;
+                                    end
+                             end
+                        level_3_state:
+                            begin
+                                already_use_level_3_next <= 1'b1;
+                                left_right_next <= 28'b0;
+                                state_in_edit_state_next <= change_self_clean;
+                                self_clean_timer_next <= 28'b0;
+                                strong_standby_timer_next <= 28'b0;
+                                total_working_time_next <= total_working_time + 1;
+                                begin
+                                    if (next_state != state)
+                                        begin
+                                            next_state <= next_state;
+                                            level_3_timer_next <= 28'b0;
+                                        end
+                                    else if (power_menu_button_three == 1'b1)
+                                        begin
+                                            next_state <= power_off_state;
+                                            level_3_timer_next <= 28'b0;
+                                        end
+                                    else if (power_menu_button_short == 1)
+                                        begin
+                                            next_state <= strong_standby_state;
+                                            level_3_timer_next <= 28'b0;
+                                        end
+                                    else if (level_3_timer != level_3_timer_standard)
+                                        begin
+                                            next_state <= level_3_state;
+                                            level_3_timer_next <= level_3_timer + 1;
+                                        end
+                                    else 
+                                        begin
+                                            next_state <= level_2_state;
+                                            level_3_timer_next <= 28'b0;
+                                        end
+                                end
+                            end
+                        self_clean_state:
+                            begin
+                                already_use_level_3_next <= already_use_level_3;
+                                left_right_next <= 28'b0;
+                                state_in_edit_state_next <= change_self_clean;
+                                level_3_timer_next <= 28'b0;
+                                strong_standby_timer_next <= 28'b0;
+                                total_working_time_next <= 28'b0;
+                                if (next_state != state)
+                                    begin
+                                        next_state <= next_state;
+                                        self_clean_timer_next <= 28'b0;
+                                    end
+                                else if (power_menu_button_three == 1'b1)
+                                    begin
+                                        next_state <= power_off_state;
+                                        self_clean_timer_next <= 28'b0;
+                                    end
+                                else if (self_clean_timer != self_clean_timer_standard)
+                                    begin
+                                        next_state <= self_clean_state;
+                                        self_clean_timer_next <= self_clean_timer + 1;
+                                    end
+                                else 
+                                    begin
+                                        next_state <= standby_state;
+                                        self_clean_timer_next <= 28'b0;
+                                    end
+                            end
+                        strong_standby_state:
+                            begin
+                                already_use_level_3_next <= already_use_level_3;
+                                left_right_next <= 28'b0;
+                                state_in_edit_state_next <= change_self_clean;
+                                self_clean_timer_next <= 28'b0;
+                                level_3_timer_next <= 28'b0;
+                                total_working_time_next <= total_working_time;
+                                
+                                if (next_state != state)
+                                    begin
+                                        next_state <= next_state;
+                                        strong_standby_timer_next <= 28'b0;
+                                    end
+                                else if (power_menu_button_three == 1'b1)
+                                    begin
+                                        next_state <= power_off_state;
+                                        strong_standby_timer_next <= 28'b0;
+                                    end
+                                else if (strong_standby_timer != strong_standby_timer_standard)
+                                    begin
+                                        next_state <= strong_standby_state;
+                                        strong_standby_timer_next <= strong_standby_timer + 1;
+                                    end
+                                else 
+                                    begin
+                                        next_state <= standby_state;
+                                        strong_standby_timer_next <= 28'b0;
+                                    end
+                            end
+                        default:
+                            begin
+                                already_use_level_3_next <= already_use_level_3;
+                                left_right_next <= 28'b0;
+                                state_in_edit_state_next <= change_self_clean;
+                                self_clean_timer_next <= 28'b0;
+                                level_3_timer_next <= 28'b0;
+                                strong_standby_timer_next <= 28'b0;
+                                total_working_time_next <= total_working_time;
+                                next_state <= power_off_state;
+                            end
+                    endcase 
+                end
+        end
+    always @(posedge clock_for_edit, negedge reset)
+        begin
+            if (~reset)
+                begin
+                    current_time_edit <= 28'b0;
+                    left_right_standard_next <= 6'b000101;
+                    state_in_hour_minute_second_next <= second;
+                    self_clean_timer_standard_next <= 28'b0000000000000000000010110100;
+                    level_3_timer_standard_next <= 28'b0000000000000000000000111100;
+                    strong_standby_timer_standard_next <= 28'b0000000000000000000000111100;
+                    total_working_time_standard_next <= 28'b0000000000001000110010100000;
+                end
+            else 
+                begin
+                    case(state)
+                        edit_state:
+                            case(state_in_edit_state)
+                                change_self_clean:
+                                    begin
                                         left_right_standard_next <= left_right_standard;
-                                    end
-                            end
-                        change_work_time_standard:
-                            begin
-                                left_right_standard_next <= left_right_standard;
-                                current_time_edit <= current_time;
-                                if (total_working_time_standard_next != total_working_time_standard)
-                                    begin
-                                        state_in_hour_minute_second_next <= state_in_hour_minute_second;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard_next;
-                                    end
-                                else if (state_in_hour_minute_second_next != state_in_hour_minute_second)
-                                    begin
-                                        state_in_hour_minute_second_next <= state_in_hour_minute_second_next;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard;
-                                    end
-                                else if (level_2_button == 1)
-                                    begin
-                                        if (state_in_hour_minute_second == second || state_in_hour_minute_second == minute)
-                                            begin   
-                                                state_in_hour_minute_second_next <= hour;
+                                        current_time_edit <= current_time;
+                                        if (self_clean_timer_standard_next != self_clean_timer_standard)
+                                            begin
+                                                state_in_hour_minute_second_next <= state_in_hour_minute_second;
+                                                self_clean_timer_standard_next <= self_clean_timer_standard_next;
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                total_working_time_standard_next <= total_working_time_standard;
+                                            end
+                                        else if (state_in_hour_minute_second_next != state_in_hour_minute_second)
+                                            begin
+                                                state_in_hour_minute_second_next <= state_in_hour_minute_second_next;
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                total_working_time_standard_next <= total_working_time_standard;
+                                            end
+                                        else if (level_2_button == 1)
+                                            begin
+                                                if (state_in_hour_minute_second == second)
+                                                    begin   
+                                                        state_in_hour_minute_second_next <= minute;
+                                                    end
+                                                else 
+                                                    begin
+                                                        state_in_hour_minute_second_next <= second;
+                                                    end
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                total_working_time_standard_next <= total_working_time_standard;
+                                            end
+                                        else if (state_in_hour_minute_second == second && self_clean_button == 1)
+                                            begin
+                                                state_in_hour_minute_second_next <= state_in_hour_minute_second;
+                                                if (self_clean_timer_standard == 28'b0000000000000000111000001111)
+                                                    begin
+                                                        self_clean_timer_standard_next <= 28'b0;
+                                                    end
+                                                else 
+                                                    begin
+                                                        self_clean_timer_standard_next <= self_clean_timer_standard + 1;
+                                                    end
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                total_working_time_standard_next <= total_working_time_standard;
+                                            end
+                                        else if (state_in_hour_minute_second == second && power_menu_button == 1)
+                                            begin
+                                                state_in_hour_minute_second_next <= state_in_hour_minute_second;
+                                                if (self_clean_timer_standard == 28'b0)
+                                                    begin
+                                                        self_clean_timer_standard_next <= 28'b0000000000000000111000001111;
+                                                    end
+                                                else 
+                                                    begin
+                                                        self_clean_timer_standard_next <= self_clean_timer_standard - 1;
+                                                    end
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                total_working_time_standard_next <= total_working_time_standard;
+                                            end
+                                        else if ((state_in_hour_minute_second == minute || state_in_hour_minute_second == hour) && self_clean_button == 1)
+                                            begin
+                                                state_in_hour_minute_second_next <= state_in_hour_minute_second;
+                                                if (self_clean_timer_standard >= 3600 - 59)
+                                                    begin
+                                                        self_clean_timer_standard_next <= self_clean_timer_standard + 60 - 3600;
+                                                    end
+                                                else
+                                                    begin
+                                                        self_clean_timer_standard_next <= self_clean_timer_standard + 60;
+                                                    end
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                total_working_time_standard_next <= total_working_time_standard;
+                                            end
+                                        else if ((state_in_hour_minute_second == minute || state_in_hour_minute_second == hour) && power_menu_button == 1)
+                                            begin
+                                                state_in_hour_minute_second_next <= state_in_hour_minute_second;
+                                                if (self_clean_timer_standard <= 59)
+                                                    begin
+                                                        self_clean_timer_standard_next <= self_clean_timer_standard + 3600 - 60;
+                                                    end
+                                                else
+                                                    begin
+                                                        self_clean_timer_standard_next <= self_clean_timer_standard - 60;
+                                                    end
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                total_working_time_standard_next <= total_working_time_standard;
                                             end
                                         else 
                                             begin
-                                                state_in_hour_minute_second_next <= minute;
+                                                state_in_hour_minute_second_next <= state_in_hour_minute_second;
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                total_working_time_standard_next <= total_working_time_standard;
                                             end
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard;
                                     end
-                                else if (state_in_hour_minute_second == hour && self_clean_button == 1)
+                                change_left_right:
                                     begin
-                                        state_in_hour_minute_second_next <= state_in_hour_minute_second;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard + 3600;
-                                    end
-                                else if (state_in_hour_minute_second == hour && power_menu_button == 1)
-                                    begin
-                                        state_in_hour_minute_second_next <= state_in_hour_minute_second;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard - 3600;
-                                    end
-                                else if ((state_in_hour_minute_second == minute || state_in_hour_minute_second == second) && self_clean_button == 1)
-                                    begin
-                                        state_in_hour_minute_second_next <= state_in_hour_minute_second;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard + 60;
-                                    end
-                                else if ((state_in_hour_minute_second == minute || state_in_hour_minute_second == second) && power_menu_button == 1)
-                                    begin
-                                        state_in_hour_minute_second_next <= state_in_hour_minute_second;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard - 60;
-                                    end
-                                else 
-                                    begin
-                                        state_in_hour_minute_second_next <= state_in_hour_minute_second;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard;
-                                    end
-                            end
-                        change_strong_standby_standard:
-                            begin
-                                left_right_standard_next <= left_right_standard;
-                                current_time_edit <= current_time;
-                                if (strong_standby_timer_standard_next != strong_standby_timer_standard)
-                                    begin
-                                        state_in_hour_minute_second_next <= state_in_hour_minute_second;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard_next;
-                                        total_working_time_standard_next <= total_working_time_standard;
-                                    end
-                                else if (state_in_hour_minute_second_next != state_in_hour_minute_second)
-                                    begin
-                                        state_in_hour_minute_second_next <= state_in_hour_minute_second_next;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard;
-                                    end
-                                else if (level_2_button == 1)
-                                    begin
-                                        if (state_in_hour_minute_second == second)
-                                            begin   
-                                                state_in_hour_minute_second_next <= minute;
-                                            end
-                                        else 
+                                        current_time_edit <= current_time;
+                                        if (self_clean_timer_standard_next != self_clean_timer_standard)
                                             begin
                                                 state_in_hour_minute_second_next <= second;
+                                                self_clean_timer_standard_next <= self_clean_timer_standard_next;
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                total_working_time_standard_next <= total_working_time_standard;
+                                                left_right_standard_next <= left_right_standard;
                                             end
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard;
-                                    end
-                                else if (state_in_hour_minute_second == second && self_clean_button == 1)
-                                    begin
-                                        state_in_hour_minute_second_next <= state_in_hour_minute_second;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard + 1;
-                                        total_working_time_standard_next <= total_working_time_standard;
-                                    end
-                                else if (state_in_hour_minute_second == second && power_menu_button == 1)
-                                    begin
-                                        state_in_hour_minute_second_next <= state_in_hour_minute_second;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard - 1;
-                                        total_working_time_standard_next <= total_working_time_standard;
-                                    end
-                                else if ((state_in_hour_minute_second == minute || state_in_hour_minute_second == hour) && self_clean_button == 1)
-                                    begin
-                                        state_in_hour_minute_second_next <= state_in_hour_minute_second;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard + 60;
-                                        total_working_time_standard_next <= total_working_time_standard;
-                                    end
-                                else if ((state_in_hour_minute_second == minute || state_in_hour_minute_second == hour) && power_menu_button == 1)
-                                    begin
-                                        state_in_hour_minute_second_next <= state_in_hour_minute_second;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard - 60;
-                                        total_working_time_standard_next <= total_working_time_standard;
-                                    end
-                                else 
-                                    begin
-                                        state_in_hour_minute_second_next <= state_in_hour_minute_second;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard;
-                                    end
-                            end
-                        change_level_3_standard:
-                            begin
-                                left_right_standard_next <= left_right_standard;
-                                current_time_edit <= current_time;
-                                if (level_3_timer_standard_next != level_3_timer_standard)
-                                    begin
-                                        state_in_hour_minute_second_next <= state_in_hour_minute_second;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard_next;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard;
-                                    end
-                                else if (state_in_hour_minute_second_next != state_in_hour_minute_second)
-                                    begin
-                                        state_in_hour_minute_second_next <= state_in_hour_minute_second_next;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard;
-                                    end
-                                else if (level_2_button == 1)
-                                    begin
-                                        if (state_in_hour_minute_second == second)
-                                            begin   
-                                                state_in_hour_minute_second_next <= minute;
+                                        else if (left_right_standard_next != left_right_standard)
+                                            begin
+                                                state_in_hour_minute_second_next <= second;
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                total_working_time_standard_next <= total_working_time_standard;
+                                                left_right_standard_next <= left_right_standard_next;
+                                            end
+                                        else if (self_clean_button == 1)
+                                            begin
+                                                state_in_hour_minute_second_next <= second;
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                total_working_time_standard_next <= total_working_time_standard;
+                                                if (left_right_standard == 59)
+                                                    begin
+                                                        left_right_standard_next <= 28'b0;
+                                                    end
+                                                else 
+                                                    begin
+                                                        left_right_standard_next <= left_right_standard + 1;
+                                                    end
+                                            end
+                                        else if (power_menu_button == 1)
+                                            begin
+                                                state_in_hour_minute_second_next <= second;
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                total_working_time_standard_next <= total_working_time_standard;
+                                                if (left_right_standard == 0)
+                                                    begin
+                                                        left_right_standard_next <= 59;
+                                                    end
+                                                else 
+                                                    begin
+                                                        left_right_standard_next <= left_right_standard - 1;
+                                                    end
                                             end
                                         else 
                                             begin
                                                 state_in_hour_minute_second_next <= second;
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                total_working_time_standard_next <= total_working_time_standard;
+                                                left_right_standard_next <= left_right_standard;
                                             end
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard;
                                     end
-                                else if (state_in_hour_minute_second == second && self_clean_button == 1)
+                                change_work_time_standard:
                                     begin
-                                        state_in_hour_minute_second_next <= state_in_hour_minute_second;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard + 1;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard;
-                                    end
-                                else if (state_in_hour_minute_second == second && power_menu_button == 1)
-                                    begin
-                                        state_in_hour_minute_second_next <= state_in_hour_minute_second;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard - 1;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard;
-                                    end
-                                else if ((state_in_hour_minute_second == minute || state_in_hour_minute_second == hour) && self_clean_button == 1)
-                                    begin
-                                        state_in_hour_minute_second_next <= state_in_hour_minute_second;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard + 60;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard;
-                                    end
-                                else if ((state_in_hour_minute_second == minute || state_in_hour_minute_second == hour) && power_menu_button == 1)
-                                    begin
-                                        state_in_hour_minute_second_next <= state_in_hour_minute_second;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard - 60;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard;
-                                    end
-                                else 
-                                    begin
-                                        state_in_hour_minute_second_next <= state_in_hour_minute_second;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard;
-                                    end
-                            end
-                        change_clock:
-                            begin
-                                left_right_standard_next <= left_right_standard;
-                                if (current_time_edit != current_time)
-                                    begin
-                                        state_in_hour_minute_second_next <= state_in_hour_minute_second;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard_next;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard;
-                                        current_time_edit <= current_time_edit;
-                                    end
-                                else if (state_in_hour_minute_second_next != state_in_hour_minute_second)
-                                    begin
-                                        state_in_hour_minute_second_next <= state_in_hour_minute_second_next;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard;
+                                        left_right_standard_next <= left_right_standard;
                                         current_time_edit <= current_time;
-                                    end
-                                else if (level_2_button == 1)
-                                    begin
-                                        if (state_in_hour_minute_second == second)
-                                            begin   
-                                                state_in_hour_minute_second_next <= minute;
-                                            end
-                                        else if (state_in_hour_minute_second == minute)
-                                            begin   
-                                                state_in_hour_minute_second_next <= hour;
-                                            end
-                                        else
+                                        if (total_working_time_standard_next != total_working_time_standard)
                                             begin
-                                                state_in_hour_minute_second_next <= second;
+                                                state_in_hour_minute_second_next <= state_in_hour_minute_second;
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                total_working_time_standard_next <= total_working_time_standard_next;
                                             end
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard;
+                                        else if (state_in_hour_minute_second_next != state_in_hour_minute_second)
+                                            begin
+                                                state_in_hour_minute_second_next <= state_in_hour_minute_second_next;
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                total_working_time_standard_next <= total_working_time_standard;
+                                            end
+                                        else if (level_2_button == 1)
+                                            begin
+                                                if (state_in_hour_minute_second == second || state_in_hour_minute_second == minute)
+                                                    begin   
+                                                        state_in_hour_minute_second_next <= hour;
+                                                    end
+                                                else 
+                                                    begin
+                                                        state_in_hour_minute_second_next <= minute;
+                                                    end
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                total_working_time_standard_next <= total_working_time_standard;
+                                            end
+                                        else if (state_in_hour_minute_second == hour && self_clean_button == 1)
+                                            begin
+                                                state_in_hour_minute_second_next <= state_in_hour_minute_second;
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                if (total_working_time_standard >= 86400 - 3599)
+                                                    begin
+                                                        total_working_time_standard_next <= total_working_time_standard + 3600-86400;
+                                                    end
+                                                else
+                                                    begin
+                                                        total_working_time_standard_next <= total_working_time_standard + 3600;
+                                                    end 
+                                            end
+                                        else if (state_in_hour_minute_second == hour && power_menu_button == 1)
+                                            begin
+                                                state_in_hour_minute_second_next <= state_in_hour_minute_second;
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                if (total_working_time_standard <= 3599)
+                                                    begin
+                                                        total_working_time_standard_next <= total_working_time_standard + 86400 - 3600;
+                                                    end
+                                                else
+                                                    begin
+                                                        total_working_time_standard_next <= total_working_time_standard - 3600;
+                                                    end 
+                                            end
+                                        else if ((state_in_hour_minute_second == minute || state_in_hour_minute_second == second) && self_clean_button == 1)
+                                            begin
+                                                state_in_hour_minute_second_next <= state_in_hour_minute_second;
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                if (total_working_time_standard >= 86400 - 59)
+                                                    begin
+                                                        total_working_time_standard_next <= total_working_time_standard + 60 - 86400;
+                                                    end
+                                                else
+                                                    begin
+                                                        total_working_time_standard_next <= total_working_time_standard + 60;
+                                                    end 
+                                            end
+                                        else if ((state_in_hour_minute_second == minute || state_in_hour_minute_second == second) && power_menu_button == 1)
+                                            begin
+                                                state_in_hour_minute_second_next <= state_in_hour_minute_second;
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                if (total_working_time_standard <= 59)
+                                                    begin
+                                                        total_working_time_standard_next <= total_working_time_standard + 86400 - 60;
+                                                    end
+                                                else
+                                                    begin
+                                                        total_working_time_standard_next <= total_working_time_standard - 60;
+                                                    end 
+                                            end
+                                        else 
+                                            begin
+                                                state_in_hour_minute_second_next <= state_in_hour_minute_second;
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                total_working_time_standard_next <= total_working_time_standard;
+                                            end
+                                    end
+                                change_strong_standby_standard:
+                                    begin
+                                        left_right_standard_next <= left_right_standard;
                                         current_time_edit <= current_time;
+                                        if (strong_standby_timer_standard_next != strong_standby_timer_standard)
+                                            begin
+                                                state_in_hour_minute_second_next <= state_in_hour_minute_second;
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard_next;
+                                                total_working_time_standard_next <= total_working_time_standard;
+                                            end
+                                        else if (state_in_hour_minute_second_next != state_in_hour_minute_second)
+                                            begin
+                                                state_in_hour_minute_second_next <= state_in_hour_minute_second_next;
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                total_working_time_standard_next <= total_working_time_standard;
+                                            end
+                                        else if (level_2_button == 1)
+                                            begin
+                                                if (state_in_hour_minute_second == second)
+                                                    begin   
+                                                        state_in_hour_minute_second_next <= minute;
+                                                    end
+                                                else 
+                                                    begin
+                                                        state_in_hour_minute_second_next <= second;
+                                                    end
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                total_working_time_standard_next <= total_working_time_standard;
+                                            end
+                                        else if (state_in_hour_minute_second == second && self_clean_button == 1)
+                                            begin
+                                                state_in_hour_minute_second_next <= state_in_hour_minute_second;
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                if (strong_standby_timer_standard == 28'b0000000000000000111000001111)
+                                                    begin
+                                                        strong_standby_timer_standard_next <= 28'b0;
+                                                    end
+                                                else 
+                                                    begin
+                                                        strong_standby_timer_standard_next <= strong_standby_timer_standard + 1;
+                                                    end
+                                                total_working_time_standard_next <= total_working_time_standard;
+                                            end
+                                        else if (state_in_hour_minute_second == second && power_menu_button == 1)
+                                            begin
+                                                state_in_hour_minute_second_next <= state_in_hour_minute_second;
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                if (strong_standby_timer_standard == 28'b0)
+                                                    begin
+                                                        strong_standby_timer_standard_next <= 28'b0000000000000000111000001111;
+                                                    end
+                                                else 
+                                                    begin
+                                                        strong_standby_timer_standard_next <= strong_standby_timer_standard - 1;
+                                                    end
+                                                total_working_time_standard_next <= total_working_time_standard;
+                                            end
+                                        else if ((state_in_hour_minute_second == minute || state_in_hour_minute_second == hour) && self_clean_button == 1)
+                                            begin
+                                                state_in_hour_minute_second_next <= state_in_hour_minute_second;
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                if (strong_standby_timer_standard >= 3600 - 59)
+                                                    begin
+                                                        strong_standby_timer_standard_next <= strong_standby_timer_standard + 60 - 3600;
+                                                    end
+                                                else
+                                                    begin
+                                                        strong_standby_timer_standard_next <= strong_standby_timer_standard + 60;
+                                                    end
+                                                total_working_time_standard_next <= total_working_time_standard;
+                                            end
+                                        else if ((state_in_hour_minute_second == minute || state_in_hour_minute_second == hour) && power_menu_button == 1)
+                                            begin
+                                                state_in_hour_minute_second_next <= state_in_hour_minute_second;
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                if (strong_standby_timer_standard <= 59)
+                                                    begin
+                                                        strong_standby_timer_standard_next <= strong_standby_timer_standard + 3600 - 60;
+                                                    end
+                                                else
+                                                    begin
+                                                        strong_standby_timer_standard_next <= strong_standby_timer_standard - 60;
+                                                    end
+                                                total_working_time_standard_next <= total_working_time_standard;
+                                            end
+                                        else 
+                                            begin
+                                                state_in_hour_minute_second_next <= state_in_hour_minute_second;
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                total_working_time_standard_next <= total_working_time_standard;
+                                            end
                                     end
-                                else if (state_in_hour_minute_second == second && self_clean_button == 1)
+                                change_level_3_standard:
                                     begin
-                                        state_in_hour_minute_second_next <= state_in_hour_minute_second;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard;
-                                        current_time_edit <= current_time + 1;
-                                    end
-                                else if (state_in_hour_minute_second == second && power_menu_button == 1)
-                                    begin
-                                        state_in_hour_minute_second_next <= state_in_hour_minute_second;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard;
-                                        current_time_edit <= current_time - 1;
-                                    end
-                                else if (state_in_hour_minute_second == minute && self_clean_button == 1)
-                                    begin
-                                        state_in_hour_minute_second_next <= state_in_hour_minute_second;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard;
-                                        current_time_edit <= current_time + 60;
-                                    end
-                                else if (state_in_hour_minute_second == minute && power_menu_button == 1)
-                                    begin
-                                        state_in_hour_minute_second_next <= state_in_hour_minute_second;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard;
-                                        current_time_edit <= current_time - 60;
-                                    end
-                                else if (state_in_hour_minute_second == hour && self_clean_button == 1)
-                                    begin
-                                        state_in_hour_minute_second_next <= state_in_hour_minute_second;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard;
-                                        current_time_edit <= current_time + 3600;
-                                    end
-                                else if (state_in_hour_minute_second == hour && power_menu_button == 1)
-                                    begin
-                                        state_in_hour_minute_second_next <= state_in_hour_minute_second;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard;
-                                        current_time_edit <= current_time - 3600;
-                                    end
-                                else 
-                                    begin
-                                        state_in_hour_minute_second_next <= state_in_hour_minute_second;
-                                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                                        level_3_timer_standard_next <= level_3_timer_standard;
-                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                                        total_working_time_standard_next <= total_working_time_standard;
+                                        left_right_standard_next <= left_right_standard;
                                         current_time_edit <= current_time;
+                                        if (level_3_timer_standard_next != level_3_timer_standard)
+                                            begin
+                                                state_in_hour_minute_second_next <= state_in_hour_minute_second;
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                level_3_timer_standard_next <= level_3_timer_standard_next;
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                total_working_time_standard_next <= total_working_time_standard;
+                                            end
+                                        else if (state_in_hour_minute_second_next != state_in_hour_minute_second)
+                                            begin
+                                                state_in_hour_minute_second_next <= state_in_hour_minute_second_next;
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                total_working_time_standard_next <= total_working_time_standard;
+                                            end
+                                        else if (level_2_button == 1)
+                                            begin
+                                                if (state_in_hour_minute_second == second)
+                                                    begin   
+                                                        state_in_hour_minute_second_next <= minute;
+                                                    end
+                                                else 
+                                                    begin
+                                                        state_in_hour_minute_second_next <= second;
+                                                    end
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                total_working_time_standard_next <= total_working_time_standard;
+                                            end
+                                        else if (state_in_hour_minute_second == second && self_clean_button == 1)
+                                            begin
+                                                state_in_hour_minute_second_next <= state_in_hour_minute_second;
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                if (level_3_timer_standard == 28'b0000000000000000111000001111)
+                                                    begin
+                                                        level_3_timer_standard_next <= 28'b0;
+                                                    end
+                                                else 
+                                                    begin
+                                                        level_3_timer_standard_next <= level_3_timer_standard + 1;
+                                                    end
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                total_working_time_standard_next <= total_working_time_standard;
+                                            end
+                                        else if (state_in_hour_minute_second == second && power_menu_button == 1)
+                                            begin
+                                                state_in_hour_minute_second_next <= state_in_hour_minute_second;
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                if (level_3_timer_standard == 28'b0)
+                                                    begin
+                                                        level_3_timer_standard_next <= 28'b0000000000000000111000001111;
+                                                    end
+                                                else 
+                                                    begin
+                                                        level_3_timer_standard_next <= level_3_timer_standard - 1;
+                                                    end
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                total_working_time_standard_next <= total_working_time_standard;
+                                            end
+                                        else if ((state_in_hour_minute_second == minute || state_in_hour_minute_second == hour) && self_clean_button == 1)
+                                            begin
+                                                state_in_hour_minute_second_next <= state_in_hour_minute_second;
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                if (level_3_timer_standard >= 3600 - 59)
+                                                    begin
+                                                        level_3_timer_standard_next <= level_3_timer_standard + 60 - 3600;
+                                                    end
+                                                else
+                                                    begin
+                                                        level_3_timer_standard_next <= level_3_timer_standard + 60;
+                                                    end
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                total_working_time_standard_next <= total_working_time_standard;
+                                            end
+                                        else if ((state_in_hour_minute_second == minute || state_in_hour_minute_second == hour) && power_menu_button == 1)
+                                            begin
+                                                state_in_hour_minute_second_next <= state_in_hour_minute_second;
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                if (level_3_timer_standard <= 59)
+                                                    begin
+                                                        level_3_timer_standard_next <= level_3_timer_standard + 3600 - 60;
+                                                    end
+                                                else
+                                                    begin
+                                                        level_3_timer_standard_next <= level_3_timer_standard - 60;
+                                                    end
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                total_working_time_standard_next <= total_working_time_standard;
+                                            end
+                                        else 
+                                            begin
+                                                state_in_hour_minute_second_next <= state_in_hour_minute_second;
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                total_working_time_standard_next <= total_working_time_standard;
+                                            end
                                     end
-                            end    
+                                change_clock:
+                                    begin
+                                        left_right_standard_next <= left_right_standard;
+                                        if (current_time_edit != current_time)
+                                            begin
+                                                state_in_hour_minute_second_next <= state_in_hour_minute_second;
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                level_3_timer_standard_next <= level_3_timer_standard_next;
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                total_working_time_standard_next <= total_working_time_standard;
+                                                current_time_edit <= current_time_edit;
+                                            end
+                                        else if (state_in_hour_minute_second_next != state_in_hour_minute_second)
+                                            begin
+                                                state_in_hour_minute_second_next <= state_in_hour_minute_second_next;
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                total_working_time_standard_next <= total_working_time_standard;
+                                                current_time_edit <= current_time;
+                                            end
+                                        else if (level_2_button == 1)
+                                            begin
+                                                if (state_in_hour_minute_second == second)
+                                                    begin   
+                                                        state_in_hour_minute_second_next <= minute;
+                                                    end
+                                                else if (state_in_hour_minute_second == minute)
+                                                    begin   
+                                                        state_in_hour_minute_second_next <= hour;
+                                                    end
+                                                else
+                                                    begin
+                                                        state_in_hour_minute_second_next <= second;
+                                                    end
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                total_working_time_standard_next <= total_working_time_standard;
+                                                current_time_edit <= current_time;
+                                            end
+                                        else if (state_in_hour_minute_second == second && self_clean_button == 1)
+                                            begin
+                                                state_in_hour_minute_second_next <= state_in_hour_minute_second;
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                total_working_time_standard_next <= total_working_time_standard;
+                                                if (current_time == 86400-1)
+                                                    begin
+                                                        current_time_edit <= 28'b0;
+                                                    end
+                                                else
+                                                    begin
+                                                        current_time_edit <= current_time + 1;
+                                                    end 
+                                            end
+                                        else if (state_in_hour_minute_second == second && power_menu_button == 1)
+                                            begin
+                                                state_in_hour_minute_second_next <= state_in_hour_minute_second;
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                total_working_time_standard_next <= total_working_time_standard;
+                                                if (current_time == 0)
+                                                    begin
+                                                        current_time_edit <= 86400-1;
+                                                    end
+                                                else
+                                                    begin
+                                                        current_time_edit <= current_time - 1;
+                                                    end 
+                                            end
+                                        else if (state_in_hour_minute_second == minute && self_clean_button == 1)
+                                            begin
+                                                state_in_hour_minute_second_next <= state_in_hour_minute_second;
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                total_working_time_standard_next <= total_working_time_standard;
+                                                if (current_time >= 86400-59)
+                                                    begin
+                                                        current_time_edit <= current_time + 60 - 86400 ;
+                                                    end
+                                                else
+                                                    begin
+                                                        current_time_edit <= current_time + 60;
+                                                    end 
+                                            end
+                                        else if (state_in_hour_minute_second == minute && power_menu_button == 1)
+                                            begin
+                                                state_in_hour_minute_second_next <= state_in_hour_minute_second;
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                total_working_time_standard_next <= total_working_time_standard;
+                                                if (current_time <= 59)
+                                                    begin
+                                                        current_time_edit <= current_time + 86400 - 60;
+                                                    end
+                                                else
+                                                    begin
+                                                        current_time_edit <= current_time - 60;
+                                                    end 
+                                            end
+                                        else if (state_in_hour_minute_second == hour && self_clean_button == 1)
+                                            begin
+                                                state_in_hour_minute_second_next <= state_in_hour_minute_second;
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                total_working_time_standard_next <= total_working_time_standard;
+                                                if (current_time >= 86400-3599)
+                                                    begin
+                                                        current_time_edit <= current_time + 3600 - 86400 ;
+                                                    end
+                                                else
+                                                    begin
+                                                        current_time_edit <= current_time + 3600;
+                                                    end 
+                                            end
+                                        else if (state_in_hour_minute_second == hour && power_menu_button == 1)
+                                            begin
+                                                state_in_hour_minute_second_next <= state_in_hour_minute_second;
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                total_working_time_standard_next <= total_working_time_standard;
+                                                if (current_time <= 3599)
+                                                    begin
+                                                        current_time_edit <= current_time + 86400 - 3600;
+                                                    end
+                                                else
+                                                    begin
+                                                        current_time_edit <= current_time - 3600;
+                                                    end 
+                                            end
+                                        else 
+                                            begin
+                                                state_in_hour_minute_second_next <= state_in_hour_minute_second;
+                                                self_clean_timer_standard_next <= self_clean_timer_standard;
+                                                level_3_timer_standard_next <= level_3_timer_standard;
+                                                strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                                total_working_time_standard_next <= total_working_time_standard;
+                                                current_time_edit <= current_time;
+                                            end
+                                    end    
+                                default:
+                                    begin
+                                        current_time_edit <= current_time;
+                                        left_right_standard_next <= left_right_standard;
+                                        state_in_hour_minute_second_next <= second;
+                                        self_clean_timer_standard_next <= self_clean_timer_standard;
+                                        level_3_timer_standard_next <= level_3_timer_standard;
+                                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
+                                        total_working_time_standard_next <= total_working_time_standard;
+                                    end
+                            endcase
                         default:
                             begin
                                 current_time_edit <= current_time;
@@ -1160,18 +1383,8 @@ module main_state_switcher(
                                 strong_standby_timer_standard_next <= strong_standby_timer_standard;
                                 total_working_time_standard_next <= total_working_time_standard;
                             end
-                    endcase
-                default:
-                    begin
-                        current_time_edit <= current_time;
-                        left_right_standard_next <= left_right_standard;
-                        state_in_hour_minute_second_next <= second;
-                        self_clean_timer_standard_next <= self_clean_timer_standard;
-                        level_3_timer_standard_next <= level_3_timer_standard;
-                        strong_standby_timer_standard_next <= strong_standby_timer_standard;
-                        total_working_time_standard_next <= total_working_time_standard;
-                    end
-            endcase            
+                    endcase            
+                end
         end
       
     always @(standard_clock_1)

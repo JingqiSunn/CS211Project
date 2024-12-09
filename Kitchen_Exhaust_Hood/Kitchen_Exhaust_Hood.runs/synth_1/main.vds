@@ -3,8 +3,8 @@
 # SW Build 5076996 on Wed May 22 18:36:09 MDT 2024
 # IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
 # SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
-# Start of session at: Fri Dec  6 15:31:32 2024
-# Process ID: 458870
+# Start of session at: Mon Dec  9 22:51:20 2024
+# Process ID: 443952
 # Current directory: /home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.runs/synth_1
 # Command line: vivado -log main.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source main.tcl
 # Log file: /home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.runs/synth_1/main.vds
@@ -13,13 +13,13 @@
 # Platform          :Ubuntu
 # Operating System  :Ubuntu 24.04.1 LTS
 # Processor Detail  :13th Gen Intel(R) Core(TM) i9-13900HX
-# CPU Frequency     :5016.724 MHz
+# CPU Frequency     :4231.287 MHz
 # CPU Physical cores:24
 # CPU Logical cores :32
 # Host memory       :33443 MB
 # Swap memory       :8589 MB
 # Total Virtual     :42033 MB
-# Available Virtual :33758 MB
+# Available Virtual :21683 MB
 #-----------------------------------------------------------
 source main.tcl -notrace
 Command: read_checkpoint -auto_incremental -incremental /home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/utils_1/imports/synth_1/standard_clock_generator.dcp
@@ -35,9 +35,9 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 458912
+INFO: [Synth 8-7075] Helper process launched with PID 443999
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 2116.078 ; gain = 412.746 ; free physical = 18868 ; free virtual = 30885
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 2115.793 ; gain = 412.746 ; free physical = 801 ; free virtual = 19312
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'main' [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main.v:23]
 INFO: [Synth 8-6157] synthesizing module 'debounce' [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/debounce.v:23]
@@ -61,20 +61,21 @@ WARNING: [Synth 8-567] referenced signal 'current_time' should be on the sensiti
 WARNING: [Synth 8-567] referenced signal 'target_time' should be on the sensitivity list [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/left_right_signal.v:65]
 WARNING: [Synth 8-567] referenced signal 'process_begin_next' should be on the sensitivity list [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/left_right_signal.v:65]
 INFO: [Synth 8-6155] done synthesizing module 'left_right_signal' (0#1) [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/left_right_signal.v:23]
-WARNING: [Synth 8-567] referenced signal 'total_working_time' should be on the sensitivity list [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:333]
-WARNING: [Synth 8-567] referenced signal 'the_left_right_signal' should be on the sensitivity list [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:333]
-WARNING: [Synth 8-567] referenced signal 'power_menu_button_three' should be on the sensitivity list [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:333]
-WARNING: [Synth 8-567] referenced signal 'state_in_edit_state_next' should be on the sensitivity list [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:333]
-WARNING: [Synth 8-567] referenced signal 'state_in_edit_state' should be on the sensitivity list [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:333]
-WARNING: [Synth 8-567] referenced signal 'level_3_timer' should be on the sensitivity list [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:333]
-WARNING: [Synth 8-567] referenced signal 'level_3_timer_standard' should be on the sensitivity list [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:333]
-WARNING: [Synth 8-567] referenced signal 'self_clean_timer' should be on the sensitivity list [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:333]
-WARNING: [Synth 8-567] referenced signal 'self_clean_timer_standard' should be on the sensitivity list [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:333]
-WARNING: [Synth 8-567] referenced signal 'strong_standby_timer' should be on the sensitivity list [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:333]
-WARNING: [Synth 8-567] referenced signal 'strong_standby_timer_standard' should be on the sensitivity list [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:333]
-WARNING: [Synth 8-567] referenced signal 'state_in_edit_state' should be on the sensitivity list [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:1177]
-WARNING: [Synth 8-567] referenced signal 'current_time' should be on the sensitivity list [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:1177]
-WARNING: [Synth 8-567] referenced signal 'current_time_next' should be on the sensitivity list [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:1177]
+WARNING: [Synth 8-567] referenced signal 'total_working_time' should be on the sensitivity list [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:337]
+WARNING: [Synth 8-567] referenced signal 'the_left_right_signal' should be on the sensitivity list [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:337]
+WARNING: [Synth 8-567] referenced signal 'already_use_level_3' should be on the sensitivity list [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:337]
+WARNING: [Synth 8-567] referenced signal 'power_menu_button_three' should be on the sensitivity list [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:337]
+WARNING: [Synth 8-567] referenced signal 'state_in_edit_state_next' should be on the sensitivity list [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:337]
+WARNING: [Synth 8-567] referenced signal 'state_in_edit_state' should be on the sensitivity list [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:337]
+WARNING: [Synth 8-567] referenced signal 'level_3_timer' should be on the sensitivity list [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:337]
+WARNING: [Synth 8-567] referenced signal 'level_3_timer_standard' should be on the sensitivity list [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:337]
+WARNING: [Synth 8-567] referenced signal 'self_clean_timer' should be on the sensitivity list [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:337]
+WARNING: [Synth 8-567] referenced signal 'self_clean_timer_standard' should be on the sensitivity list [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:337]
+WARNING: [Synth 8-567] referenced signal 'strong_standby_timer' should be on the sensitivity list [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:337]
+WARNING: [Synth 8-567] referenced signal 'strong_standby_timer_standard' should be on the sensitivity list [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:337]
+WARNING: [Synth 8-567] referenced signal 'state_in_edit_state' should be on the sensitivity list [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:1390]
+WARNING: [Synth 8-567] referenced signal 'current_time' should be on the sensitivity list [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:1390]
+WARNING: [Synth 8-567] referenced signal 'current_time_next' should be on the sensitivity list [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:1390]
 INFO: [Synth 8-6157] synthesizing module 'scan_seg' [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/scan_seg.v:23]
 INFO: [Synth 8-226] default block is never used [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/scan_seg.v:93]
 INFO: [Synth 8-6157] synthesizing module 'seven_seg_map' [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/seven_seg_map.v:23]
@@ -82,10 +83,10 @@ INFO: [Synth 8-6155] done synthesizing module 'seven_seg_map' (0#1) [/home/sjq/D
 WARNING: [Synth 8-689] width (1) of port connection 'seg_en' does not match port width (8) of module 'seven_seg_map' [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/scan_seg.v:107]
 WARNING: [Synth 8-689] width (1) of port connection 'seg_en' does not match port width (8) of module 'seven_seg_map' [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/scan_seg.v:108]
 INFO: [Synth 8-6155] done synthesizing module 'scan_seg' (0#1) [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/scan_seg.v:23]
-WARNING: [Synth 8-567] referenced signal 'state' should be on the sensitivity list [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:1422]
+WARNING: [Synth 8-567] referenced signal 'state' should be on the sensitivity list [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:1635]
 INFO: [Synth 8-6155] done synthesizing module 'main_state_switcher' (0#1) [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:23]
 INFO: [Synth 8-6155] done synthesizing module 'main' (0#1) [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main.v:23]
-WARNING: [Synth 8-6014] Unused sequential element left_right_reg was removed.  [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:277]
+WARNING: [Synth 8-6014] Unused sequential element left_right_reg was removed.  [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:279]
 WARNING: [Synth 8-3848] Net K6 in module/entity main_state_switcher does not have driver. [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:56]
 WARNING: [Synth 8-3848] Net L1 in module/entity main_state_switcher does not have driver. [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:57]
 WARNING: [Synth 8-7129] Port clk in module left_right_signal is either unconnected or has no load
@@ -99,18 +100,18 @@ WARNING: [Synth 8-7129] Port M4 in module main_state_switcher is either unconnec
 WARNING: [Synth 8-7129] Port N4 in module main_state_switcher is either unconnected or has no load
 WARNING: [Synth 8-7129] Port standard_clock_60 in module main_state_switcher is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 2201.047 ; gain = 497.715 ; free physical = 18770 ; free virtual = 30788
+Finished RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 2202.762 ; gain = 499.715 ; free physical = 688 ; free virtual = 19200
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 2215.891 ; gain = 512.559 ; free physical = 18770 ; free virtual = 30788
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 2220.574 ; gain = 517.527 ; free physical = 688 ; free virtual = 19200
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 2215.891 ; gain = 512.559 ; free physical = 18770 ; free virtual = 30788
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 2220.574 ; gain = 517.527 ; free physical = 688 ; free virtual = 19200
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2215.891 ; gain = 0.000 ; free physical = 18770 ; free virtual = 30788
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2220.574 ; gain = 0.000 ; free physical = 688 ; free virtual = 19200
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -121,28 +122,28 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/main_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2368.641 ; gain = 0.000 ; free physical = 18762 ; free virtual = 30780
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2372.324 ; gain = 0.000 ; free physical = 686 ; free virtual = 19197
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2368.641 ; gain = 0.000 ; free physical = 18762 ; free virtual = 30780
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2372.324 ; gain = 0.000 ; free physical = 686 ; free virtual = 19197
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2368.641 ; gain = 665.309 ; free physical = 18765 ; free virtual = 30782
+Finished Constraint Validation : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2372.324 ; gain = 669.277 ; free physical = 677 ; free virtual = 19188
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcsg324-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2376.645 ; gain = 673.312 ; free physical = 18765 ; free virtual = 30782
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2380.328 ; gain = 677.281 ; free physical = 677 ; free virtual = 19188
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2376.645 ; gain = 673.312 ; free physical = 18765 ; free virtual = 30782
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2380.328 ; gain = 677.281 ; free physical = 676 ; free virtual = 19188
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'main_state_switcher'
 WARNING: [Synth 8-327] inferring latch for variable 'process_begin_next_reg' [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/left_right_signal.v:70]
@@ -163,11 +164,11 @@ WARNING: [Synth 8-327] inferring latch for variable 'process_begin_next_reg' [/h
         self_clean_state |                      00010000000 |                      00010000000
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3898] No Re-encoding of one hot register 'state_reg' in module 'main_state_switcher'
-WARNING: [Synth 8-327] inferring latch for variable 'next_state_reg' [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:343]
-WARNING: [Synth 8-327] inferring latch for variable 'state_in_edit_state_next_reg' [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:338]
-WARNING: [Synth 8-327] inferring latch for variable 'current_time_next_reg' [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:1181]
+WARNING: [Synth 8-327] inferring latch for variable 'next_state_reg' [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:348]
+WARNING: [Synth 8-327] inferring latch for variable 'state_in_edit_state_next_reg' [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:343]
+WARNING: [Synth 8-327] inferring latch for variable 'current_time_next_reg' [/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v:1394]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2376.645 ; gain = 673.312 ; free physical = 18762 ; free virtual = 30781
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2380.328 ; gain = 677.281 ; free physical = 674 ; free virtual = 19186
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-223] decloning instance 'main_state_switcher_1/scan_seg_1/u0' (seven_seg_map) to 'main_state_switcher_1/scan_seg_1/u1'
 ---------------------------------------------------------------------------------
@@ -177,10 +178,10 @@ Detailed RTL Component Info :
 +---Adders : 
 	   2 Input   32 Bit       Adders := 1     
 	   2 Input   29 Bit       Adders := 1     
-	   2 Input   28 Bit       Adders := 10    
+	   2 Input   28 Bit       Adders := 23    
 	   3 Input   28 Bit       Adders := 3     
 	   2 Input   26 Bit       Adders := 2     
-	   2 Input    6 Bit       Adders := 4     
+	   2 Input    6 Bit       Adders := 5     
 	   2 Input    3 Bit       Adders := 3     
 	   2 Input    2 Bit       Adders := 1     
 +---Registers : 
@@ -190,34 +191,36 @@ Detailed RTL Component Info :
 	                6 Bit    Registers := 12    
 	                3 Bit    Registers := 4     
 	                2 Bit    Registers := 1     
-	                1 Bit    Registers := 20    
+	                1 Bit    Registers := 21    
 +---Muxes : 
-	   2 Input   28 Bit        Muxes := 17    
+	   2 Input   28 Bit        Muxes := 33    
 	   5 Input   28 Bit        Muxes := 1     
 	   7 Input   28 Bit        Muxes := 5     
 	  12 Input   28 Bit        Muxes := 4     
-	   7 Input   13 Bit        Muxes := 1     
-	   6 Input   13 Bit        Muxes := 1     
+	   2 Input   18 Bit        Muxes := 4     
+	   3 Input   18 Bit        Muxes := 2     
+	   3 Input   13 Bit        Muxes := 3     
+	   2 Input   13 Bit        Muxes := 3     
 	  12 Input   11 Bit        Muxes := 1     
 	   2 Input   11 Bit        Muxes := 4     
 	   2 Input   10 Bit        Muxes := 2     
 	   2 Input    9 Bit        Muxes := 8     
 	   8 Input    8 Bit        Muxes := 1     
 	   2 Input    8 Bit        Muxes := 2     
-	   7 Input    7 Bit        Muxes := 1     
 	   2 Input    7 Bit        Muxes := 5     
 	   5 Input    6 Bit        Muxes := 1     
-	   2 Input    6 Bit        Muxes := 4     
+	   2 Input    6 Bit        Muxes := 7     
 	   7 Input    6 Bit        Muxes := 5     
 	  11 Input    6 Bit        Muxes := 8     
 	   2 Input    4 Bit        Muxes := 4     
-	   2 Input    3 Bit        Muxes := 16    
+	   2 Input    3 Bit        Muxes := 17    
 	   3 Input    3 Bit        Muxes := 2     
 	  12 Input    3 Bit        Muxes := 1     
-	   2 Input    2 Bit        Muxes := 4     
-	   2 Input    1 Bit        Muxes := 60    
+	   2 Input    2 Bit        Muxes := 2     
+	   2 Input    1 Bit        Muxes := 61    
+	   5 Input    1 Bit        Muxes := 1     
 	   7 Input    1 Bit        Muxes := 6     
-	  12 Input    1 Bit        Muxes := 3     
+	  12 Input    1 Bit        Muxes := 4     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -234,18 +237,16 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
-WARNING: [Synth 8-7129] Port clk in module left_right_signal is either unconnected or has no load
-WARNING: [Synth 8-7129] Port K6 in module main_state_switcher is either unconnected or has no load
-WARNING: [Synth 8-7129] Port L1 in module main_state_switcher is either unconnected or has no load
-WARNING: [Synth 8-7129] Port P4 in module main_state_switcher is either unconnected or has no load
-WARNING: [Synth 8-7129] Port P3 in module main_state_switcher is either unconnected or has no load
-WARNING: [Synth 8-7129] Port P2 in module main_state_switcher is either unconnected or has no load
-WARNING: [Synth 8-7129] Port R2 in module main_state_switcher is either unconnected or has no load
-WARNING: [Synth 8-7129] Port M4 in module main_state_switcher is either unconnected or has no load
-WARNING: [Synth 8-7129] Port N4 in module main_state_switcher is either unconnected or has no load
-WARNING: [Synth 8-7129] Port standard_clock_60 in module main_state_switcher is either unconnected or has no load
+WARNING: [Synth 8-7129] Port K6 in module main is either unconnected or has no load
+WARNING: [Synth 8-7129] Port L1 in module main is either unconnected or has no load
+WARNING: [Synth 8-7129] Port P4 in module main is either unconnected or has no load
+WARNING: [Synth 8-7129] Port P3 in module main is either unconnected or has no load
+WARNING: [Synth 8-7129] Port P2 in module main is either unconnected or has no load
+WARNING: [Synth 8-7129] Port R2 in module main is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M4 in module main is either unconnected or has no load
+WARNING: [Synth 8-7129] Port N4 in module main is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 2376.645 ; gain = 673.312 ; free physical = 18734 ; free virtual = 30759
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 2380.328 ; gain = 677.281 ; free physical = 639 ; free virtual = 19159
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -266,19 +267,19 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 2376.645 ; gain = 673.312 ; free physical = 18749 ; free virtual = 30774
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 2380.328 ; gain = 677.281 ; free physical = 637 ; free virtual = 19157
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 2376.645 ; gain = 673.312 ; free physical = 18749 ; free virtual = 30774
+Finished Timing Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 2380.328 ; gain = 677.281 ; free physical = 637 ; free virtual = 19157
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 2384.645 ; gain = 681.312 ; free physical = 18751 ; free virtual = 30776
+Finished Technology Mapping : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 2388.328 ; gain = 685.281 ; free physical = 617 ; free virtual = 19138
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -296,37 +297,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 2384.645 ; gain = 681.312 ; free physical = 18754 ; free virtual = 30780
+Finished IO Insertion : Time (s): cpu = 00:00:19 ; elapsed = 00:00:19 . Memory (MB): peak = 2388.328 ; gain = 685.281 ; free physical = 621 ; free virtual = 19141
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 2384.645 ; gain = 681.312 ; free physical = 18755 ; free virtual = 30780
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:19 ; elapsed = 00:00:19 . Memory (MB): peak = 2388.328 ; gain = 685.281 ; free physical = 621 ; free virtual = 19141
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 2384.645 ; gain = 681.312 ; free physical = 18755 ; free virtual = 30780
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:19 ; elapsed = 00:00:19 . Memory (MB): peak = 2388.328 ; gain = 685.281 ; free physical = 621 ; free virtual = 19141
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 2384.645 ; gain = 681.312 ; free physical = 18755 ; free virtual = 30780
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:19 ; elapsed = 00:00:19 . Memory (MB): peak = 2388.328 ; gain = 685.281 ; free physical = 621 ; free virtual = 19141
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 2384.645 ; gain = 681.312 ; free physical = 18755 ; free virtual = 30780
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:19 ; elapsed = 00:00:19 . Memory (MB): peak = 2388.328 ; gain = 685.281 ; free physical = 621 ; free virtual = 19141
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 2384.645 ; gain = 681.312 ; free physical = 18755 ; free virtual = 30780
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:19 ; elapsed = 00:00:19 . Memory (MB): peak = 2388.328 ; gain = 685.281 ; free physical = 621 ; free virtual = 19141
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -343,50 +344,54 @@ Report Cell Usage:
 |      |Cell   |Count |
 +------+-------+------+
 |1     |BUFG   |     3|
-|2     |CARRY4 |   735|
-|3     |LUT1   |   186|
-|4     |LUT2   |   794|
-|5     |LUT3   |  1250|
-|6     |LUT4   |   595|
-|7     |LUT5   |   369|
-|8     |LUT6   |  1150|
-|9     |MUXF7  |     3|
-|10    |FDCE   |   476|
-|11    |FDPE   |    10|
-|12    |FDRE   |   207|
-|13    |LD     |    42|
-|14    |LDCP   |     1|
-|15    |IBUF   |     9|
-|16    |OBUF   |    38|
-|17    |OBUFT  |     2|
+|2     |CARRY4 |   823|
+|3     |LUT1   |   333|
+|4     |LUT2   |   876|
+|5     |LUT3   |  1341|
+|6     |LUT4   |   638|
+|7     |LUT5   |   453|
+|8     |LUT6   |  1484|
+|9     |MUXF7  |     5|
+|10    |FDCE   |   592|
+|11    |FDPE   |    43|
+|12    |FDRE   |    48|
+|13    |FDSE   |    10|
+|14    |LD     |    28|
+|15    |LDC    |    12|
+|16    |LDCP   |     1|
+|17    |LDP    |     2|
+|18    |IBUF   |     9|
+|19    |OBUF   |    38|
+|20    |OBUFT  |     2|
 +------+-------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 2384.645 ; gain = 681.312 ; free physical = 18755 ; free virtual = 30780
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:19 ; elapsed = 00:00:19 . Memory (MB): peak = 2388.328 ; gain = 685.281 ; free physical = 621 ; free virtual = 19141
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 15 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 2384.645 ; gain = 528.562 ; free physical = 18755 ; free virtual = 30780
-Synthesis Optimization Complete : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 2384.652 ; gain = 681.312 ; free physical = 18755 ; free virtual = 30780
+Synthesis finished with 0 errors, 0 critical warnings and 13 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 2388.328 ; gain = 533.531 ; free physical = 621 ; free virtual = 19141
+Synthesis Optimization Complete : Time (s): cpu = 00:00:19 ; elapsed = 00:00:19 . Memory (MB): peak = 2388.336 ; gain = 685.281 ; free physical = 621 ; free virtual = 19141
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2384.652 ; gain = 0.000 ; free physical = 19051 ; free virtual = 31076
-INFO: [Netlist 29-17] Analyzing 781 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2388.336 ; gain = 0.000 ; free physical = 917 ; free virtual = 19437
+INFO: [Netlist 29-17] Analyzing 871 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
-WARNING: [Netlist 29-101] Netlist 'main' is not ideal for floorplanning, since the cellview 'main_state_switcher' contains a large number of primitives.  Please consider enabling hierarchy in synthesis if you want to do floorplanning.
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2440.672 ; gain = 0.000 ; free physical = 19056 ; free virtual = 31081
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2444.355 ; gain = 0.000 ; free physical = 919 ; free virtual = 19440
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 43 instances were transformed.
-  LD => LDCE: 42 instances
+  LD => LDCE: 28 instances
+  LDC => LDCE: 12 instances
   LDCP => LDCP (GND, LDCE, LUT3(x2), VCC): 1 instance 
+  LDP => LDPE: 2 instances
 
-Synth Design complete | Checksum: 83c7ea5b
+Synth Design complete | Checksum: d606d2a5
 INFO: [Common 17-83] Releasing license: Synthesis
-50 Infos, 50 Warnings, 0 Critical Warnings and 0 Errors encountered.
+50 Infos, 48 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:24 ; elapsed = 00:00:23 . Memory (MB): peak = 2440.672 ; gain = 1075.316 ; free physical = 19056 ; free virtual = 31081
-INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 1905.417; main = 1566.416; forked = 391.847
-INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3442.547; main = 2440.676; forked = 1057.898
-Write ShapeDB Complete: Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2464.684 ; gain = 0.000 ; free physical = 19056 ; free virtual = 31082
+synth_design: Time (s): cpu = 00:00:23 ; elapsed = 00:00:22 . Memory (MB): peak = 2444.355 ; gain = 1079.379 ; free physical = 919 ; free virtual = 19440
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 1886.676; main = 1580.570; forked = 396.163
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3441.668; main = 2444.359; forked = 1061.336
+Write ShapeDB Complete: Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2468.367 ; gain = 0.000 ; free physical = 919 ; free virtual = 19441
 INFO: [Common 17-1381] The checkpoint '/home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.runs/synth_1/main.dcp' has been generated.
 INFO: [Vivado 12-24828] Executing command : report_utilization -file main_utilization_synth.rpt -pb main_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Fri Dec  6 15:31:59 2024...
+INFO: [Common 17-206] Exiting Vivado at Mon Dec  9 22:51:46 2024...
