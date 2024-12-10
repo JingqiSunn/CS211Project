@@ -24,6 +24,7 @@ module left_right_signal(
     input reset,
     input [5:0] target_time,
     input standard_clock,
+    input the_right_left_signal,
     input clk,
     input left_button,
     input right_button,
@@ -62,13 +63,19 @@ module left_right_signal(
         end
 
 
-    always @(left_button, right_button)
+    always @(the_right_left_signal, left_button, right_button)
         begin
             if (process_begin == 1'b0 && left_button == 1'b1)
                 begin
                     left_right_signal_out_next <= 1'b0;
                     process_begin_next <= 1'b1;
                     current_time_next <= current_time + 1;
+                end
+            else if (process_begin == 1'b1 && the_right_left_signal == 1'b1)
+                begin
+                    left_right_signal_out_next <= 1'b0;
+                    process_begin_next <= 1'b0;
+                    current_time_next <= 6'b0;
                 end
             else if (process_begin == 1'b1 && right_button == 1'b1)
                 begin

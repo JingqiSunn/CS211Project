@@ -112,7 +112,7 @@ module main(
         
     main_state_switcher main_state_switcher_1(
     .edit_state_button(P5),
-    .P4(P4),
+    .show_work_time_state_button(P4),
     .P3(P3),
     .P2(P2),
     .R2(R2),
