@@ -21,6 +21,10 @@
 
 
 module next_state_machine(
+    input [27:0] level_3_timer_standard,
+    input [27:0] self_clean_timer_standard,
+    input [27:0] strong_standby_timer_standard,
+    input power_menu_button_three,
     input the_left_right_signal,
     input the_right_left_signal,
     input reset ,
@@ -73,7 +77,7 @@ module next_state_machine(
     minute                          = 3'b010,
     second                          = 3'b001;
    
-    always @(reset ,state, power_menu_button_short, power_menu_button_long, level_1_button, level_2_button, level_3_button, self_clean_button, edit_state_button, show_work_time_state_button)
+    always @(reset ,state, power_menu_button_short, power_menu_button_long, level_1_button, level_2_button, level_3_button, self_clean_button, edit_state_button, show_work_time_state_button, power_menu_button_three)
         begin
             if (~reset)
                 begin
