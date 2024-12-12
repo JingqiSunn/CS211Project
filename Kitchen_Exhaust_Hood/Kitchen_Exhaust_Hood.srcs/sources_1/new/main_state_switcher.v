@@ -80,8 +80,21 @@ module main_state_switcher(
     output G1,
     output F1,
     output E1,
-    output G6
+    output G6,
+    output H17,       
+    output T1,
+    output T4
     );
+    
+    wire whether_manual_clean;
+    check_uart_in check_uart_in_1(
+        .uart_rx(uart_rx),
+        .reset(reset),
+        .clk(clk),
+        .whether_yes(whether_manual_clean)
+    );
+    wire clock_uart;
+    wire [7:0] state_in_binary;
     wire the_left_right_signal;
     wire the_right_left_signal;
     wire clock_for_edit;
@@ -111,6 +124,7 @@ module main_state_switcher(
     wire [27:0] strong_standby_timer_next;
     reg [27:0] strong_standby_timer_standard;
     wire [27:0] strong_standby_timer_standard_next;
+    
     
     reg [27:0] current_time;
     reg [27:0] current_time_next;
@@ -167,7 +181,17 @@ module main_state_switcher(
     minute                          = 3'b010,
     second                          = 3'b001;
     
-    
+    buzzer_driver buzzer_driver_1(
+      .clk(P17),     
+      .state(state),       
+      .button1(power_menu_button),     
+      .button2(level_1_button),     
+      .button3(level_2_button),
+      .button4(level_3_button),
+      .button5(self_clean_button),
+      .buzzer(H17),       
+      .t1(T1)
+    );
    
     second_time_switcher second_time_switcher_for_clock(
     .total_seconds(current_time), 
@@ -354,6 +378,7 @@ module main_state_switcher(
     ); 
     
     next_state_machine next_state_machine_1(
+        .whether_manual_clean(whether_manual_clean),
         .level_3_timer_standard(level_3_timer_standard),
         .self_clean_timer_standard(self_clean_timer_standard),
         .strong_standby_timer_standard(strong_standby_timer_standard),
@@ -679,4 +704,137 @@ module main_state_switcher(
                     M1 <= 1'b0;
                 end
         end
+    
+    state_one_hot_to_binary state_one_hot_to_binary_1(
+        .one_hot(state),
+        .binary(state_in_binary)
+    );
+    
+    Clock_generator_uart Clock_generator_uart_1(
+        .clk_in(clk),
+        .reset(reset),
+        .standard_clock(clock_uart)
+    );
+    
+    reg [7:0] data, data_next;
+    reg [27:0] state_in_transfer, state_in_transfer_next;
+    parameter
+    for_state               = 1,
+    for_over_work           = 2,
+    for_work_second_1       = 3,
+    for_work_second_0       = 4,
+    for_work_minute_1       = 5,
+    for_work_minute_0       = 6,
+    for_work_hour_1         = 7,
+    for_work_hour_0         = 8,
+    for_second_1            = 9,
+    for_second_0            = 10,
+    for_minute_1            = 11,
+    for_minute_0            = 12,
+    for_hour_1              = 13,
+    for_hour_0              = 14;
+    
+    
+    always @(posedge clock_uart, negedge reset)
+        begin
+            if (~reset)
+                begin
+                    data <= state_in_binary;
+                    state_in_transfer <= for_state;
+                end
+            else 
+                begin
+                    data <= data_next;
+                    state_in_transfer <= state_in_transfer_next;
+                end
+        end
+        
+    always @(posedge clk)
+        begin
+            case (state_in_transfer)
+                for_state:
+                     begin
+                        data_next <= {7'b0001000, K3};
+                        state_in_transfer_next <= for_over_work; 
+                     end
+                for_over_work:
+                     begin
+                        data_next <= {4'b0010, total_working_time_second_1[3:0]};
+                        state_in_transfer_next <= for_work_second_1; 
+                     end
+                for_work_second_1:
+                     begin
+                        data_next <= {4'b0011, total_working_time_second_0[3:0]};
+                        state_in_transfer_next <= for_work_second_0; 
+                     end
+                for_work_second_0:
+                     begin
+                        data_next <= {4'b0100, total_working_time_minute_1[3:0]};
+                        state_in_transfer_next <= for_work_minute_1; 
+                     end
+                for_work_minute_1:
+                     begin
+                        data_next <= {4'b0101, total_working_time_minute_0[3:0]};
+                        state_in_transfer_next <= for_work_minute_0; 
+                     end
+                for_work_minute_0:
+                     begin
+                        data_next <= {4'b0110, total_working_time_hour_1[3:0]};
+                        state_in_transfer_next <= for_work_hour_1; 
+                     end
+                for_work_hour_1:
+                     begin
+                        data_next <= {4'b0111, total_working_time_hour_0[3:0]};
+                        state_in_transfer_next <= for_work_hour_0; 
+                     end
+                for_work_hour_0:
+                     begin
+                        data_next <= {4'b1000, second_1[3:0]};
+                        state_in_transfer_next <= for_second_1; 
+                     end
+                for_second_1:
+                     begin
+                        data_next <= {4'b1001, second_0[3:0]};
+                        state_in_transfer_next <= for_second_0; 
+                     end
+                for_second_0:
+                     begin
+                        data_next <= {4'b1010, minute_1[3:0]};
+                        state_in_transfer_next <= for_minute_1; 
+                     end
+                for_minute_1:
+                     begin
+                        data_next <= {4'b1011, minute_0[3:0]};
+                        state_in_transfer_next <= for_minute_0; 
+                     end
+                for_minute_0:
+                     begin
+                        data_next <= {4'b1100, hour_1[3:0]};
+                        state_in_transfer_next <= for_hour_1; 
+                     end
+                for_hour_1:
+                     begin
+                        data_next <= {4'b1101, hour_0[3:0]};
+                        state_in_transfer_next <= for_hour_0; 
+                     end
+                for_hour_0:
+                     begin
+                        data_next <= state_in_binary;
+                        state_in_transfer_next <= for_state; 
+                     end
+                default:
+                     begin
+                        data_next <= state_in_binary;
+                        state_in_transfer_next <= for_state; 
+                     end
+            endcase
+        end
+    uart_tx uart_tx_1 (
+       .clk_100(clk),
+       .rst_n(reset),
+       .state(data), 
+       .tx(T4) 
+    );
+   
+    
 endmodule

@@ -75,7 +75,10 @@ module main(
     output G1,
     output F1,
     output E1,
-    output G6
+    output G6,
+    output H17,       
+    output T1,
+    output T4
     );
     wire level_1_button, level_2_button, level_3_button, self_clean_button, power_menu_button;
     debounce debounce_1(.clk(P17), .reset(P15), .button_in(R17), .button_out(power_menu_button));
@@ -109,6 +112,7 @@ module main(
     .whether_long_touch(power_menu_three),
     .whether_short_touch(power_menu_no_three)
     );
+
         
     main_state_switcher main_state_switcher_1(
     .edit_state_button(P5),
@@ -170,7 +174,10 @@ module main(
     .G1(G1),
     .F1(F1),
     .E1(E1),
-    .G6(G6)
+    .G6(G6),
+    .H17(H17),       
+    .T1(T1),
+    .T4(T4)
     );
     
 endmodule
