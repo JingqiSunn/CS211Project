@@ -3,8 +3,8 @@
 # SW Build 5076996 on Wed May 22 18:36:09 MDT 2024
 # IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
 # SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
-# Start of session at: Fri Dec 13 14:38:09 2024
-# Process ID: 574233
+# Start of session at: Sat Dec 14 02:36:10 2024
+# Process ID: 4020319
 # Current directory: /home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.runs/synth_1
 # Command line: vivado -log main.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source main.tcl
 # Log file: /home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.runs/synth_1/main.vds
@@ -13,12 +13,12 @@
 # Platform          :Ubuntu
 # Operating System  :Ubuntu 24.04.1 LTS
 # Processor Detail  :13th Gen Intel(R) Core(TM) i9-13900HX
-# CPU Frequency     :800.460 MHz
+# CPU Frequency     :799.793 MHz
 # CPU Physical cores:24
 # CPU Logical cores :32
 # Host memory       :33443 MB
 # Swap memory       :8589 MB
 # Total Virtual     :42033 MB
-# Available Virtual :30631 MB
+# Available Virtual :26770 MB
 #-----------------------------------------------------------
 source main.tcl -notrace

@@ -158,9 +158,35 @@ module main(
 //        end
     
  
-        
+    wire kill_11111111;
+    debounce_kill_1111111 debounce_kill_11111111_1(
+        .clk(P17),             
+        .reset(P15),          
+        .button_in(N5),      
+        .button_out(kill_11111111)
+    );       
+    
+    wire kill_01111111;
+    debounce_for_uart_0111111 debounce_for_uart_01111111_1(
+        .clk(P17),             
+        .reset(P15),          
+        .button_in(N5),      
+        .button_out(kill_01111111)
+    );  
+    
+    wire kill_00111111;
+    debounce_kill_00111111 debounce_kill_00111111_1(
+        .clk(P17),             
+        .reset(P15),          
+        .button_in(N5),      
+        .button_out(kill_00111111)
+    );     
+    
         
     main_state_switcher main_state_switcher_1(
+    .kill_11111111(kill_11111111),
+    .kill_01111111(kill_01111111),
+    .kill_00111111(kill_00111111),
     .whether_manual_clean(whether_manual_clean),
     .edit_state_button(P5),
     .show_work_time_state_button(P4),

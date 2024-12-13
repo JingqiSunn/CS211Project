@@ -79,6 +79,9 @@ read_verilog -library xil_defaultlib {
   /home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/buzzer_driver.v
   /home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/debounce.v
   /home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/debounce_for_uart_in.v
+  /home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/debounce_kill_00111111.v
+  /home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/debounce_kill_01111111.v
+  /home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/debounce_kill_11111111.v
   /home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/left_right_signal.v
   /home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/main_state_switcher.v
   /home/sjq/Documents/Assignment/CS211DigitalLogic/CS211Project/Kitchen_Exhaust_Hood/Kitchen_Exhaust_Hood.srcs/sources_1/new/next_state_machine.v

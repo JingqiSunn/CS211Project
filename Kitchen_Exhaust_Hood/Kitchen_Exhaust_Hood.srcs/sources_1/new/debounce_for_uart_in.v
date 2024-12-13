@@ -26,7 +26,7 @@ module debounce_for_uart_in(
     input wire button_in,      
     output reg button_out     
 );
-    parameter debounce_count_standard = 52083 ;
+    parameter debounce_count_standard = 50000;
     reg [30:0] debounce_counter;  
     reg button_in_d1;             
     

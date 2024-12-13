@@ -21,6 +21,9 @@
 
 
 module main_state_switcher(
+    input kill_11111111,
+    input kill_01111111,
+    input kill_00111111,
     input whether_manual_clean,
     input edit_state_button,
     input show_work_time_state_button,
@@ -54,8 +57,8 @@ module main_state_switcher(
     output reg H6,
     output reg H5,
     output reg J5,
-    output K6,
-    output L1,
+    output reg K6,
+    output reg L1,
     output reg M1,
     output reg K3,
     output B4,
@@ -373,7 +376,10 @@ module main_state_switcher(
     ); 
     
     next_state_machine next_state_machine_1(
-        .L1(L1),
+        .clk(clk),
+        .kill_11111111(kill_11111111),
+        .kill_01111111(kill_01111111),
+        .kill_00111111(kill_00111111),
         .standard_clock_1(standard_clock_1),
         .whether_manual_clean(whether_manual_clean),
         .level_3_timer_standard(level_3_timer_standard),
@@ -695,14 +701,20 @@ module main_state_switcher(
             if (state == power_off_state)
                 begin
                     M1 <= 1'b0;
+                    K6 <= 1'b0;
+                    L1 <= 1'b0;
                 end
             else if (light_mode_button == 1)
                 begin
                     M1 <= 1'b1;
+                    K6 <= 1'b1;
+                    L1 <= 1'b1;
                 end
             else
                 begin
                     M1 <= 1'b0;
+                    K6 <= 1'b0;
+                    L1 <= 1'b0;
                 end
         end
     
