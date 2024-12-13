@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (lin64) Build 5076996 Wed May 22 18:36:09 MDT 2024
-| Date         : Thu Dec 12 21:24:49 2024
+| Date         : Fri Dec 13 14:39:10 2024
 | Host         : PC running 64-bit Ubuntu 24.04.1 LTS
 | Command      : report_drc -file main_drc_routed.rpt -pb main_drc_routed.pb -rpx main_drc_routed.rpx
 | Design       : main
@@ -24,12 +24,12 @@ Table of Contents
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>
-             Violations found: 14
+             Violations found: 15
 +----------+----------+-----------------------------------------------------+------------+
 | Rule     | Severity | Description                                         | Violations |
 +----------+----------+-----------------------------------------------------+------------+
 | CFGBVS-1 | Warning  | Missing CFGBVS and CONFIG_VOLTAGE Design Properties | 1          |
-| PDRC-153 | Warning  | Gated clock check                                   | 13         |
+| PDRC-153 | Warning  | Gated clock check                                   | 14         |
 +----------+----------+-----------------------------------------------------+------------+
 
 2. REPORT DETAILS
@@ -69,45 +69,50 @@ Related violations: <none>
 
 PDRC-153#5 Warning
 Gated clock check  
-Net main_state_switcher_1/right_left_signal_1/process_begin_next_reg/G0 is a gated clock net sourced by a combinational pin main_state_switcher_1/right_left_signal_1/process_begin_next_reg/L3_2/O, cell main_state_switcher_1/right_left_signal_1/process_begin_next_reg/L3_2 (in main_state_switcher_1/right_left_signal_1/process_begin_next_reg macro). This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net main_state_switcher_1/next_state_machine_1/total_working_time_next_reg[27]_i_2_n_0 is a gated clock net sourced by a combinational pin main_state_switcher_1/next_state_machine_1/total_working_time_next_reg[27]_i_2/O, cell main_state_switcher_1/next_state_machine_1/total_working_time_next_reg[27]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#6 Warning
 Gated clock check  
-Net main_state_switcher_1/state_one_hot_to_binary_1/P15_0 is a gated clock net sourced by a combinational pin main_state_switcher_1/state_one_hot_to_binary_1/data_reg[7]_LDC_i_1/O, cell main_state_switcher_1/state_one_hot_to_binary_1/data_reg[7]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net main_state_switcher_1/right_left_signal_1/process_begin_next_reg/G0 is a gated clock net sourced by a combinational pin main_state_switcher_1/right_left_signal_1/process_begin_next_reg/L3_2/O, cell main_state_switcher_1/right_left_signal_1/process_begin_next_reg/L3_2 (in main_state_switcher_1/right_left_signal_1/process_begin_next_reg macro). This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#7 Warning
 Gated clock check  
-Net main_state_switcher_1/state_one_hot_to_binary_1/P15_1 is a gated clock net sourced by a combinational pin main_state_switcher_1/state_one_hot_to_binary_1/data_reg[4]_LDC_i_1/O, cell main_state_switcher_1/state_one_hot_to_binary_1/data_reg[4]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net main_state_switcher_1/state_one_hot_to_binary_1/P15_0 is a gated clock net sourced by a combinational pin main_state_switcher_1/state_one_hot_to_binary_1/data_reg[7]_LDC_i_1/O, cell main_state_switcher_1/state_one_hot_to_binary_1/data_reg[7]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#8 Warning
 Gated clock check  
-Net main_state_switcher_1/state_one_hot_to_binary_1/state_reg[0] is a gated clock net sourced by a combinational pin main_state_switcher_1/state_one_hot_to_binary_1/data_reg[1]_LDC_i_1/O, cell main_state_switcher_1/state_one_hot_to_binary_1/data_reg[1]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net main_state_switcher_1/state_one_hot_to_binary_1/P15_1 is a gated clock net sourced by a combinational pin main_state_switcher_1/state_one_hot_to_binary_1/data_reg[4]_LDC_i_1/O, cell main_state_switcher_1/state_one_hot_to_binary_1/data_reg[4]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#9 Warning
 Gated clock check  
-Net main_state_switcher_1/state_one_hot_to_binary_1/state_reg[0]_1 is a gated clock net sourced by a combinational pin main_state_switcher_1/state_one_hot_to_binary_1/data_reg[6]_LDC_i_1/O, cell main_state_switcher_1/state_one_hot_to_binary_1/data_reg[6]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net main_state_switcher_1/state_one_hot_to_binary_1/state_reg[0] is a gated clock net sourced by a combinational pin main_state_switcher_1/state_one_hot_to_binary_1/data_reg[1]_LDC_i_1/O, cell main_state_switcher_1/state_one_hot_to_binary_1/data_reg[1]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#10 Warning
 Gated clock check  
-Net main_state_switcher_1/state_one_hot_to_binary_1/state_reg[0]_2 is a gated clock net sourced by a combinational pin main_state_switcher_1/state_one_hot_to_binary_1/data_reg[2]_LDC_i_1/O, cell main_state_switcher_1/state_one_hot_to_binary_1/data_reg[2]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net main_state_switcher_1/state_one_hot_to_binary_1/state_reg[0]_1 is a gated clock net sourced by a combinational pin main_state_switcher_1/state_one_hot_to_binary_1/data_reg[6]_LDC_i_1/O, cell main_state_switcher_1/state_one_hot_to_binary_1/data_reg[6]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#11 Warning
 Gated clock check  
-Net main_state_switcher_1/state_one_hot_to_binary_1/state_reg[0]_3 is a gated clock net sourced by a combinational pin main_state_switcher_1/state_one_hot_to_binary_1/data_reg[0]_LDC_i_1/O, cell main_state_switcher_1/state_one_hot_to_binary_1/data_reg[0]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net main_state_switcher_1/state_one_hot_to_binary_1/state_reg[0]_2 is a gated clock net sourced by a combinational pin main_state_switcher_1/state_one_hot_to_binary_1/data_reg[2]_LDC_i_1/O, cell main_state_switcher_1/state_one_hot_to_binary_1/data_reg[2]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#12 Warning
 Gated clock check  
-Net main_state_switcher_1/state_one_hot_to_binary_1/state_reg[1]_0 is a gated clock net sourced by a combinational pin main_state_switcher_1/state_one_hot_to_binary_1/data_reg[5]_LDC_i_1/O, cell main_state_switcher_1/state_one_hot_to_binary_1/data_reg[5]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net main_state_switcher_1/state_one_hot_to_binary_1/state_reg[0]_3 is a gated clock net sourced by a combinational pin main_state_switcher_1/state_one_hot_to_binary_1/data_reg[0]_LDC_i_1/O, cell main_state_switcher_1/state_one_hot_to_binary_1/data_reg[0]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#13 Warning
+Gated clock check  
+Net main_state_switcher_1/state_one_hot_to_binary_1/state_reg[1]_0 is a gated clock net sourced by a combinational pin main_state_switcher_1/state_one_hot_to_binary_1/data_reg[5]_LDC_i_1/O, cell main_state_switcher_1/state_one_hot_to_binary_1/data_reg[5]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#14 Warning
 Gated clock check  
 Net main_state_switcher_1/state_one_hot_to_binary_1/state_reg[1]_1 is a gated clock net sourced by a combinational pin main_state_switcher_1/state_one_hot_to_binary_1/data_reg[3]_LDC_i_1/O, cell main_state_switcher_1/state_one_hot_to_binary_1/data_reg[3]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>

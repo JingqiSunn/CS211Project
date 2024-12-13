@@ -21,6 +21,7 @@
 
 
 module main_state_switcher(
+    input whether_manual_clean,
     input edit_state_button,
     input show_work_time_state_button,
     input P3,
@@ -86,13 +87,7 @@ module main_state_switcher(
     output T4
     );
     
-    wire whether_manual_clean;
-    check_uart_in check_uart_in_1(
-        .uart_rx(uart_rx),
-        .reset(reset),
-        .clk(clk),
-        .whether_yes(whether_manual_clean)
-    );
+    
     wire clock_uart;
     wire [7:0] state_in_binary;
     wire the_left_right_signal;
@@ -378,6 +373,8 @@ module main_state_switcher(
     ); 
     
     next_state_machine next_state_machine_1(
+        .L1(L1),
+        .standard_clock_1(standard_clock_1),
         .whether_manual_clean(whether_manual_clean),
         .level_3_timer_standard(level_3_timer_standard),
         .self_clean_timer_standard(self_clean_timer_standard),
@@ -439,7 +436,11 @@ module main_state_switcher(
       
     always @(standard_clock_1)
         begin
-            if (state_in_edit_state == change_clock)
+            if (state == power_off_state)
+                begin
+                    current_time_next <= 0;
+                end
+            else if (state_in_edit_state == change_clock)
                 begin
                     current_time_next <= current_time;
                 end

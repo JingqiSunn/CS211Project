@@ -21,6 +21,7 @@
 
 
 module main(
+    input N5,
     input P5,
     input P4,
     input P3,
@@ -113,8 +114,54 @@ module main(
     .whether_short_touch(power_menu_no_three)
     );
 
+
+
+//    reg K3_next;
+    wire whether_manual_clean;
+    
+    debounce_for_uart_in debounce_for_uart_in_1(
+        .clk(P17),             
+        .reset(P15),          
+        .button_in(N5),      
+        .button_out(whether_manual_clean)     
+    );
+    
+//    assign L1 = whether_manual_clean;
+//    assign M1 = N5;
+    
+    
+//    always @(posedge standard_clock_1, negedge P15)
+//        begin
+//            if(~P15)
+//                begin
+//                    K3 <= 1;
+//                end
+//            else 
+//                begin
+//                    K3 <= K3_next;
+//                end
+//        end
+//    always @(whether_manual_clean)
+//        begin
+//            if (K3_next != K3)
+//                begin
+//                    K3_next <= K3_next; 
+//                end
+//            else if (whether_manual_clean == 0)
+//                begin
+//                    K3_next <= 0;
+//                end
+//            else 
+//                begin
+//                    K3_next <= K3;
+//                end
+//        end
+    
+ 
+        
         
     main_state_switcher main_state_switcher_1(
+    .whether_manual_clean(whether_manual_clean),
     .edit_state_button(P5),
     .show_work_time_state_button(P4),
     .P3(P3),

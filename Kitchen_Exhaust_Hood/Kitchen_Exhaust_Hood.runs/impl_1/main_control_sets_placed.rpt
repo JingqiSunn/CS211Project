@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (lin64) Build 5076996 Wed May 22 18:36:09 MDT 2024
-| Date         : Thu Dec 12 21:24:39 2024
+| Date         : Fri Dec 13 14:39:02 2024
 | Host         : PC running 64-bit Ubuntu 24.04.1 LTS
 | Command      : report_control_sets -verbose -file main_control_sets_placed.rpt
 | Design       : main
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |    52 |
-|    Minimum number of control sets                        |    52 |
+| Total control sets                                       |    54 |
+|    Minimum number of control sets                        |    54 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |   290 |
+| Unused register locations in slices containing registers |   291 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,7 +39,7 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |    52 |
+| Total control sets |    54 |
 | >= 0 to < 4        |    29 |
 | >= 4 to < 6        |     1 |
 | >= 6 to < 8        |     1 |
@@ -47,7 +47,7 @@ Table of Contents
 | >= 10 to < 12      |     0 |
 | >= 12 to < 14      |     1 |
 | >= 14 to < 16      |     0 |
-| >= 16              |    20 |
+| >= 16              |    22 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
 
@@ -58,11 +58,11 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              75 |           41 |
-| No           | No                    | Yes                    |             450 |          170 |
-| No           | Yes                   | No                     |              48 |           22 |
+| No           | No                    | No                     |              47 |           34 |
+| No           | No                    | Yes                    |             453 |          178 |
+| No           | Yes                   | No                     |             104 |           42 |
 | Yes          | No                    | No                     |               0 |            0 |
-| Yes          | No                    | Yes                    |             341 |          136 |
+| Yes          | No                    | Yes                    |             357 |          153 |
 | Yes          | Yes                   | No                     |              28 |            8 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
@@ -89,42 +89,44 @@ Table of Contents
 |  main_state_switcher_1/Clock_generator_uart_1/clock_uart                            |                                                                                                    | main_state_switcher_1/state_one_hot_to_binary_1/state_reg[1]_1 |                1 |              1 |         1.00 |
 |  main_state_switcher_1/Clock_generator_uart_1/clock_uart                            |                                                                                                    | main_state_switcher_1/state_one_hot_to_binary_1/state_reg[1]_0 |                1 |              1 |         1.00 |
 |  main_state_switcher_1/Clock_generator_uart_1/clock_uart                            |                                                                                                    | main_state_switcher_1/state_one_hot_to_binary_1/state_reg[0]_4 |                1 |              1 |         1.00 |
-|  main_state_switcher_1/Clock_generator_uart_1/clock_uart                            |                                                                                                    | main_state_switcher_1/state_one_hot_to_binary_1/state_reg[1]   |                1 |              1 |         1.00 |
-|  main_state_switcher_1/Clock_generator_uart_1/clock_uart                            |                                                                                                    | main_state_switcher_1/state_one_hot_to_binary_1/P15            |                1 |              1 |         1.00 |
-|  main_state_switcher_1/Clock_generator_uart_1/clock_uart                            |                                                                                                    | main_state_switcher_1/state_one_hot_to_binary_1/P15_0          |                1 |              1 |         1.00 |
-|  main_state_switcher_1/Clock_generator_uart_1/clock_uart                            |                                                                                                    | main_state_switcher_1/state_one_hot_to_binary_1/P15_1          |                1 |              1 |         1.00 |
-|  main_state_switcher_1/Clock_generator_uart_1/clock_uart                            |                                                                                                    | main_state_switcher_1/state_one_hot_to_binary_1/P15_2          |                1 |              1 |         1.00 |
-|  main_state_switcher_1/Clock_generator_uart_1/clock_uart                            |                                                                                                    | main_state_switcher_1/state_one_hot_to_binary_1/state_reg[0]   |                1 |              1 |         1.00 |
-|  main_state_switcher_1/Clock_generator_uart_1/clock_uart                            |                                                                                                    | main_state_switcher_1/state_one_hot_to_binary_1/state_reg[0]_0 |                1 |              1 |         1.00 |
-|  main_state_switcher_1/Clock_generator_uart_1/clock_uart                            |                                                                                                    | main_state_switcher_1/state_one_hot_to_binary_1/state_reg[0]_1 |                1 |              1 |         1.00 |
-|  main_state_switcher_1/Clock_generator_uart_1/clock_uart                            |                                                                                                    | main_state_switcher_1/state_one_hot_to_binary_1/state_reg[0]_2 |                1 |              1 |         1.00 |
 |  main_state_switcher_1/Clock_generator_uart_1/clock_uart                            |                                                                                                    | main_state_switcher_1/state_one_hot_to_binary_1/state_reg[0]_3 |                1 |              1 |         1.00 |
-|  main_state_switcher_1/scan_seg_1/clkout_reg_n_0                                    |                                                                                                    | main_state_switcher_1/standard_clock_generator_edit_1/P15      |                2 |              3 |         1.50 |
+|  main_state_switcher_1/Clock_generator_uart_1/clock_uart                            |                                                                                                    | main_state_switcher_1/state_one_hot_to_binary_1/state_reg[0]_2 |                1 |              1 |         1.00 |
+|  main_state_switcher_1/Clock_generator_uart_1/clock_uart                            |                                                                                                    | main_state_switcher_1/state_one_hot_to_binary_1/state_reg[0]_1 |                1 |              1 |         1.00 |
+|  main_state_switcher_1/Clock_generator_uart_1/clock_uart                            |                                                                                                    | main_state_switcher_1/state_one_hot_to_binary_1/state_reg[0]_0 |                1 |              1 |         1.00 |
+|  main_state_switcher_1/Clock_generator_uart_1/clock_uart                            |                                                                                                    | main_state_switcher_1/state_one_hot_to_binary_1/state_reg[0]   |                1 |              1 |         1.00 |
+|  main_state_switcher_1/Clock_generator_uart_1/clock_uart                            |                                                                                                    | main_state_switcher_1/state_one_hot_to_binary_1/P15_2          |                1 |              1 |         1.00 |
+|  main_state_switcher_1/Clock_generator_uart_1/clock_uart                            |                                                                                                    | main_state_switcher_1/state_one_hot_to_binary_1/P15_1          |                1 |              1 |         1.00 |
+|  main_state_switcher_1/Clock_generator_uart_1/clock_uart                            |                                                                                                    | main_state_switcher_1/state_one_hot_to_binary_1/P15_0          |                1 |              1 |         1.00 |
+|  main_state_switcher_1/Clock_generator_uart_1/clock_uart                            |                                                                                                    | main_state_switcher_1/state_one_hot_to_binary_1/P15            |                1 |              1 |         1.00 |
+|  main_state_switcher_1/Clock_generator_uart_1/clock_uart                            |                                                                                                    | main_state_switcher_1/state_one_hot_to_binary_1/state_reg[1]   |                1 |              1 |         1.00 |
 |  main_state_switcher_1/next_state_machine_1/state_in_edit_state_next_reg[2]_i_2_n_0 |                                                                                                    | main_state_switcher_1/standard_clock_generator_edit_1/P15      |                1 |              3 |         3.00 |
-|  clock_for_edit                                                                     |                                                                                                    | main_state_switcher_1/standard_clock_generator_edit_1/P15      |                1 |              3 |         3.00 |
-|  main_state_switcher_1/Clock_generator_uart_1/clock_uart                            |                                                                                                    | main_state_switcher_1/standard_clock_generator_edit_1/P15      |                2 |              4 |         2.00 |
+|  main_state_switcher_1/scan_seg_1/clkout_reg_n_0                                    |                                                                                                    | main_state_switcher_1/standard_clock_generator_edit_1/P15      |                2 |              3 |         1.50 |
+|  clock_for_edit                                                                     |                                                                                                    | main_state_switcher_1/standard_clock_generator_edit_1/P15      |                2 |              3 |         1.50 |
+|  main_state_switcher_1/Clock_generator_uart_1/clock_uart                            |                                                                                                    | main_state_switcher_1/standard_clock_generator_edit_1/P15      |                3 |              4 |         1.33 |
 |  clock_for_edit                                                                     | main_state_switcher_1/next_state_machine_for_edit_1/left_right_standard_next[5]_i_1_n_0            | main_state_switcher_1/standard_clock_generator_edit_1/P15      |                4 |              6 |         1.50 |
-|  main_state_switcher_1/next_state_machine_1/next_state_reg[11]_i_2_n_0              |                                                                                                    | main_state_switcher_1/standard_clock_generator_edit_1/P15      |                6 |             12 |         2.00 |
-|  P17_IBUF_BUFG                                                                      | debounce_5/debounce_counter[0]_i_1__3_n_0                                                          | main_state_switcher_1/standard_clock_generator_edit_1/P15      |                5 |             20 |         4.00 |
-|  P17_IBUF_BUFG                                                                      | debounce_2/debounce_counter[0]_i_1__0_n_0                                                          | main_state_switcher_1/standard_clock_generator_edit_1/P15      |                5 |             20 |         4.00 |
+|  main_state_switcher_1/next_state_machine_1/next_state_reg[11]_i_2_n_0              |                                                                                                    | main_state_switcher_1/standard_clock_generator_edit_1/P15      |                4 |             12 |         3.00 |
+|  P17_IBUF_BUFG                                                                      | debounce_for_uart_in_1/debounce_counter[15]_i_1_n_0                                                | main_state_switcher_1/standard_clock_generator_edit_1/P15      |                4 |             16 |         4.00 |
 |  P17_IBUF_BUFG                                                                      | debounce_1/debounce_counter[0]_i_1_n_0                                                             | main_state_switcher_1/standard_clock_generator_edit_1/P15      |                5 |             20 |         4.00 |
-|  P17_IBUF_BUFG                                                                      | debounce_3/debounce_counter[0]_i_1__1_n_0                                                          | main_state_switcher_1/standard_clock_generator_edit_1/P15      |                5 |             20 |         4.00 |
 |  P17_IBUF_BUFG                                                                      | debounce_4/debounce_counter[0]_i_1__2_n_0                                                          | main_state_switcher_1/standard_clock_generator_edit_1/P15      |                5 |             20 |         4.00 |
+|  P17_IBUF_BUFG                                                                      | debounce_3/debounce_counter[0]_i_1__1_n_0                                                          | main_state_switcher_1/standard_clock_generator_edit_1/P15      |                5 |             20 |         4.00 |
+|  P17_IBUF_BUFG                                                                      | debounce_2/debounce_counter[0]_i_1__0_n_0                                                          | main_state_switcher_1/standard_clock_generator_edit_1/P15      |                5 |             20 |         4.00 |
+|  P17_IBUF_BUFG                                                                      | debounce_5/debounce_counter[0]_i_1__3_n_0                                                          | main_state_switcher_1/standard_clock_generator_edit_1/P15      |                5 |             20 |         4.00 |
 |  P17_IBUF_BUFG                                                                      |                                                                                                    | standard_clock_generator_60_1/nolabel_line31/standard_clock    |                7 |             25 |         3.57 |
 |  P17_IBUF_BUFG                                                                      | debounce_1/button_out_reg_0                                                                        | main_state_switcher_1/standard_clock_generator_edit_1/P15      |                7 |             26 |         3.71 |
-|  clock_for_edit                                                                     | main_state_switcher_1/next_state_machine_for_edit_1/total_working_time_standard_next[27]_i_1_n_0   | main_state_switcher_1/standard_clock_generator_edit_1/P15      |                9 |             27 |         3.00 |
-|  main_state_switcher_1/current_time_next_reg[27]_i_2_n_0                            |                                                                                                    |                                                                |                7 |             28 |         4.00 |
-|  standard_clock_1_BUFG                                                              | main_state_switcher_1/total_working_time_reg[27]_i_1_n_5                                           | main_state_switcher_1/standard_clock_generator_edit_1/P15      |               10 |             28 |         2.80 |
-|  clock_for_edit                                                                     | main_state_switcher_1/next_state_machine_for_edit_1/level_3_timer_standard_next[27]_i_1_n_0        | main_state_switcher_1/standard_clock_generator_edit_1/P15      |               20 |             28 |         1.40 |
-|  clock_for_edit                                                                     | main_state_switcher_1/next_state_machine_for_edit_1/self_clean_timer_standard_next[27]_i_1_n_0     | main_state_switcher_1/standard_clock_generator_edit_1/P15      |               14 |             28 |         2.00 |
-|  clock_for_edit                                                                     | main_state_switcher_1/next_state_machine_for_edit_1/strong_standby_timer_standard_next[27]_i_1_n_0 | main_state_switcher_1/standard_clock_generator_edit_1/P15      |               14 |             28 |         2.00 |
-|  clock_for_edit                                                                     | main_state_switcher_1/next_state_machine_for_edit_1/current_time_edit[27]_i_1_n_0                  | main_state_switcher_1/standard_clock_generator_edit_1/P15      |               22 |             28 |         1.27 |
+|  clock_for_edit                                                                     | main_state_switcher_1/next_state_machine_for_edit_1/total_working_time_standard_next[27]_i_1_n_0   | main_state_switcher_1/standard_clock_generator_edit_1/P15      |               11 |             27 |         2.45 |
+|  clock_for_edit                                                                     | main_state_switcher_1/next_state_machine_for_edit_1/self_clean_timer_standard_next[27]_i_1_n_0     | main_state_switcher_1/standard_clock_generator_edit_1/P15      |               20 |             28 |         1.40 |
+|  main_state_switcher_1/next_state_machine_1/total_working_time_next_reg[27]_i_2_n_0 |                                                                                                    | main_state_switcher_1/standard_clock_generator_edit_1/P15      |               15 |             28 |         1.87 |
+|  standard_clock_1_BUFG                                                              | main_state_switcher_1/next_state_machine_1/E[0]                                                    | main_state_switcher_1/standard_clock_generator_edit_1/P15      |               17 |             28 |         1.65 |
+|  clock_for_edit                                                                     | main_state_switcher_1/next_state_machine_for_edit_1/strong_standby_timer_standard_next[27]_i_1_n_0 | main_state_switcher_1/standard_clock_generator_edit_1/P15      |               17 |             28 |         1.65 |
+|  clock_for_edit                                                                     | main_state_switcher_1/next_state_machine_for_edit_1/level_3_timer_standard_next[27]_i_1_n_0        | main_state_switcher_1/standard_clock_generator_edit_1/P15      |               15 |             28 |         1.87 |
+|  clock_for_edit                                                                     | main_state_switcher_1/next_state_machine_for_edit_1/current_time_edit[27]_i_1_n_0                  | main_state_switcher_1/standard_clock_generator_edit_1/P15      |               21 |             28 |         1.33 |
+|  main_state_switcher_1/current_time_next_reg[27]_i_2_n_0                            |                                                                                                    | main_state_switcher_1/current_time_next__0                     |                7 |             28 |         4.00 |
 |  P17_IBUF_BUFG                                                                      | main_state_switcher_1/uart_tx_1/counter_next[27]_i_2_n_0                                           | main_state_switcher_1/uart_tx_1/counter_next[27]_i_1_n_0       |                8 |             28 |         3.50 |
-|  uart_tx_1/standard_clock                                                           |                                                                                                    | main_state_switcher_1/standard_clock_generator_edit_1/P15      |                9 |             29 |         3.22 |
-|  uart_tx_1/standard_clock                                                           | main_state_switcher_1/uart_tx_1/just_next_reg_n_0                                                  | main_state_switcher_1/standard_clock_generator_edit_1/P15      |               11 |             42 |         3.82 |
+|  uart_tx_1/standard_clock                                                           |                                                                                                    | main_state_switcher_1/standard_clock_generator_edit_1/P15      |                8 |             29 |         3.62 |
+|  uart_tx_1/standard_clock                                                           | main_state_switcher_1/uart_tx_1/just_next_reg_n_0                                                  | main_state_switcher_1/standard_clock_generator_edit_1/P15      |               12 |             42 |         3.50 |
 |  P17_IBUF_BUFG                                                                      |                                                                                                    |                                                                |               32 |             45 |         1.41 |
-|  P17_IBUF_BUFG                                                                      |                                                                                                    | main_state_switcher_1/standard_clock_generator_edit_1/P15      |               45 |            126 |         2.80 |
-|  standard_clock_1_BUFG                                                              |                                                                                                    | main_state_switcher_1/standard_clock_generator_edit_1/P15      |               95 |            269 |         2.83 |
+|  P17_IBUF_BUFG                                                                      |                                                                                                    | main_state_switcher_1/standard_clock_generator_edit_1/P15      |               50 |            128 |         2.56 |
+|  standard_clock_1_BUFG                                                              |                                                                                                    | main_state_switcher_1/standard_clock_generator_edit_1/P15      |               97 |            270 |         2.78 |
 +-------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------+------------------+----------------+--------------+
 
 

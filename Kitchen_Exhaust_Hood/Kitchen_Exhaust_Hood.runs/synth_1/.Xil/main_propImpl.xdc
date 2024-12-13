@@ -115,3 +115,5 @@ set_property src_info {type:XDC file:1 line:57 export:INPUT save:INPUT read:READ
 set_property -dict {PACKAGE_PIN T1 IOSTANDARD LVCMOS33} [get_ports T1]
 set_property src_info {type:XDC file:1 line:58 export:INPUT save:INPUT read:READ} [current_design]
 set_property -dict {PACKAGE_PIN T4 IOSTANDARD LVCMOS33} [get_ports T4]
+set_property src_info {type:XDC file:1 line:59 export:INPUT save:INPUT read:READ} [current_design]
+set_property -dict {PACKAGE_PIN N5 IOSTANDARD LVCMOS33} [get_ports N5]

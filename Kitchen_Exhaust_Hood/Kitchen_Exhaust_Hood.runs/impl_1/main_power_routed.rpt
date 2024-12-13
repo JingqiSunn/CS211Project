@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2024.1 (lin64) Build 5076996 Wed May 22 18:36:09 MDT 2024
-| Date             : Thu Dec 12 21:24:51 2024
+| Date             : Fri Dec 13 14:39:12 2024
 | Host             : PC running 64-bit Ubuntu 24.04.1 LTS
 | Command          : report_power -file main_power_routed.rpt -pb main_power_summary_routed.pb -rpx main_power_routed.rpx
 | Design           : main
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+----------------------------------+
-| Total On-Chip Power (W)  | 14.632 (Junction temp exceeded!) |
+| Total On-Chip Power (W)  | 14.858 (Junction temp exceeded!) |
 | Design Power Budget (W)  | Unspecified*                     |
 | Power Budget Margin (W)  | NA                               |
-| Dynamic (W)              | 14.407                           |
-| Device Static (W)        | 0.225                            |
+| Dynamic (W)              | 14.627                           |
+| Device Static (W)        | 0.231                            |
 | Effective TJA (C/W)      | 4.8                              |
-| Max Ambient (C)          | 15.1                             |
-| Junction Temperature (C) | 94.9                             |
+| Max Ambient (C)          | 14.0                             |
+| Junction Temperature (C) | 96.0                             |
 | Confidence Level         | Low                              |
 | Setting File             | ---                              |
 | Simulation Activity File | ---                              |
@@ -52,17 +52,17 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Slice Logic    |     1.413 |     7994 |       --- |             --- |
-|   LUT as Logic |     1.231 |     5119 |     20800 |           24.61 |
-|   CARRY4       |     0.088 |      973 |      8150 |           11.94 |
-|   Register     |     0.088 |      942 |     41600 |            2.26 |
+| Slice Logic    |     1.548 |     8080 |       --- |             --- |
+|   LUT as Logic |     1.360 |     5139 |     20800 |           24.71 |
+|   CARRY4       |     0.091 |      977 |      8150 |           11.99 |
+|   Register     |     0.090 |      989 |     41600 |            2.38 |
 |   BUFG         |     0.006 |        4 |        32 |           12.50 |
-|   Others       |     0.000 |       64 |       --- |             --- |
+|   Others       |     0.000 |       65 |       --- |             --- |
 |   F7/F8 Muxes  |     0.000 |        4 |     32600 |            0.01 |
-| Signals        |     1.299 |     6516 |       --- |             --- |
-| I/O            |    11.695 |       53 |       210 |           25.24 |
-| Static Power   |     0.225 |          |           |                 |
-| Total          |    14.632 |          |           |                 |
+| Signals        |     1.380 |     6595 |       --- |             --- |
+| I/O            |    11.699 |       54 |       210 |           25.71 |
+| Static Power   |     0.231 |          |           |                 |
+| Total          |    14.858 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -72,8 +72,8 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     2.881 |       2.748 |      0.133 |       NA    | Unspecified | NA         |
-| Vccaux    |       1.800 |     0.454 |       0.427 |      0.027 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     3.106 |       2.968 |      0.138 |       NA    | Unspecified | NA         |
+| Vccaux    |       1.800 |     0.455 |       0.427 |      0.028 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     3.301 |       3.300 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -81,7 +81,7 @@ Table of Contents
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vccbram   |       1.000 |     0.003 |       0.000 |      0.003 |       NA    | Unspecified | NA         |
+| Vccbram   |       1.000 |     0.004 |       0.000 |      0.004 |       NA    | Unspecified | NA         |
 | MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccadc    |       1.800 |     0.020 |       0.000 |      0.020 |       NA    | Unspecified | NA         |
@@ -139,27 +139,26 @@ Table of Contents
 +----------------------------------------+-----------+
 | Name                                   | Power (W) |
 +----------------------------------------+-----------+
-| main                                   |    14.407 |
-|   button_touch_length_checker_1        |     0.013 |
-|   debounce_1                           |     0.053 |
-|   debounce_2                           |     0.052 |
-|   debounce_3                           |     0.047 |
-|   debounce_4                           |     0.053 |
-|   debounce_5                           |     0.050 |
-|   main_state_switcher_1                |     2.165 |
-|     Clock_generator_uart_1             |     0.383 |
-|     left_right_signal_1                |     0.045 |
-|       process_begin_next_reg           |     0.001 |
+| main                                   |    14.627 |
+|   button_touch_length_checker_1        |     0.015 |
+|   debounce_1                           |     0.051 |
+|   debounce_2                           |     0.046 |
+|   debounce_3                           |     0.052 |
+|   debounce_4                           |     0.050 |
+|   debounce_5                           |     0.049 |
+|   debounce_for_uart_in_1               |     0.087 |
+|   main_state_switcher_1                |     2.272 |
+|     Clock_generator_uart_1             |     0.413 |
+|     left_right_signal_1                |     0.056 |
 |     next_state_machine_1               |     0.003 |
-|     right_left_signal_1                |     0.053 |
-|       process_begin_next_reg           |     0.001 |
-|     scan_seg_1                         |     0.679 |
-|     standard_clock_generator_edit_1    |     0.407 |
-|     uart_tx_1                          |     0.594 |
+|     right_left_signal_1                |     0.059 |
+|     scan_seg_1                         |     0.742 |
+|     standard_clock_generator_edit_1    |     0.403 |
+|     uart_tx_1                          |     0.596 |
 |       Clock_Creator_50hz_1             |     0.497 |
-|   standard_clock_generator_60_1        |     0.152 |
-|     nolabel_line31                     |     0.152 |
-|   three_second_button_signal_checker_1 |     0.010 |
+|   standard_clock_generator_60_1        |     0.156 |
+|     nolabel_line31                     |     0.156 |
+|   three_second_button_signal_checker_1 |     0.014 |
 +----------------------------------------+-----------+
 
 

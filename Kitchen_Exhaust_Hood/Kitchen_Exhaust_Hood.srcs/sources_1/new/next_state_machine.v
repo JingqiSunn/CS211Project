@@ -21,6 +21,8 @@
 
 
 module next_state_machine(
+    input standard_clock_1,
+    output reg L1,
     input whether_manual_clean,
     input [27:0] level_3_timer_standard,
     input [27:0] self_clean_timer_standard,
@@ -78,6 +80,37 @@ module next_state_machine(
     minute                          = 3'b010,
     second                          = 3'b001;
    
+//   reg L1_next;
+   
+//   always @(posedge standard_clock_1, negedge reset)
+//        begin
+//            if(~reset)
+//                begin
+//                    L1 <= 1;
+//                end
+//            else 
+//                begin
+//                    L1 <= L1_next;
+//                end
+//        end
+//    always @(whether_manual_clean)
+//        begin
+//            if (L1_next != L1)
+//                begin
+//                    L1_next <= L1_next; 
+//                end
+//            else if (whether_manual_clean == 0)
+//                begin
+//                    L1_next <= 0;
+//                end
+//            else 
+//                begin
+//                    L1_next <= L1;
+//                end
+//        end
+   
+   
+   
     always @(whether_manual_clean, reset ,state, power_menu_button_short, power_menu_button_long, level_1_button, level_2_button, level_3_button, self_clean_button, edit_state_button, show_work_time_state_button, power_menu_button_three)
         begin
             if (~reset)
@@ -102,22 +135,25 @@ module next_state_machine(
                                 self_clean_timer_next <= 28'b0;
                                 level_3_timer_next <= 28'b0;
                                 strong_standby_timer_next <= 28'b0;
-                                total_working_time_next <= total_working_time;
                                 if (next_state != state) 
                                     begin
                                         next_state <= next_state; 
+                                        total_working_time_next <= 0;
                                     end
                                 else if (the_left_right_signal == 1)
                                     begin
                                         next_state <= standby_state;
+                                        total_working_time_next <= 0;
                                     end
                                 else if (power_menu_button_short == 0) 
                                     begin
                                         next_state <= power_off_state;
+                                        total_working_time_next <= 0;
                                     end
                                 else 
                                     begin
                                         next_state <= standby_state;
+                                        total_working_time_next <= 0;
                                     end
                             end
                         standby_state:
@@ -128,7 +164,7 @@ module next_state_machine(
                                 self_clean_timer_next <= 28'b0;
                                 level_3_timer_next <= 28'b0;
                                 strong_standby_timer_next <= 28'b0;
-//                                if (whether_manual_clean)
+//                                if (whether_manual_clean == 0)
 //                                    begin
 //                                        total_working_time_next <= 0;
 //                                    end
@@ -139,7 +175,7 @@ module next_state_machine(
 //                                else 
 //                                    begin
 //                                        total_working_time_next <= total_working_time;
-//                                    end
+//                                    end   
                                 total_working_time_next <= total_working_time;
                                 if (next_state != state)
                                     begin
@@ -226,34 +262,47 @@ module next_state_machine(
                                 if (next_state != state)
                                     begin
                                         next_state <= next_state;
+                                        total_working_time_next <= total_working_time_next;
+                                    end
+                                else if (whether_manual_clean == 0)
+                                    begin
+                                        next_state <= standby_state;
+                                        total_working_time_next <= 0;
                                     end
                                 else if (the_right_left_signal == 1)
                                     begin
                                         next_state <= power_off_state;
+                                        total_working_time_next <= total_working_time;
                                     end 
                                 else if (power_menu_button_three == 1'b1)
                                     begin
                                         next_state <= power_off_state;
+                                        total_working_time_next <= total_working_time;
                                     end
                                 else if (level_1_button == 1)
                                     begin
                                         next_state <= level_1_state;
+                                        total_working_time_next <= total_working_time;
                                     end
                                 else if (level_2_button == 1)
                                     begin
                                         next_state <= level_2_state;
+                                        total_working_time_next <= total_working_time;
                                     end
                                 else if (level_3_button == 1 && already_use_level_3 == 1'b0)
                                     begin
                                         next_state <= level_3_state;
+                                        total_working_time_next <= total_working_time;
                                     end
                                 else if (self_clean_button == 1)
                                     begin
                                         next_state <= self_clean_state;
+                                        total_working_time_next <= total_working_time;
                                     end
                                 else
                                     begin
                                         next_state <= menu_state;
+                                        total_working_time_next <= total_working_time;
                                     end
                             end
                         show_current_working_state:
@@ -504,7 +553,7 @@ module next_state_machine(
                                 state_in_edit_state_next <= change_self_clean;
                                 self_clean_timer_next <= 28'b0;
                                 level_3_timer_next <= 28'b0;
-                                total_working_time_next <= total_working_time;
+                                total_working_time_next <= total_working_time + 1;
                                 
                                 if (next_state != state)
                                     begin
