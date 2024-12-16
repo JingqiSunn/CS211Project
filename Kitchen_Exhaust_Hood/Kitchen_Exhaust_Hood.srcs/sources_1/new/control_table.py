@@ -81,7 +81,25 @@ class FPGAStateUI:
             font=("Helvetica", 16, "bold"), bg="blue", fg="white", width=20, height=2
         )
         self.clean_button.pack(pady=20)
+        
+        # Manual Self-Clean button
+        self.Level_1_button = tk.Button(
+            root, text="Level 1", command=self.level_1,
+            font=("Helvetica", 16, "bold"), bg="blue", fg="white", width=20, height=2
+        )
+        self.Level_1_button.pack(pady=20)
 
+        self.Level_2_button = tk.Button(
+            root, text="Level 2", command=self.level_2,
+            font=("Helvetica", 16, "bold"), bg="blue", fg="white", width=20, height=2
+        )
+        self.Level_2_button.pack(pady=20)
+
+        self.Level_3_button = tk.Button(
+            root, text="Level 3", command=self.level_3,
+            font=("Helvetica", 16, "bold"), bg="blue", fg="white", width=20, height=2
+        )
+        self.Level_3_button.pack(pady=20)
         # Internal state
         self.serial_thread = None
         self.running = False
@@ -257,16 +275,50 @@ class FPGAStateUI:
 
     def manual_self_clean(self):
         try:
-            if hasattr(self, "ser") and self.ser.is_open:
+            if self.current_state != "Menu":
+                messagebox.showwarning("Warning", "The button is only allowed in Menu state")
+            elif hasattr(self, "ser") and self.ser.is_open:
                 self.ser.write(b"\x00")  # Send 8-bit message 00000000
-                messagebox.showinfo("Info", "Manual Self Clean command sent!")
+            else:
+                messagebox.showwarning("Warning", "Serial port not open. Please start listening first.")
+        except Exception as e:
+            messagebox.showerror("Error", f"Failed to send command: {e}")
+    
+    def level_1(self):
+        try:
+            if self.current_state != ("Level 2"):
+                messagebox.showwarning("Warning", "Not allowed here")
+            elif hasattr(self, "ser") and self.ser.is_open:
+                self.ser.write(b"\xFF")  # Send 8-bit message 00000000
+            else:
+                messagebox.showwarning("Warning", "Serial port not open. Please start listening first.")
+        except Exception as e:
+            messagebox.showerror("Error", f"Failed to send command: {e}")
+    
+    def level_2(self):
+        try:
+            if self.current_state != ("Level 1"):
+                messagebox.showwarning("Warning", "Not allowed here")
+            elif hasattr(self, "ser") and self.ser.is_open:
+                self.ser.write(b"\x3F")  # Send 8-bit message 00000000
             else:
                 messagebox.showwarning("Warning", "Serial port not open. Please start listening first.")
         except Exception as e:
             messagebox.showerror("Error", f"Failed to send command: {e}")
 
+    def level_3(self):
+        try:
+            if self.current_state != ("Stand By"):
+                messagebox.showwarning("Warning", "Not allowed here")
+            elif hasattr(self, "ser") and self.ser.is_open:
+                self.ser.write(b"\x0F")  # Send 8-bit message 00000000
+            else:
+                messagebox.showwarning("Warning", "Serial port not open. Please start listening first.")
+        except Exception as e:
+            messagebox.showerror("Error", f"Failed to send command: {e}")
 if __name__ == "__main__":
     root = tk.Tk()
     app = FPGAStateUI(root)
     root.mainloop()
+
 
