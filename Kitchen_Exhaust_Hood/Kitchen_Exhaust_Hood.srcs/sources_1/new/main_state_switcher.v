@@ -340,7 +340,7 @@ module main_state_switcher(
                         begin
                             current_time <= current_time_next;
                         end
-                    total_working_time <= total_working_time;
+                    total_working_time <= total_working_time_next;
                     total_working_time_standard <= total_working_time_standard_next;
                     state_in_hour_minute_second <= state_in_hour_minute_second_next;
                     left_right <= left_right_next;
