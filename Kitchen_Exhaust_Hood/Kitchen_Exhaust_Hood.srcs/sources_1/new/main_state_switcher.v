@@ -694,7 +694,7 @@ module main_state_switcher(
         
         //update the total work time
      always @(total_working_time, total_working_time_standard)
-        if (total_working_time == total_working_time_standard)
+        if (total_working_time >= total_working_time_standard)
             begin
                 K3 <= 1;
             end
