@@ -19,7 +19,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
+//show the information on the seg light
 module scan_seg( rst_n,clk,seg_en,seg_out0,seg_out1,n0,n1,n2,n3,n4,n5,n6,n7);
 
     input rst_n;

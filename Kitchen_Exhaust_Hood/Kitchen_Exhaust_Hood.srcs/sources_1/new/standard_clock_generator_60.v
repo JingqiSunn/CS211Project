@@ -26,6 +26,7 @@ module standard_clock_generator_60(
     output standard_clock_1,
     output reg standard_clock_60
     );
+    //get a one minute clock out of a 1 second one
     wire fake_reset = 1;
     reg [5:0] accumulator;
     standard_clock_generator_1(.clk_in(clk),.reset(fake_reset),.standard_clock(standard_clock_1));

@@ -25,6 +25,7 @@ module standard_clock_generator_1(
     input reset,
     output reg standard_clock
     );
+    //create a 1hz clock out of a 100mhz clock
     reg [25:0] accumulator;
     initial 
         begin

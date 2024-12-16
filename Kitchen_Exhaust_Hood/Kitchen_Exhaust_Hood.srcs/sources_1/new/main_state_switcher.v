@@ -90,7 +90,7 @@ module main_state_switcher(
     output T4
     );
     
-    
+    //here we difine lots of parameters and regs, everything here are states
     wire clock_uart;
     wire [7:0] state_in_binary;
     wire the_left_right_signal;
@@ -179,6 +179,7 @@ module main_state_switcher(
     minute                          = 3'b010,
     second                          = 3'b001;
     
+    //apply the buzzer driver
     buzzer_driver buzzer_driver_1(
       .clk(P17),     
       .state(state),       
@@ -191,6 +192,7 @@ module main_state_switcher(
       .t1(T1)
     );
    
+   //get minitoring information
     second_time_switcher second_time_switcher_for_clock(
     .total_seconds(current_time), 
     .hour_0(hour_0),          
@@ -290,6 +292,8 @@ module main_state_switcher(
     .second_0(level_3_standard_edit_second_0),        
     .second_1(level_3_standard_edit_second_1)  
     );
+    
+    //in this always block, lots of states are updated to next_state.
     always @(posedge standard_clock_1, negedge reset)
         begin
              if (~reset) 
@@ -352,7 +356,7 @@ module main_state_switcher(
                 end
         end
      
-     
+     //create the signal to control turn on and turn off
      left_right_signal left_right_signal_1(
         .reset(reset),
         .target_time(left_right_standard),
@@ -375,6 +379,7 @@ module main_state_switcher(
         .left_right_signal_out(the_right_left_signal)
     ); 
     
+    //generate next_state except edit and current time
     next_state_machine next_state_machine_1(
         .clk(clk),
         .kill_11111111(kill_11111111),
@@ -415,7 +420,7 @@ module main_state_switcher(
         .next_state(next_state)
     );
     
-    
+    //generate next_state for edit
     next_state_machine_for_edit next_state_machine_for_edit_1(
         .clock_for_edit(clock_for_edit),
         .reset(reset),
@@ -439,7 +444,8 @@ module main_state_switcher(
         .strong_standby_timer_standard_next(strong_standby_timer_standard_next),
         .total_working_time_standard_next(total_working_time_standard_next)
     );
-      
+     
+    //generate next_state for current time
     always @(standard_clock_1)
         begin
             if (state == power_off_state)
@@ -460,6 +466,7 @@ module main_state_switcher(
                 end
         end
     
+    //monitor based on the state you are in
     always @(posedge clk)
         begin
             case(state)
@@ -668,7 +675,8 @@ module main_state_switcher(
                     end
             endcase
         end
-        
+    
+    //initiate the monitor
     scan_seg scan_seg_1(
     .rst_n(reset),
     .clk(clk),
@@ -684,11 +692,14 @@ module main_state_switcher(
     .seg_out0({B4, A4, A3, B1, A1, B3, B2, D5}),
     .seg_out1({D4, E3, D3, F4, F3, E2, D2, H2})
     );
-  
+     
+     //show the state light
      always @(state)
         begin
             {F6, G4, G3, J4, H4, J3, J2, K2, K1, H6, H5, J5} = state;
         end
+        
+        //update the total work time
      always @(total_working_time, total_working_time_standard)
         if (total_working_time == total_working_time_standard)
             begin
@@ -696,6 +707,8 @@ module main_state_switcher(
             end
         else 
             K3 <= 0;
+            
+     //light mode
      always @(light_mode_button)
         begin
             if (state == power_off_state)
@@ -718,6 +731,7 @@ module main_state_switcher(
                 end
         end
     
+    //prepare data for uart_tx
     state_one_hot_to_binary state_one_hot_to_binary_1(
         .one_hot(state),
         .binary(state_in_binary)
@@ -729,6 +743,7 @@ module main_state_switcher(
         .standard_clock(clock_uart)
     );
     
+    //data for uart_tx
     reg [7:0] data, data_next;
     reg [27:0] state_in_transfer, state_in_transfer_next;
     parameter
@@ -747,7 +762,7 @@ module main_state_switcher(
     for_hour_1              = 13,
     for_hour_0              = 14;
     
-    
+    //update data to transport
     always @(posedge clock_uart, negedge reset)
         begin
             if (~reset)
@@ -761,7 +776,8 @@ module main_state_switcher(
                     state_in_transfer <= state_in_transfer_next;
                 end
         end
-        
+    
+    //prepare the next_data
     always @(posedge clk)
         begin
             case (state_in_transfer)

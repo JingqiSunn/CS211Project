@@ -40,7 +40,6 @@ module uart_tx (
     reg tx_next;
     reg just_next;
     
-//    assign just_next_clock = just_next;
     
     wire [27:0] counter_standard = 2604;
     wire [12:0] rest_counter_standard = 2;   
@@ -51,9 +50,8 @@ module uart_tx (
     reg [27:0] location_in_data_pack, location_in_data_pack_next; 
     reg [12:0] rest_counter, rest_counter_next;
     
-//    assign whether_read = whether_read_data_pack;
-//    assign rest_counter_light = rest_counter[1:0];
     
+    // Synchronous reset and state update logic
     always @(posedge clk_50, negedge rst_n)
         if (~rst_n)
             begin
@@ -72,7 +70,7 @@ module uart_tx (
                 rest_counter <= rest_counter_next; 
             end
             
-            
+    // Counter logic to create baud rate timing and signal readiness       
     always @(posedge clk_100)
         begin
             if (counter != counter_next)
@@ -94,6 +92,8 @@ module uart_tx (
                         end
                 end
         end
+        
+    // Handle transitions for data reading and rest period management
     always @(just_next)
         begin
             if (just_next == 1)
@@ -133,6 +133,8 @@ module uart_tx (
                     rest_counter_next <= rest_counter; 
                 end
         end
+    
+    // Logic for reading data from the data packet and driving the tx signal
     always @(whether_read_data_pack, location_in_data_pack)
         if (whether_read_data_pack == 1)
             begin

@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (lin64) Build 5076996 Wed May 22 18:36:09 MDT 2024
-| Date         : Sat Dec 14 02:37:12 2024
+| Date         : Mon Dec 16 19:30:48 2024
 | Host         : PC running 64-bit Ubuntu 24.04.1 LTS
 | Command      : report_clock_utilization -file main_clock_utilization_routed.rpt
 | Design       : main
@@ -67,7 +67,7 @@ Table of Contents
 | Source Id | Global Id | Driver Type/Pin | Constraint | Site         | Clock Region | Clock Loads | Non-Clock Loads | Source Clock Period | Source Clock | Driver Pin                                                                 | Net                                                                        |
 +-----------+-----------+-----------------+------------+--------------+--------------+-------------+-----------------+---------------------+--------------+----------------------------------------------------------------------------+----------------------------------------------------------------------------+
 | src0      | g0        | IBUF/O          | IOB_X0Y26  | IOB_X0Y26    | X0Y0         |           1 |               0 |                     |              | P17_IBUF_inst/O                                                            | P17_IBUF                                                                   |
-| src1      | g1        | FDRE/Q          | None       | SLICE_X31Y51 | X0Y1         |           1 |               1 |                     |              | standard_clock_generator_60_1/nolabel_line31/standard_clock_reg/Q          | standard_clock_generator_60_1/nolabel_line31/standard_clock_1              |
+| src1      | g1        | FDRE/Q          | None       | SLICE_X31Y51 | X0Y1         |           1 |               1 |                     |              | standard_clock_generator_60_1/nolabel_line32/standard_clock_reg/Q          | standard_clock_generator_60_1/nolabel_line32/standard_clock_1              |
 | src2      | g2        | FDPE/Q          | None       | SLICE_X34Y16 | X0Y0         |           1 |               1 |                     |              | main_state_switcher_1/standard_clock_generator_edit_1/standard_clock_reg/Q | main_state_switcher_1/standard_clock_generator_edit_1/standard_clock_reg_0 |
 | src3      | g3        | FDPE/Q          | None       | SLICE_X30Y14 | X0Y0         |           1 |               1 |                     |              | main_state_switcher_1/uart_tx_1/Clock_Creator_50hz_1/standard_clock_reg/Q  | main_state_switcher_1/uart_tx_1/Clock_Creator_50hz_1/standard_clock_reg_0  |
 +-----------+-----------+-----------------+------------+--------------+--------------+-------------+-----------------+---------------------+--------------+----------------------------------------------------------------------------+----------------------------------------------------------------------------+

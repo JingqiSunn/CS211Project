@@ -44,6 +44,7 @@ module next_state_machine_for_edit(
     output reg [27:0] total_working_time_standard_next
     );
     
+    //some parameters about state
     parameter 
     power_off_state                 = 12'b000000000001,
     power_off_a_state               = 12'b000000000010,
@@ -67,6 +68,7 @@ module next_state_machine_for_edit(
     minute                          = 3'b010,
     second                          = 3'b001;    
     
+    //update the state information in time
     always @(posedge clock_for_edit, negedge reset)
         begin
             if (~reset)

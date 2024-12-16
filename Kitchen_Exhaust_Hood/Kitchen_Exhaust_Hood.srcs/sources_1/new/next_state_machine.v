@@ -60,6 +60,7 @@ module next_state_machine(
     output reg [11:0] next_state
     );
     
+    //parameter to define states
     parameter 
     power_off_state                 = 12'b000000000001,
     power_off_a_state               = 12'b000000000010,
@@ -113,7 +114,7 @@ module next_state_machine(
 //        end
    
    
-   
+    //update the state information by the state_next and also the state_next
     always @(kill_11111111,kill_01111111,kill_00111111,whether_manual_clean, reset ,state, power_menu_button_short, power_menu_button_long, level_1_button, level_2_button, level_3_button, self_clean_button, edit_state_button, show_work_time_state_button, power_menu_button_three)
         begin
             if (~reset)

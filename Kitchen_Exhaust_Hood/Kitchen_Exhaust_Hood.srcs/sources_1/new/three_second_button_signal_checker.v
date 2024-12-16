@@ -28,7 +28,7 @@ module three_second_button_signal_checker(
     output reg whether_short_touch
     );
     reg [1:0] total_duration;  
-
+    //use similar strategy as debounce to check whether the button is pressed in a continuous 3 seconds
     always @(posedge clk, negedge reset) 
     begin
         if (~reset)
